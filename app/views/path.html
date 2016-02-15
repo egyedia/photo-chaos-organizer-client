@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <a href="/#/">
+        <i class="font-svg-root"></i>
+      </a>
+    </div>
+    <div class="col-md-10">
+      <!--Body content-->
+      <h1>{{requestedLocation}}</h1>
+
+      <div class="fsEntry" ng-if="!locationIsRoot">
+        <a href="#/path/{{parentPath}}">
+          <div class="icon"><i class="font-svg-up"></i></div>
+          <div class="label">Go up</div>
+        </a>
+      </div>
+
+      <div ng-repeat="entry in contentList| orderBy:'-isdir'" ng-repeat-finished="renderingContentsFinished"
+           ng-if="contentList !== null && contentList.length > 0">
+        <div class="fsEntry">
+          <a href="#/path/{{entry.linkPath}}">
+            <div ng-hide="{{entry.hideIcon}}" class="icon"><i class="{{entry.iconClass}}"></i></div>
+            <div class="thumb"><img ng-src="{{entry.img}}" alt="" title="" pco-onload ng-class="entry.cssClass"/></div>
+            <div class="label">{{entry.name}}</div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

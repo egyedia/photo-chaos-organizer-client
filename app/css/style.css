@@ -1,0 +1,198 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "photo-chaos-organizer-client";
+  src: url("../fonts/photo-chaos-organizer-client.eot");
+  src: url("../fonts/photo-chaos-organizer-client.eot?#iefix") format("embedded-opentype"), url("../fonts/photo-chaos-organizer-client.woff") format("woff"), url("../fonts/photo-chaos-organizer-client.ttf") format("truetype"), url("../fonts/photo-chaos-organizer-client.svg#photo-chaos-organizer-client") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+[data-icon]:before {
+  font-family: "photo-chaos-organizer-client" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+[class^="font-svg-"],
+[class*=" font-svg-"] {
+  display: inline-block;
+  -webkit-transform: translate(0px, 0px);
+      -ms-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+}
+[class^="font-svg-"]:before,
+[class*=" font-svg-"]:before {
+  font-family: "photo-chaos-organizer-client" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 80px;
+}
+.font-svg-file:before {
+  content: "a";
+}
+.font-svg-folder:before {
+  content: "b";
+}
+.font-svg-photo:before {
+  content: "c";
+}
+.font-svg-root:before {
+  content: "d";
+}
+.font-svg-favorite:before {
+  content: "e";
+}
+.font-svg-previous:before {
+  content: "f";
+}
+.font-svg-up:before {
+  content: "g";
+}
+.font-svg-star:before {
+  content: "h";
+}
+.font-svg-info:before {
+  content: "i";
+}
+.wordwrap {
+  white-space: pre-wrap;
+  /* CSS3 */
+  white-space: -moz-pre-wrap;
+  /* Firefox */
+  white-space: -pre-wrap;
+  /* Opera <7 */
+  white-space: -o-pre-wrap;
+  /* Opera 7 */
+  word-wrap: break-word;
+  /* IE */
+}
+[ng\:cloak],
+[ng-cloak],
+.ng-cloak {
+  display: none;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #fcfcfc;
+}
+html,
+body,
+.container,
+#angular-views-entry {
+  height: 100%;
+}
+.container {
+  display: table;
+  width: 100%;
+  margin-left: 0px;
+  margin-top: -50px;
+  padding-top: 50px;
+  padding-left: 0px;
+  padding-right: 0px;
+  box-sizing: border-box;
+}
+header {
+  background: #f0f0f0;
+  height: 50px;
+}
+.row {
+  height: 100%;
+}
+.col-md-4.no-float {
+  float: none;
+}
+.col-md-4 {
+  display: table-cell;
+  background: #eeeeee;
+  border: 1px solid #aaaaaa;
+  width: 33%;
+  padding: 0px;
+}
+div.fsEntry {
+  top: 0px;
+  left: 0px;
+  border: 1px solid #cccccc;
+  float: left;
+  width: 140px;
+  height: 140px;
+  position: relative;
+  margin: 10px;
+  box-shadow: 1px 1px 2px #000000;
+  background-color: #eeeeee;
+}
+div.fsEntry div.icon {
+  position: relative;
+  top: 10px;
+  width: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.fsEntry div.thumb {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 138px;
+  height: 138px;
+}
+div.fsEntry div.thumb img {
+  border: 1px solid #ddeeff;
+  max-width: 138px;
+  max-height: 138px;
+}
+div.fsEntry div.label {
+  position: absolute;
+  bottom: 0;
+  border: 0px solid blue;
+  width: 140px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+  /* CSS3 */
+  white-space: -moz-pre-wrap;
+  /* Firefox */
+  white-space: -pre-wrap;
+  /* Opera <7 */
+  white-space: -o-pre-wrap;
+  /* Opera 7 */
+  word-wrap: break-word;
+  /* IE */
+  color: #ffffff;
+  text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
+  font-size: 12px;
+}
+img.rotateCCW {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(-90deg);
+  -ms-transform: translate(-50%, -50%) rotate(-90deg);
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+img.rotateCW {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(90deg);
+  -ms-transform: translate(-50%, -50%) rotate(90deg);
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+img.rotate180 {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
