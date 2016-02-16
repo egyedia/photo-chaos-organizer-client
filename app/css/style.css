@@ -175,6 +175,19 @@ div.fsEntry div.label {
   text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
   font-size: 12px;
 }
+div.favoritePath {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 25px;
+  height: 140px;
+  border: 0px solid red;
+  text-align: center;
+  padding-top: 5px;
+}
+div.favoritePath .font-svg-favorite:before {
+  font-size: 20px;
+}
 img.rotateCCW {
   position: absolute;
   top: 50%;

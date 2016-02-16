@@ -24,6 +24,14 @@
             <div class="thumb"><img ng-src="{{entry.img}}" alt="" title="" pco-onload ng-class="entry.cssClass"/></div>
             <div class="label">{{entry.name}}</div>
           </a>
+
+          <div class="fsEntryMenu" style="display:none" show-on-hover=".fsEntry">
+            <div class="favoritePath">
+              <a href="javascript://" ng-click="addToFavorites(entry.linkPath)">
+                <i class="font-svg-favorite"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
