@@ -27,7 +27,7 @@
 @fs-entry-height: 140px;
 @fs-entry-border: 1px;
 @fs-entry-icon-size: 80px;
-@fs-entry-label-height:60px;
+@fs-entry-label-height: 60px;
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none;
@@ -101,47 +101,50 @@ div.fsEntry div.icon {
   margin-right: auto;
 }
 
-div.fsEntry div.thumb {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: @fs-entry-width - 2 * @fs-entry-border;
-  height: @fs-entry-height - 2 * @fs-entry-border;
-}
-
-div.fsEntry div.thumb img {
-  border: 1px solid #ddeeff;
-  max-width: @fs-entry-width - 2 * @fs-entry-border;
-  max-height: @fs-entry-height - 2 * @fs-entry-border;
-}
-
-div.fsEntry div.label {
-  position: absolute;
-  bottom:0;
-  border: 0px solid blue;
-  width: @fs-entry-width;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  .wordwrap;
-  color: #ffffff;
-  text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
-  font-size: 12px;
+div.fsEntry {
+  div.thumb {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: @fs-entry-width - 2 * @fs-entry-border;
+    height: @fs-entry-height - 2 * @fs-entry-border;
+    img {
+      border: 1px solid #ddeeff;
+      max-width: @fs-entry-width - 2 * @fs-entry-border;
+      max-height: @fs-entry-height - 2 * @fs-entry-border;
+    }
+  }
+  div.label {
+    position: absolute;
+    bottom: 0;
+    border: 0px solid blue;
+    width: @fs-entry-width;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    .wordwrap;
+    color: #ffffff;
+    text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
+    font-size: 12px;
+  }
 }
 
 div.favoritePath {
-  position:absolute;
-  top:0px;
-  right:0px;
-  width:25px;
-  height:@fs-entry-height;
-  border:0px solid red;
-  text-align:center;
-  padding-top:5px;
-}
-
-div.favoritePath .font-svg-favorite:before {
-  font-size:20px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 20px;
+  height: @fs-entry-height;
+  border: 0px solid red;
+  text-align: center;
+  padding-top: 5px;
+  a {
+    color: #ffffff;
+    text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
+  }
+  .font-svg-favorite:before {
+    font-size: 20px;
+  }
 }
 
 img.rotateCCW {

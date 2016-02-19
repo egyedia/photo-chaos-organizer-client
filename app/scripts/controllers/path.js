@@ -10,20 +10,22 @@ var PathController = function ($scope, $routeParams, $http, base64) {
   $scope.renderingContentsFinished = function () {
     for (var i in contentList) {
       var e = contentList[i];
-      if (!e.isDir) {
+      if (!e.isDir && e.canHaveMeta === true) {
         e.img = 'http://localhost:8080/filesystem-meta-thumbnail-data/' + e.linkPath;
-        $http.get('http://localhost:8080/filesystem-meta-thumbnail-meta/' + e.linkPath).then(function (response) {
-          var filename = base64.decode(e.linkPath);
-          var content = filename2contentMap[filename];
-          var orientation = response.data.orientation;
-          if (orientation == 6) {
-            content.cssClass = 'rotateCW';
-          } else if (orientation == 8) {
-            content.cssClass = 'rotateCCW';
-          } else if (orientation == 3) {
-            content.cssClass = 'rotate180';
-          }
-        });
+        (function (currentEntry) {
+          $http.get('http://localhost:8080/filesystem-meta-thumbnail-meta/' + currentEntry.linkPath).then(function (response) {
+            var filename = base64.decode(currentEntry.linkPath);
+            var content = filename2contentMap[filename];
+            var orientation = response.data.orientation;
+            if (orientation == 6) {
+              content.cssClass = 'rotateCW';
+            } else if (orientation == 8) {
+              content.cssClass = 'rotateCCW';
+            } else if (orientation == 3) {
+              content.cssClass = 'rotate180';
+            }
+          });
+        })(e);
       }
     }
   };
@@ -37,12 +39,14 @@ var PathController = function ($scope, $routeParams, $http, base64) {
       for (var i in data.contentList) {
         var e = data.contentList[i];
         var content = {};
-        var filename = pathInfo.path + "/" + e.name;
-        content.linkPath = base64.encode(filename);
+        var fullPath = pathInfo.path + "/" + e.name;
+        content.linkPath = base64.encode(fullPath);
+        content.fullPath = fullPath;
         content.name = e.name;
         content.isDir = e.attributes.isDir;
         content.cssClass = '';
         content.index = i;
+        content.canHaveMeta = e.canHaveMeta;
         if (content.isDir) {
           content.iconClass = "font-svg-folder";
         } else {
@@ -50,7 +54,7 @@ var PathController = function ($scope, $routeParams, $http, base64) {
           content.hideIcon = true;
         }
         contentList.push(content);
-        filename2contentMap[filename] = content;
+        filename2contentMap[fullPath] = content;
       }
 
       $scope.contentList = contentList;
@@ -58,11 +62,20 @@ var PathController = function ($scope, $routeParams, $http, base64) {
       $scope.locationIsRoot = pathInfo.isRoot;
       $scope.parentPath = pathInfo.parentPath == null ? null : base64.encode(pathInfo.parentPath);
 
+      var parentList = [];
+      for (var i in response.data.parentList) {
+        var p = response.data.parentList[i];
+        parentList.push({
+          name    : p.name,
+          linkPath: base64.encode(p.path)
+        });
+      }
+      $scope.parentList = parentList;
+
     });
   };
 
   $scope.addToFavorites = function (path) {
-    console.log("add to favorites:" + path);
     var postData = {
       'path': path
     };
