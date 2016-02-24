@@ -50,7 +50,7 @@
 .font-svg-root:before {
   content: "d";
 }
-.font-svg-favorite:before {
+.font-svg-bookmark-off:before {
   content: "e";
 }
 .font-svg-previous:before {
@@ -64,6 +64,9 @@
 }
 .font-svg-info:before {
   content: "i";
+}
+.font-svg-bookmark-on:before {
+  content: "j";
 }
 .wordwrap {
   white-space: pre-wrap;
@@ -126,13 +129,19 @@ div.fsEntry {
   top: 0px;
   left: 0px;
   border: 1px solid #cccccc;
+  border-radius: 5px;
   float: left;
   width: 140px;
   height: 140px;
   position: relative;
   margin: 10px;
-  box-shadow: 1px 1px 2px #000000;
+  box-shadow: 0px 0px 2px #aaaaaa;
+  -webkit-transition: box-shadow 0.5s;
+  transition: box-shadow 0.5s;
   background-color: #eeeeee;
+}
+div.fsEntry:hover {
+  box-shadow: 2px 2px 10px #aaaaaa;
 }
 div.fsEntry div.icon {
   position: relative;
@@ -175,21 +184,43 @@ div.fsEntry div.label {
   text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
   font-size: 12px;
 }
-div.favoritePath {
+div.fsEntry div.fsStatusMenu {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 20px;
+  height: 140px;
+  border: 0px solid #ffaa00;
+}
+div.fsEntry div.fsStatusMenu div.favoritePath {
+  text-align: center;
+  padding-top: 5px;
+}
+div.fsEntry div.fsStatusMenu div.favoritePath a {
+  color: #ffffff;
+  text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
+}
+div.fsEntry div.fsStatusMenu div.favoritePath .font-svg-bookmark-on:before {
+  font-size: 20px;
+}
+div.fsEntry div.fsEntryMenu {
   position: absolute;
   top: 0px;
   right: 0px;
   width: 20px;
   height: 140px;
   border: 0px solid red;
+  display: none;
+}
+div.fsEntry div.fsEntryMenu div.favoritePath {
   text-align: center;
   padding-top: 5px;
 }
-div.favoritePath a {
+div.fsEntry div.fsEntryMenu div.favoritePath a {
   color: #ffffff;
   text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
 }
-div.favoritePath .font-svg-favorite:before {
+div.fsEntry div.fsEntryMenu div.favoritePath .font-svg-bookmark-off:before {
   font-size: 20px;
 }
 img.rotateCCW {

@@ -10,7 +10,8 @@
       <h1>
       <span ng-repeat="parent in parentList">
         <span ng-if="$last">{{parent.name}}</span>
-        <a ng-if="!$last" href="#/path/{{parent.linkPath}}">{{parent.name}}</a><span ng-show="{{parent.name != '/'}}"> /</span>
+        <a ng-if="!$last" href="#/path/{{parent.linkPath}}">{{parent.name}}</a><span
+          ng-show="{{parent.name != '/'}}"> /</span>
       </span>
       </h1>
 
@@ -31,13 +32,20 @@
             <div class="label">{{entry.name}}</div>
           </a>
 
-          <div class="fsEntryMenu" style="display:none" show-on-hover=".fsEntry">
+          <div class="fsStatusMenu">
+            <div class="favoritePath" ng-show="entry.isFavorite">
+              <i class="font-svg-bookmark-on"></i>
+            </div>
+          </div>
+
+          <div class="fsEntryMenu" show-on-hover=".fsEntry">
             <div class="favoritePath">
-              <a href="javascript://" ng-click="addToFavorites(entry.fullPath)">
-                <i class="font-svg-favorite"></i>
+              <a href="javascript://" ng-click="addOrRemoveFavorite(entry.fullPath, entry.isFavorite)">
+                <i class="font-svg-bookmark-off"></i>
               </a>
             </div>
           </div>
+
         </div>
       </div>
 

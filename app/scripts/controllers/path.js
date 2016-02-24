@@ -1,7 +1,7 @@
 /*global angularApp*/
 'use strict';
 
-var PathController = function ($scope, $routeParams, $http, base64) {
+var PathController = function ($scope, $routeParams, $http, base64, FavoritesService) {
 
   var contentList = null;
   var filename2contentMap = null;
@@ -53,6 +53,7 @@ var PathController = function ($scope, $routeParams, $http, base64) {
           content.iconClass = "font-svg-file";
           content.hideIcon = true;
         }
+        content.isFavorite = FavoritesService.isFavorite(fullPath);
         contentList.push(content);
         filename2contentMap[fullPath] = content;
       }
@@ -75,18 +76,34 @@ var PathController = function ($scope, $routeParams, $http, base64) {
     });
   };
 
-  $scope.addToFavorites = function (path) {
-    var postData = {
-      'path': path
-    };
-    $http.post('http://localhost:8080/filesystem-favorites', postData).then(function (response) {
-      console.log("favorite created");
-    });
+  $scope.addOrRemoveFavorite = function (path, isFavorite) {
+    if (!isFavorite) {
+      var postData = {
+        'path': path
+      };
+      $http.post('http://localhost:8080/filesystem-favorites', postData).then(function (response) {
+        console.log("favorite created");
+      });
+    } else {
+      var id = FavoritesService.getIdForPath(path);
+      $http.delete('http://localhost:8080/filesystem-favorites' + '/' + id).then(function (response) {
+        console.log("favorite deleted");
+      });
+    }
   };
 
-  $scope.getPathContents();
+
+  var loadPath = function () {
+    $scope.getPathContents();
+  };
+
+  if (FavoritesService.isInitialized()) {
+    loadPath();
+  } else {
+    FavoritesService.loadFavorites(loadPath);
+  }
 
 };
 
-PathController.$inject = ["$scope", "$routeParams", "$http", "base64"];
+PathController.$inject = ['$scope', '$routeParams', '$http', 'base64', 'FavoritesService'];
 angularApp.controller('PathController', PathController);

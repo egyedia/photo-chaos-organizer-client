@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row-fluid">
     <div class="col-md-2">
       <a href="/#/">
         <i class="font-svg-root"></i>
@@ -7,17 +7,34 @@
     </div>
     <div class="col-md-10">
       <!--Body content-->
-      <h2>File system roots</h2>
+      <div class="row">
+        <h2>File system roots</h2>
 
-      <div ng-repeat="root in rootList">
-        <div class="fsEntry">
-          <a href="#/path/{{root.pathEncoded}}">
-            <div class="icon"><i class="font-svg-root"></i></div>
-            <div class="label">{{root.path}}</div>
-          </a>
+        <div ng-repeat="root in rootList">
+          <div class="fsEntry">
+            <a href="#/path/{{root.pathEncoded}}">
+              <div class="icon"><i class="font-svg-root"></i></div>
+              <div class="label">{{root.path}}</div>
+            </a>
+          </div>
         </div>
+
       </div>
 
+      <div class="row">
+        <h2>Favorites</h2>
+
+        <div ng-repeat="favorite in favoriteList">
+          <div class="fsEntry">
+            <a href="#/path/{{favorite.pathEncoded}}">
+              <div class="icon"><i class="font-svg-folder"></i></div>
+              <div class="label">{{favorite.path}}</div>
+            </a>
+          </div>
+        </div>
+
+      </div>
     </div>
+
   </div>
 </div>

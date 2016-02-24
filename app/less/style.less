@@ -84,13 +84,19 @@ div.fsEntry {
   top: 0px;
   left: 0px;
   border: 1px solid #cccccc;
+  border-radius: 5px;
   float: left;
   width: @fs-entry-width;
   height: @fs-entry-height;
   position: relative;
   margin: 10px;
-  box-shadow: 1px 1px 2px #000000;
+  box-shadow: 0px 0px 2px #aaaaaa;
+  transition: box-shadow 0.5s;
   background-color: #eeeeee;
+}
+
+div.fsEntry:hover {
+  box-shadow: 2px 2px 10px #aaaaaa;
 }
 
 div.fsEntry div.icon {
@@ -127,23 +133,44 @@ div.fsEntry {
     text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
     font-size: 12px;
   }
-}
-
-div.favoritePath {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  width: 20px;
-  height: @fs-entry-height;
-  border: 0px solid red;
-  text-align: center;
-  padding-top: 5px;
-  a {
-    color: #ffffff;
-    text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
+  div.fsStatusMenu {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: @fs-entry-height;
+    border: 0px solid #ffaa00;
+    div.favoritePath {
+      text-align: center;
+      padding-top: 5px;
+      a {
+        color: #ffffff;
+        text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
+      }
+      .font-svg-bookmark-on:before {
+        font-size: 20px;
+      }
+    }
   }
-  .font-svg-favorite:before {
-    font-size: 20px;
+  div.fsEntryMenu {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: @fs-entry-height;
+    border: 0px solid red;
+    display: none;
+    div.favoritePath {
+      text-align: center;
+      padding-top: 5px;
+      a {
+        color: #ffffff;
+        text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
+      }
+      .font-svg-bookmark-off:before {
+        font-size: 20px;
+      }
+    }
   }
 }
 
