@@ -39,7 +39,7 @@
           </div>
 
           <div class="fsEntryMenu" show-on-hover=".fsEntry">
-            <div class="favoritePath">
+            <div class="favoritePath" ng-show="entry.isDir">
               <a href="javascript://" ng-click="addOrRemoveFavorite(entry.fullPath, entry.isFavorite)">
                 <i class="font-svg-bookmark-off"></i>
               </a>

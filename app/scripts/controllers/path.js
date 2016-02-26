@@ -1,13 +1,12 @@
 /*global angularApp*/
 'use strict';
 
-var PathController = function ($scope, $routeParams, $http, base64, FavoritesService) {
+var PathController = function ($scope, $routeParams, $http, base64, FavoritesService, PathService) {
 
-  var contentList = null;
-  var filename2contentMap = null;
   $scope.contentList = [];
 
   $scope.renderingContentsFinished = function () {
+    var contentList = PathService.getContentList();
     for (var i in contentList) {
       var e = contentList[i];
       if (!e.isDir && e.canHaveMeta === true) {
@@ -15,7 +14,7 @@ var PathController = function ($scope, $routeParams, $http, base64, FavoritesSer
         (function (currentEntry) {
           $http.get('http://localhost:8080/filesystem-meta-thumbnail-meta/' + currentEntry.linkPath).then(function (response) {
             var filename = base64.decode(currentEntry.linkPath);
-            var content = filename2contentMap[filename];
+            var content = PathService.getFileContent(filename);
             var orientation = response.data.orientation;
             if (orientation == 6) {
               content.cssClass = 'rotateCW';
@@ -23,6 +22,8 @@ var PathController = function ($scope, $routeParams, $http, base64, FavoritesSer
               content.cssClass = 'rotateCCW';
             } else if (orientation == 3) {
               content.cssClass = 'rotate180';
+            } else {
+              content.cssClass = 'rotate0';
             }
           });
         })(e);
@@ -30,80 +31,39 @@ var PathController = function ($scope, $routeParams, $http, base64, FavoritesSer
     }
   };
 
-  $scope.getPathContents = function () {
-    $http.get('http://localhost:8080/filesystem-path-contents/' + $routeParams.path).then(function (response) {
-      var data = response.data;
-      contentList = [];
-      filename2contentMap = {};
-      var pathInfo = data.pathInfo;
-      for (var i in data.contentList) {
-        var e = data.contentList[i];
-        var content = {};
-        var fullPath = pathInfo.path + "/" + e.name;
-        content.linkPath = base64.encode(fullPath);
-        content.fullPath = fullPath;
-        content.name = e.name;
-        content.isDir = e.attributes.isDir;
-        content.cssClass = '';
-        content.index = i;
-        content.canHaveMeta = e.canHaveMeta;
-        if (content.isDir) {
-          content.iconClass = "font-svg-folder";
-        } else {
-          content.iconClass = "font-svg-file";
-          content.hideIcon = true;
-        }
-        content.isFavorite = FavoritesService.isFavorite(fullPath);
-        contentList.push(content);
-        filename2contentMap[fullPath] = content;
-      }
-
-      $scope.contentList = contentList;
-      $scope.requestedLocation = pathInfo.path;
-      $scope.locationIsRoot = pathInfo.isRoot;
-      $scope.parentPath = pathInfo.parentPath == null ? null : base64.encode(pathInfo.parentPath);
-
-      var parentList = [];
-      for (var i in response.data.parentList) {
-        var p = response.data.parentList[i];
-        parentList.push({
-          name    : p.name,
-          linkPath: base64.encode(p.path)
-        });
-      }
-      $scope.parentList = parentList;
-
-    });
-  };
-
   $scope.addOrRemoveFavorite = function (path, isFavorite) {
     if (!isFavorite) {
-      var postData = {
-        'path': path
-      };
-      $http.post('http://localhost:8080/filesystem-favorites', postData).then(function (response) {
-        console.log("favorite created");
+      FavoritesService.createFavorite(path, function () {
+        FavoritesService.loadFavorites(getPathContents);
       });
     } else {
-      var id = FavoritesService.getIdForPath(path);
-      $http.delete('http://localhost:8080/filesystem-favorites' + '/' + id).then(function (response) {
-        console.log("favorite deleted");
+      FavoritesService.removeFavoriteByPath(path, function () {
+        FavoritesService.loadFavorites(getPathContents);
       });
     }
   };
 
-
-  var loadPath = function () {
-    $scope.getPathContents();
+  // function to launch the content loading
+  var getPathContents = function () {
+    var ret = PathService.getPathContents($routeParams.path, function (ret) {
+      $scope.contentList = ret.contentList;
+      $scope.requestedLocation = ret.requestedLocation;
+      $scope.pathInfo = ret.pathInfo;
+      $scope.locationIsRoot = ret.locationIsRoot;
+      $scope.parentPath = ret.parentPath;
+      $scope.parentList = ret.parentList;
+    });
   };
 
+  // make sure favorites are loaded
+  // the load path contents
   if (FavoritesService.isInitialized()) {
-    loadPath();
+    getPathContents();
   } else {
-    FavoritesService.loadFavorites(loadPath);
+    FavoritesService.loadFavorites(getPathContents);
   }
 
 };
 
-PathController.$inject = ['$scope', '$routeParams', '$http', 'base64', 'FavoritesService'];
+PathController.$inject = ['$scope', '$routeParams', '$http', 'base64', 'FavoritesService', 'PathService'];
 angularApp.controller('PathController', PathController);

@@ -20,6 +20,22 @@ var FavoritesService = function ($http, base64, $rootScope) {
     });
   };
 
+  service.createFavorite = function (path, callback) {
+    var postData = {
+      'path': path
+    };
+    $http.post('http://localhost:8080/filesystem-favorites', postData).then(function (response) {
+      callback();
+    });
+  };
+
+  service.removeFavoriteByPath = function (path, callback) {
+    var id = this.getIdForPath(path);
+    $http.delete('http://localhost:8080/filesystem-favorites' + '/' + id).then(function (response) {
+      callback();
+    });
+  };
+
   service.getFavorites = function () {
     return $rootScope.favorites;
   };
