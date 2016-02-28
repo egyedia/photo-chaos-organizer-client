@@ -44,7 +44,7 @@
 .font-svg-folder:before {
   content: "b";
 }
-.font-svg-photo:before {
+.font-svg-image:before {
   content: "c";
 }
 .font-svg-root:before {
@@ -53,20 +53,23 @@
 .font-svg-bookmark-off:before {
   content: "e";
 }
-.font-svg-previous:before {
+.font-svg-bookmark-on:before {
   content: "f";
 }
-.font-svg-up:before {
+.font-svg-video:before {
   content: "g";
 }
-.font-svg-star:before {
+.font-svg-back:before {
   content: "h";
 }
-.font-svg-info:before {
+.font-svg-play:before {
   content: "i";
 }
-.font-svg-bookmark-on:before {
+.font-svg-destination:before {
   content: "j";
+}
+.font-svg-source:before {
+  content: "k";
 }
 .wordwrap {
   white-space: pre-wrap;

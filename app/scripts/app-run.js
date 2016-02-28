@@ -1,12 +1,9 @@
-/*jslint node: true */
-/*global angularApp */
-/*global angular */
-/*global jQuery */
 'use strict';
 
-var angularRun = function ($rootScope) {
+var angularRun = function (DataService) {
 
+  DataService.initialize();
 };
 
-angularRun.$inject = ['$rootScope'];
+angularRun.$inject = ['DataService'];
 angularApp.run(angularRun);

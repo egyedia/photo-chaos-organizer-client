@@ -1,21 +1,12 @@
 'use strict';
 
-var FavoritesService = function ($http, base64, $rootScope) {
-
-  $rootScope.favorites = null;
-  $rootScope.favoritesMap = null;
+var FavoritesService = function ($http, base64, DataService) {
 
   var service = {};
 
   service.loadFavorites = function (callback) {
     $http.get('http://localhost:8080/filesystem-favorites').then(function (response) {
-      $rootScope.favoritesMap = {};
-      var favoriteList = response.data;
-      for (var i in favoriteList) {
-        favoriteList[i].pathEncoded = base64.encode(favoriteList[i].path);
-        $rootScope.favoritesMap[favoriteList[i].path] = favoriteList[i].id;
-      }
-      $rootScope.favorites = favoriteList;
+      DataService.setFavorites(response.data);
       callback();
     });
   };
@@ -37,24 +28,24 @@ var FavoritesService = function ($http, base64, $rootScope) {
   };
 
   service.getFavorites = function () {
-    return $rootScope.favorites;
+    return DataService.getAppData().favorites;
   };
 
   service.getIdForPath = function (path) {
-    return $rootScope.favoritesMap[path];
+    return DataService.getAppData().favoritesMap[path];
   };
 
   service.isFavorite = function (path) {
-    return $rootScope.favoritesMap.hasOwnProperty(path);
+    return DataService.getAppData().favoritesMap.hasOwnProperty(path);
   };
 
   service.isInitialized = function () {
-    return $rootScope.favoritesMap !== null;
+    return DataService.getAppData().favoritesMap !== null;
   };
 
   return service;
 
 };
 
-FavoritesService.$inject = ['$http', 'base64', '$rootScope'];
+FavoritesService.$inject = ['$http', 'base64', 'DataService'];
 angularApp.service('FavoritesService', FavoritesService);

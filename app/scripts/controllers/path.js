@@ -1,30 +1,29 @@
 /*global angularApp*/
 'use strict';
 
-var PathController = function ($scope, $routeParams, $http, base64, FavoritesService, PathService) {
-
-  $scope.contentList = [];
+var PathController = function ($scope, $routeParams, $http, base64, FavoritesService, PathService, DataService) {
 
   $scope.renderingContentsFinished = function () {
-    var contentList = PathService.getContentList();
-    for (var i in contentList) {
-      var e = contentList[i];
-      if (!e.isDir && e.canHaveMeta === true) {
+    var entryList = DataService.getAppData().pathData.entryList;
+    for (var i in entryList) {
+      var e = entryList[i];
+      if (!e.isDir && e.fileType.canHaveMeta && e.fileType.canShowThumb) {
         e.img = 'http://localhost:8080/filesystem-meta-thumbnail-data/' + e.linkPath;
         (function (currentEntry) {
           $http.get('http://localhost:8080/filesystem-meta-thumbnail-meta/' + currentEntry.linkPath).then(function (response) {
-            var filename = base64.decode(currentEntry.linkPath);
-            var content = PathService.getFileContent(filename);
             var orientation = response.data.orientation;
+            var cssClass = '';
             if (orientation == 6) {
-              content.cssClass = 'rotateCW';
+              cssClass = 'rotateCW';
             } else if (orientation == 8) {
-              content.cssClass = 'rotateCCW';
+              cssClass = 'rotateCCW';
             } else if (orientation == 3) {
-              content.cssClass = 'rotate180';
-            } else {
-              content.cssClass = 'rotate0';
+              cssClass = 'rotate180';
+            } else if (orientation == 1) {
+              cssClass = 'rotate0';
             }
+            DataService.getPathEntry(currentEntry.name).cssClass = cssClass;
+            //DataService.getPathEntry(currentEntry.name).hideIcon = true;
           });
         })(e);
       }
@@ -45,13 +44,8 @@ var PathController = function ($scope, $routeParams, $http, base64, FavoritesSer
 
   // function to launch the content loading
   var getPathContents = function () {
-    var ret = PathService.getPathContents($routeParams.path, function (ret) {
-      $scope.contentList = ret.contentList;
-      $scope.requestedLocation = ret.requestedLocation;
-      $scope.pathInfo = ret.pathInfo;
-      $scope.locationIsRoot = ret.locationIsRoot;
-      $scope.parentPath = ret.parentPath;
-      $scope.parentList = ret.parentList;
+    PathService.getPathContents($routeParams.path, function () {
+      $scope.pco = DataService.getAppData();
     });
   };
 
@@ -65,5 +59,6 @@ var PathController = function ($scope, $routeParams, $http, base64, FavoritesSer
 
 };
 
-PathController.$inject = ['$scope', '$routeParams', '$http', 'base64', 'FavoritesService', 'PathService'];
+PathController.$inject = ['$scope', '$routeParams', '$http', 'base64', 'FavoritesService', 'PathService',
+                          'DataService'];
 angularApp.controller('PathController', PathController);

@@ -1,13 +1,16 @@
 /*global angularApp */
 'use strict';
 
-var pcoOnload = function () {
+var pcoOnload = function (DataService) {
 
   function link(scope, element, attrs) {
     element.bind("load", function (e) {
-      //console.log(e.target.naturalHeight);
-      //console.log(e.target.naturalWidth);
+      scope.$apply(function() {
+        DataService.getPathEntry(attrs['ngDataFilename']).hideIcon = true;
+      });
     });
+    /*element.bind('error', function () {
+    });*/
   }
 
   return {
@@ -17,5 +20,5 @@ var pcoOnload = function () {
 
 };
 
-pcoOnload.$inject = [];
+pcoOnload.$inject = ['DataService'];
 angularApp.directive('pcoOnload', pcoOnload);
