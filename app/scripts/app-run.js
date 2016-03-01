@@ -1,9 +1,13 @@
-'use strict';
+(function () {
+  'use strict';
 
-var angularRun = function (DataService) {
+  angular
+      .module('pcoApp')
+      .run(run);
 
-  DataService.initialize();
-};
+  run.$inject = ['DataService'];
 
-angularRun.$inject = ['DataService'];
-angularApp.run(angularRun);
+  function run(DataService) {
+    DataService.initialize();
+  }
+})();

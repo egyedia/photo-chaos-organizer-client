@@ -10,7 +10,7 @@
       <div class="row">
         <h2>File system roots</h2>
 
-        <div ng-repeat="root in rootList">
+        <div ng-repeat="root in vm.rootList">
           <div class="fsEntry">
             <a href="#/path/{{root.pathEncoded}}">
               <div class="icon"><i class="font-svg-root"></i></div>
@@ -24,7 +24,7 @@
       <div class="row">
         <h2>Favorites</h2>
 
-        <div ng-repeat="favorite in favoriteList">
+        <div ng-repeat="favorite in vm.favoriteList">
           <div class="fsEntry">
             <a href="#/path/{{favorite.pathEncoded}}">
               <div class="icon"><i class="font-svg-folder"></i></div>

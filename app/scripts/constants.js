@@ -1,6 +1,9 @@
-/*jslint node: true */
-/*global angularApp */
-'use strict';
+(function () {
+  'use strict';
 
-angularApp.constant('CONST', {
-});
+  angular
+      .module('pcoApp')
+      .constant('CONST', {
+
+      });
+})();

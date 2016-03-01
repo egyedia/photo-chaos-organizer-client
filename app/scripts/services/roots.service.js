@@ -1,29 +1,34 @@
-'use strict';
+(function () {
+  'use strict';
 
-var RootsService = function ($http, base64) {
+  angular
+      .module('pcoApp')
+      .service('RootsService', RootsService);
 
-  var roots = [];
+  RootsService.$inject = ['$http', 'base64'];
 
-  var service = {};
+  function RootsService($http, base64) {
 
-  service.loadRoots = function (callback) {
-    $http.get('http://localhost:8080/filesystem-roots').then(function (response) {
-      var rootList = response.data;
-      for (var i in rootList) {
-        rootList[i].pathEncoded = base64.encode(rootList[i].path);
-      }
-      roots = rootList;
-      callback();
-    });
+    var roots = [];
+
+    var service = {};
+
+    service.loadRoots = function (callback) {
+      $http.get('http://localhost:8080/filesystem-roots').then(function (response) {
+        var rootList = response.data;
+        for (var i in rootList) {
+          rootList[i].pathEncoded = base64.encode(rootList[i].path);
+        }
+        roots = rootList;
+        callback();
+      });
+    };
+
+    service.getRoots = function () {
+      return roots;
+    }
+
+    return service;
+
   };
-
-  service.getRoots = function () {
-    return roots;
-  }
-
-  return service;
-
-};
-
-RootsService.$inject = ['$http', 'base64'];
-angularApp.service('RootsService', RootsService);
+})();

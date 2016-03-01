@@ -1,5 +1,10 @@
-/*jslint node: true */
-/*global angular */
-'use strict';
+(function () {
+  'use strict';
 
-var angularApp = angular.module('photoChaosOrganizerApp', ['ui.bootstrap', 'ngRoute', 'ngAnimate', 'ab-base64']);
+  angular.module('pcoApp', [
+    'ui.bootstrap',
+    'ngRoute',
+    'ngAnimate',
+    'ab-base64'
+  ]);
+})();

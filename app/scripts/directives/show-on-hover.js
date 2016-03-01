@@ -1,25 +1,28 @@
-/*global angularApp */
-'use strict';
+(function () {
+  'use strict';
 
-var showOnHover = function () {
+  angular
+      .module('pcoApp')
+      .directive('showOnHover', showOnHover);
 
-  function link(scope, element, attrs) {
-    var selector = attrs.showOnHover;
-    var selectedElement = element.closest(selector);
-    selectedElement.bind('mouseenter', function () {
-      element.show();
-    });
-    selectedElement.bind('mouseleave', function () {
-      element.hide();
-    });
+  showOnHover.$inject = [];
+
+  function showOnHover() {
+    var directive = {
+      restrict: 'A',
+      link    : link
+    };
+    return directive;
+
+    function link(scope, element, attrs) {
+      var selector = attrs.showOnHover;
+      var selectedElement = element.closest(selector);
+      selectedElement.bind('mouseenter', function () {
+        element.show();
+      });
+      selectedElement.bind('mouseleave', function () {
+        element.hide();
+      });
+    }
   }
-
-  return {
-    restrict: 'A',
-    link    : link
-  };
-
-};
-
-showOnHover.$inject = [];
-angularApp.directive('showOnHover', showOnHover);
+})();

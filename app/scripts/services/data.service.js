@@ -1,37 +1,42 @@
-'use strict';
+(function () {
+  'use strict';
 
-var DataService = function ($rootScope, base64) {
+  angular
+      .module('pcoApp')
+      .service('DataService', DataService);
 
-  var service = {};
+  DataService.$inject = ['$rootScope', 'base64'];
 
-  service.initialize = function () {
-    $rootScope.appData = new AppData();
-  };
+  function DataService($rootScope, base64) {
 
-  service.setFavorites = function (favoritesList) {
-    var map = {};
-    for (var i in favoritesList) {
-      favoritesList[i].pathEncoded = base64.encode(favoritesList[i].path);
-      map[favoritesList[i].path] = favoritesList[i].id;
+    var service = {};
+
+    service.initialize = function () {
+      $rootScope.appData = new AppData();
+    };
+
+    service.setFavorites = function (favoritesList) {
+      var map = {};
+      for (var i in favoritesList) {
+        favoritesList[i].pathEncoded = base64.encode(favoritesList[i].path);
+        map[favoritesList[i].path] = favoritesList[i].id;
+      }
+      this.getAppData().favoritesMap = map;
+      this.getAppData().favorites = favoritesList;
+    };
+
+    service.setPathData = function (pathData) {
+      this.getAppData().pathData = pathData;
+    };
+
+    service.getAppData = function () {
+      return $rootScope.appData;
+    };
+
+    service.getPathEntry = function (filename) {
+      return this.getAppData().pathData.entryMap[filename];
     }
-    this.getAppData().favoritesMap = map;
-    this.getAppData().favorites = favoritesList;
+
+    return service;
   };
-
-  service.setPathData = function (pathData) {
-    this.getAppData().pathData = pathData;
-  };
-
-  service.getAppData = function () {
-    return $rootScope.appData;
-  };
-
-  service.getPathEntry = function(filename) {
-    return this.getAppData().pathData.entryMap[filename];
-  }
-
-  return service;
-};
-
-DataService.$inject = ['$rootScope', 'base64'];
-angularApp.service('DataService', DataService);
+})();

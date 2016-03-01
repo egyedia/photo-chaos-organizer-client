@@ -1,21 +1,26 @@
-/*jslint node: true */
-/*global angularApp */
-'use strict';
+(function () {
+  'use strict';
 
-var angularConfig = function($routeProvider) {
-  $routeProvider
-    .when('/', {
-      templateUrl: 'views/dashboard.html',
-      controller: 'DashboardController'
-    })
-    .when('/path/:path', {
-      templateUrl: 'views/path.html',
-      controller: 'PathController'
-    })
-    .otherwise({
-      redirectTo: '/'
-    });
-};
+  angular
+      .module('pcoApp')
+      .config(config);
 
-angularConfig.$inject = ['$routeProvider'];
-angularApp.config(angularConfig);
+  config.$inject = ['$routeProvider'];
+
+  function config($routeProvider) {
+    $routeProvider
+        .when('/', {
+          templateUrl: 'views/dashboard.html',
+          controller : 'DashboardController',
+          controllerAs: 'vm'
+        })
+        .when('/path/:path', {
+          templateUrl: 'views/path.html',
+          controller : 'PathController',
+          controllerAs: 'vm'
+        })
+        .otherwise({
+          redirectTo: '/'
+        });
+  }
+})();

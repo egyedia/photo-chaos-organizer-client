@@ -1,51 +1,56 @@
-'use strict';
+(function () {
+  'use strict';
 
-var FavoritesService = function ($http, base64, DataService) {
+  angular
+      .module('pcoApp')
+      .service('FavoritesService', FavoritesService);
 
-  var service = {};
+  FavoritesService.$inject = ['$http', 'DataService'];
 
-  service.loadFavorites = function (callback) {
-    $http.get('http://localhost:8080/filesystem-favorites').then(function (response) {
-      DataService.setFavorites(response.data);
-      callback();
-    });
-  };
+  function FavoritesService($http, DataService) {
 
-  service.createFavorite = function (path, callback) {
-    var postData = {
-      'path': path
+    var service = {};
+
+    service.loadFavorites = function (callback) {
+      $http.get('http://localhost:8080/filesystem-favorites').then(function (response) {
+        DataService.setFavorites(response.data);
+        callback();
+      });
     };
-    $http.post('http://localhost:8080/filesystem-favorites', postData).then(function (response) {
-      callback();
-    });
+
+    service.createFavorite = function (path, callback) {
+      var postData = {
+        'path': path
+      };
+      $http.post('http://localhost:8080/filesystem-favorites', postData).then(function (response) {
+        callback();
+      });
+    };
+
+    service.removeFavoriteByPath = function (path, callback) {
+      var id = this.getIdForPath(path);
+      $http.delete('http://localhost:8080/filesystem-favorites' + '/' + id).then(function (response) {
+        callback();
+      });
+    };
+
+    service.getFavorites = function () {
+      return DataService.getAppData().favorites;
+    };
+
+    service.getIdForPath = function (path) {
+      return DataService.getAppData().favoritesMap[path];
+    };
+
+    service.isFavorite = function (path) {
+      return DataService.getAppData().favoritesMap.hasOwnProperty(path);
+    };
+
+    service.isInitialized = function () {
+      return DataService.getAppData().favoritesMap !== null;
+    };
+
+    return service;
+
   };
-
-  service.removeFavoriteByPath = function (path, callback) {
-    var id = this.getIdForPath(path);
-    $http.delete('http://localhost:8080/filesystem-favorites' + '/' + id).then(function (response) {
-      callback();
-    });
-  };
-
-  service.getFavorites = function () {
-    return DataService.getAppData().favorites;
-  };
-
-  service.getIdForPath = function (path) {
-    return DataService.getAppData().favoritesMap[path];
-  };
-
-  service.isFavorite = function (path) {
-    return DataService.getAppData().favoritesMap.hasOwnProperty(path);
-  };
-
-  service.isInitialized = function () {
-    return DataService.getAppData().favoritesMap !== null;
-  };
-
-  return service;
-
-};
-
-FavoritesService.$inject = ['$http', 'base64', 'DataService'];
-angularApp.service('FavoritesService', FavoritesService);
+})();

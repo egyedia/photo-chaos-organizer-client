@@ -1,18 +1,23 @@
-'use strict';
+(function () {
+  'use strict';
 
-var DashboardController = function ($scope, RootsService, FavoritesService) {
+  angular
+      .module('pcoApp')
+      .controller('DashboardController', DashboardController);
 
-  // load roots
-  RootsService.loadRoots(function () {
-    $scope.rootList = RootsService.getRoots();
-  });
+  DashboardController.$inject = ['RootsService', 'FavoritesService'];
 
-  // load favorites
-  FavoritesService.loadFavorites(function () {
-    $scope.favoriteList = FavoritesService.getFavorites();
-  });
+  function DashboardController(RootsService, FavoritesService) {
+    var vm = this;
 
-};
+    // load roots
+    RootsService.loadRoots(function () {
+      vm.rootList = RootsService.getRoots();
+    });
 
-DashboardController.$inject = ['$scope', 'RootsService', 'FavoritesService'];
-angularApp.controller('DashboardController', DashboardController);
+    // load favorites
+    FavoritesService.loadFavorites(function () {
+      vm.favoriteList = FavoritesService.getFavorites();
+    });
+  }
+})();

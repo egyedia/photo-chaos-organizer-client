@@ -1,22 +1,25 @@
-/*global angularApp */
-'use strict';
+(function () {
+  'use strict';
 
-var ngRepeatFinished = function ($document, $timeout) {
+  angular
+      .module('pcoApp')
+      .directive('ngRepeatFinished', ngRepeatFinished);
 
-  function link(scope, element, attrs) {
-    if (scope.$last === true) {
-      $timeout(function () {
-        scope[attrs.ngRepeatFinished]();
-      });
+  ngRepeatFinished.$inject = ['$timeout'];
+
+  function ngRepeatFinished($timeout) {
+    var directive = {
+      restrict: 'A',
+      link    : link
+    };
+    return directive;
+
+    function link(scope, element, attrs) {
+      if (scope.$last === true) {
+        $timeout(function () {
+          scope.vm[attrs.ngRepeatFinished]();
+        });
+      }
     }
   }
-
-  return {
-    restrict: 'A',
-    link    : link
-  };
-
-};
-
-ngRepeatFinished.$inject = ['$document', '$timeout'];
-angularApp.directive('ngRepeatFinished', ngRepeatFinished);
+})();
