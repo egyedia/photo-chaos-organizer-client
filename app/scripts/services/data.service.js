@@ -35,6 +35,18 @@
 
     service.getPathEntry = function (filename) {
       return this.getAppData().pathData.entryMap[filename];
+    };
+
+    service.setUsers = function (users) {
+      this.getAppData().users = users;
+    };
+
+    service.setUserId = function (userId) {
+      this.getAppData().userId = userId;
+    }
+
+    service.getUserId = function () {
+      return this.getAppData().userId;
     }
 
     return service;

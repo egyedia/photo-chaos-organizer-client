@@ -5,6 +5,7 @@
     'ui.bootstrap',
     'ngRoute',
     'ngAnimate',
-    'ab-base64'
+    'ab-base64',
+    'LocalStorageModule'
   ]);
 })();

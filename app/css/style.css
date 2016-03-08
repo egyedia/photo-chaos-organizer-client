@@ -71,6 +71,12 @@
 .font-svg-source:before {
   content: "k";
 }
+.font-svg-user:before {
+  content: "l";
+}
+.font-svg-home:before {
+  content: "m";
+}
 .wordwrap {
   white-space: pre-wrap;
   /* CSS3 */
@@ -153,6 +159,9 @@ div.fsEntry div.icon {
   margin-left: auto;
   margin-right: auto;
 }
+div.fsEntry.userSelected {
+  border: 1px solid #337ab7 !important;
+}
 div.fsEntry div.thumb {
   position: absolute;
   top: 0px;
@@ -161,9 +170,45 @@ div.fsEntry div.thumb {
   height: 138px;
 }
 div.fsEntry div.thumb img {
+  opacity: 0;
   border: 1px solid #ddeeff;
   max-width: 138px;
   max-height: 138px;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+}
+div.fsEntry div.thumb img.rotate0 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+div.fsEntry div.thumb img.rotateCCW {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(-90deg);
+  -ms-transform: translate(-50%, -50%) rotate(-90deg);
+  transform: translate(-50%, -50%) rotate(-90deg);
+  opacity: 1;
+}
+div.fsEntry div.thumb img.rotateCW {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(90deg);
+  -ms-transform: translate(-50%, -50%) rotate(90deg);
+  transform: translate(-50%, -50%) rotate(90deg);
+  opacity: 1;
+}
+div.fsEntry div.thumb img.rotate180 {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+  opacity: 1;
 }
 div.fsEntry div.label {
   position: absolute;
@@ -225,33 +270,4 @@ div.fsEntry div.fsEntryMenu div.favoritePath a {
 }
 div.fsEntry div.fsEntryMenu div.favoritePath .font-svg-bookmark-off:before {
   font-size: 20px;
-}
-img.rotate0 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-img.rotateCCW {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%) rotate(-90deg);
-  -ms-transform: translate(-50%, -50%) rotate(-90deg);
-  transform: translate(-50%, -50%) rotate(-90deg);
-}
-img.rotateCW {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%) rotate(90deg);
-  -ms-transform: translate(-50%, -50%) rotate(90deg);
-  transform: translate(-50%, -50%) rotate(90deg);
-}
-img.rotate180 {
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  transform: rotate(180deg);
 }

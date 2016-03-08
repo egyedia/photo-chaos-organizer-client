@@ -5,14 +5,15 @@
       .module('pcoApp')
       .service('PathService', PathService);
 
-  PathService.$inject = ['$http', 'base64', 'FavoritesService', 'DataService'];
+  PathService.$inject = ['$http', '$timeout', 'base64', 'FavoritesService', 'DataService', 'UrlService',
+                         'ConfigService'];
 
-  function PathService($http, base64, FavoritesService, DataService) {
+  function PathService($http, $timeout, base64, FavoritesService, DataService, UrlService, ConfigService) {
 
     var service = {};
 
     service.getPathContents = function (encodedPath, callback) {
-      $http.get('http://localhost:8080/filesystem-path-contents/' + encodedPath).then(function (response) {
+      $http.get(UrlService.filesystemPathContentsId(encodedPath)).then(function (response) {
         var data = response.data;
         var entryList = new FSEntryList();
         var entryMap = {};
@@ -64,6 +65,50 @@
         DataService.setPathData(pathData);
         callback();
       });
+    };
+
+    service.loadThumb = function (e) {
+      if (!e.isDir && e.fileType.canHaveMeta && e.fileType.canShowThumb) {
+        e.img = UrlService.filesystemMetaThumbnailDataId(e.linkPath);
+        (function (currentEntry) {
+          $http.get(UrlService.filesystemMetaThumbnailMetaId(currentEntry.linkPath)).then(function (response) {
+            var orientation = response.data.orientation;
+            var cssClass = 'rotate0';
+            if (orientation == 6) {
+              cssClass = 'rotateCW';
+            } else if (orientation == 8) {
+              cssClass = 'rotateCCW';
+            } else if (orientation == 3) {
+              cssClass = 'rotate180';
+            } else if (orientation == 1) {
+              cssClass = 'rotate0';
+            }
+            DataService.getPathEntry(currentEntry.name).cssClass = cssClass;
+          });
+        })(e);
+      }
+    };
+
+    service.loadNextThumb = function () {
+      var start = this.thumbLoadingIndex;
+      var end = start + ConfigService.getThumbShowBatchSize();
+      if (end > this.thumbEntryList.length) {
+        end = this.thumbEntryList.length;
+      }
+      for (this.thumbLoadingIndex = start; this.thumbLoadingIndex < end; this.thumbLoadingIndex++) {
+        this.loadThumb(this.thumbEntryList[this.thumbLoadingIndex]);
+      }
+      if (this.thumbLoadingIndex < this.thumbEntryList.length) {
+        $timeout(function () {
+          service.loadNextThumb()
+        }, ConfigService.getThumbShowTimeout());
+      }
+    };
+
+    service.startLoadingThumbnails = function () {
+      this.thumbEntryList = DataService.getAppData().pathData.entryList;
+      this.thumbLoadingIndex = 0;
+      service.loadNextThumb();
     };
 
     return service;
