@@ -14,7 +14,7 @@
           controller : 'DashboardController',
           controllerAs: 'vm'
         })
-        .when('/users', {
+        .when('/selectUser', {
           templateUrl: 'views/users.html',
           controller : 'UsersController',
           controllerAs: 'vm'

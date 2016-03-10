@@ -52,6 +52,10 @@
       return baseUrl + 'users';
     };
 
+    service.usersId = function (id) {
+      return this.users() + '/' + id;
+    };
+
     return service;
 
   };
