@@ -42,7 +42,8 @@ gulp.task('server', function () {
     connect.server({
         root: 'app',
         port: 4400,
-        livereload: true
+        livereload: true,
+        fallback: "app/index.html"
     });
 });
 

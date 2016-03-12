@@ -19,31 +19,37 @@
       PathService.startLoadingThumbnails();
     };
 
-    vm.addOrRemoveFavorite = function (path, isFavorite) {
-      if (!isFavorite) {
-        FavoritesService.createFavorite(path, function () {
-          FavoritesService.loadFavorites(getPathContents);
-        });
-      } else {
-        FavoritesService.removeFavoriteByPath(path, function () {
-          FavoritesService.loadFavorites(getPathContents);
-        });
-      }
-    };
 
-    // function to launch the content loading
-    var getPathContents = function () {
-      PathService.getPathContents($routeParams.path, function () {
+    vm.getPathContents = function () {
+      PathService.getPathContents($routeParams.path).then(function () {
         vm.pco = DataService.getAppData();
       });
+    };
+
+    vm.loadFavoritesAndPathContents = function () {
+      FavoritesService.loadFavorites().then(function () {
+        vm.getPathContents();
+      });
+    };
+
+    vm.addOrRemoveFavorite = function (path, isFavorite) {
+      if (!isFavorite) {
+        FavoritesService.createFavorite(path).then(function () {
+          vm.loadFavoritesAndPathContents();
+        });
+      } else {
+        FavoritesService.removeFavoriteByPath(path).then(function () {
+          vm.loadFavoritesAndPathContents();
+        });
+      }
     };
 
     // make sure favorites are loaded
     // the load path contents
     if (FavoritesService.isInitialized()) {
-      getPathContents();
+      vm.getPathContents();
     } else {
-      FavoritesService.loadFavorites(getPathContents);
+      vm.loadFavoritesAndPathContents();
     }
 
   }

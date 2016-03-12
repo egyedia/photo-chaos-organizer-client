@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-md-2">
+      <a href="/">
+        <i class="font-svg-home"></i>
+      </a>
+    </div>
+    <div class="col-md-10">
+      <!--Body content-->
+      <div class="row">
+        <h2>Task run details</h2>
+
+        <h3>Summary</h3>
+        <dl>
+          <dt>Source folder:</dt>
+          <dd>{{vm.task.sourcePath}}</dd>
+          <dt>Source folder ok:</dt>
+          <dd>{{vm.task.sourceOk}}</dd>
+          <hr/>
+          <dt>Destination folder:</dt>
+          <dd>{{vm.task.destinationPath}}</dd>
+          <dt>Destination folder ok:</dt>
+          <dd>{{vm.task.destinationOk}}</dd>
+          <hr/>
+          <dt>Copied files count:</dt>
+          <dd>{{vm.task.copiedCount}}</dd>
+          <dt>Skipped files count:</dt>
+          <dd>{{vm.task.skippedCount}}</dd>
+          <hr/>
+          <dt>Copied files count:</dt>
+          <dd>{{vm.task.copiedCount}}</dd>
+        </dl>
+        <h3>Operations</h3>
+
+        <div class="rTable">
+          <div class="rTableRow">
+            <div class="rTableHead">File</div>
+            <div class="rTableHead">Destination</div>
+            <div class="rTableHead">Copied</div>
+            <div class="rTableHead">Error</div>
+          </div>
+          <div ng-repeat="oper in vm.task.operations" class="rTableRow">
+            <div class="rTableCell">{{oper.fileName}}</div>
+            <div class="rTableCell">{{oper.destinationFolderName}}</div>
+            <div class="rTableCell">{{oper.copied}}</div>
+            <div class="rTableCell">{{oper.reason}}</div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

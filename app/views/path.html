@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-2">
-      <a href="/#/">
+      <a href="/">
         <i class="font-svg-home"></i>
       </a>
     </div>
@@ -10,13 +10,13 @@
       <h1>
       <span ng-repeat="parent in vm.pco.pathData.parentList">
         <span ng-if="$last">{{parent.name}}</span>
-        <a ng-if="!$last" href="#/path/{{parent.linkPath}}">{{parent.name}}</a><span
+        <a ng-if="!$last" href="/path/{{parent.linkPath}}">{{parent.name}}</a><span
           ng-show="{{parent.name != '/'}}"> /</span>
       </span>
       </h1>
 
       <div class="fsEntry" ng-if="!vm.pco.pathData.locationIsRoot">
-        <a href="#/path/{{vm.pco.pathData.parentPath}}">
+        <a href="/path/{{vm.pco.pathData.parentPath}}">
           <div class="icon"><i class="font-svg-back"></i></div>
           <div class="label">Go back</div>
         </a>
@@ -25,7 +25,7 @@
       <div ng-repeat="entry in vm.pco.pathData.entryList| orderBy:'-isdir'" ng-repeat-finished="renderingContentsFinished"
            ng-if="vm.pco.pathData.entryList !== null && vm.pco.pathData.entryList.length > 0">
         <div class="fsEntry">
-          <a href="#/path/{{entry.linkPath}}">
+          <a href="/path/{{entry.linkPath}}">
             <div ng-hide="entry.hideIcon" class="icon"><i class="{{entry.iconClass}}"></i></div>
             <div class="thumb"><img ng-src="{{entry.img}}" alt="" title="" pco-onload ng-class="entry.cssClass" ng-data-filename="{{entry.name}}"/></div>
             <div class="label">{{entry.name}}</div>

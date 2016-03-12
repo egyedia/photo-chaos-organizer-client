@@ -56,6 +56,14 @@
       return this.users() + '/' + id;
     };
 
+    service.usersId = function (id) {
+      return this.users() + '/' + id;
+    };
+
+    service.taskCopyToDatedFolder = function() {
+      return baseUrl + 'tasks/copy-to-dated-folder';
+    }
+
     return service;
 
   };

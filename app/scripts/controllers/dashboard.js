@@ -10,18 +10,21 @@
   function DashboardController(RootsService, FavoritesService, UsersService) {
     var vm = this;
 
+    vm.rootList = [];
+    vm.favoriteList = [];
+
     UsersService.initialize();
     if (UsersService.redirectIfNeeded()) {
       return;
     }
 
     // load roots
-    RootsService.loadRoots(function () {
+    RootsService.loadRoots().then(function () {
       vm.rootList = RootsService.getRoots();
     });
 
     // load favorites
-    FavoritesService.loadFavorites(function () {
+    FavoritesService.loadFavorites().then(function () {
       vm.favoriteList = FavoritesService.getFavorites();
     });
   }

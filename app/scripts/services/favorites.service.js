@@ -5,34 +5,36 @@
       .module('pcoApp')
       .service('FavoritesService', FavoritesService);
 
-  FavoritesService.$inject = ['$http', 'DataService', 'UrlService'];
+  FavoritesService.$inject = ['$q', '$http', 'DataService', 'UrlService'];
 
-  function FavoritesService($http, DataService, UrlService) {
+  function FavoritesService($q, $http, DataService, UrlService) {
 
     var service = {};
 
-    service.loadFavorites = function (callback) {
+    service.loadFavorites = function () {
+      var defer = $q.defer();
+
       $http.get(UrlService.filesystemFavorites()).then(function (response) {
         DataService.setFavorites(response.data);
-        callback();
+        defer.resolve(response);
+      }).catch(function (response) {
+        defer.reject(response);
       });
+
+      return defer.promise;
     };
 
-    service.createFavorite = function (path, callback) {
+    service.createFavorite = function (path) {
       var postData = {
-        'path': path,
+        'path'  : path,
         'userId': DataService.getUserId()
       };
-      $http.post(UrlService.filesystemFavorites(), postData).then(function (response) {
-        callback();
-      });
+      return $http.post(UrlService.filesystemFavorites(), postData);
     };
 
-    service.removeFavoriteByPath = function (path, callback) {
+    service.removeFavoriteByPath = function (path) {
       var id = this.getIdForPath(path);
-      $http.delete(UrlService.filesystemFavoritesId(id)).then(function (response) {
-        callback();
-      });
+      return $http.delete(UrlService.filesystemFavoritesId(id));
     };
 
     service.getFavorites = function () {

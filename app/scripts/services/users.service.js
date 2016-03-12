@@ -5,9 +5,9 @@
       .module('pcoApp')
       .service('UsersService', UsersService);
 
-  UsersService.$inject = ['$http', '$location', '$route', 'DataService', 'UrlService', 'localStorageService'];
+  UsersService.$inject = ['$q', '$http', '$location', '$route', 'DataService', 'UrlService', 'localStorageService'];
 
-  function UsersService($http, $location, $route, DataService, UrlService, localStorageService) {
+  function UsersService($q, $http, $location, $route, DataService, UrlService, localStorageService) {
 
     var service = {};
 
@@ -19,15 +19,10 @@
     service.redirectIfNeeded = function () {
       var currentUserId = DataService.getUserId();
       if (currentUserId == null) {
-        $location.path("/selectUser");
+        $location.path("/user-list");
         return true;
       } else {
-        this.loadUser(currentUserId, function (response) {
-          //console.log("OK");
-          //console.log(response);
-        }, function (response) {
-          //console.log("NOK");
-          //console.log(response);
+        this.loadUser(currentUserId).catch(function (response) {
           service.nonexistingUserIdFound();
         });
         return false;
@@ -41,35 +36,35 @@
       $route.reload();
     };
 
-    service.loadUsers = function (callback) {
+    service.loadUsers = function () {
+      var defer = $q.defer();
+
       $http.get(UrlService.users()).then(function (response) {
         DataService.setUsers(response.data);
-        callback();
+        defer.resolve(response);
+      }).catch(function (response) {
+        defer.reject(response);
       });
+
+      return defer.promise;
     };
 
-    service.loadUser = function (userId, successCallback, errorCallback) {
-      $http.get(UrlService.usersId(userId)).then(function (response) {
-        successCallback(response);
-      }).catch(function (response) {
-        errorCallback(response);
-      });
+    service.loadUser = function (userId) {
+      return $http.get(UrlService.usersId(userId));
     };
 
     service.getUsers = function () {
       return DataService.getAppData().users;
     };
 
-    service.createDefaultUser = function (callback) {
+    service.createDefaultUser = function () {
       var postData = {
         "displayName": "Default User"
       };
-      $http.post(UrlService.users(), postData).then(function (response) {
-        callback();
-      });
+      return $http.post(UrlService.users(), postData);
     };
 
-    service.nonexistingUserIdFound = function() {
+    service.nonexistingUserIdFound = function () {
       localStorageService.set("userId", null);
       $location.path("/");
       $route.reload();
