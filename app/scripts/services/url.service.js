@@ -5,11 +5,15 @@
       .module('pcoApp')
       .service('UrlService', UrlService);
 
-  UrlService.$inject = ['$http', 'base64'];
+  UrlService.$inject = ['$http', '$location'];
 
-  function UrlService($http, base64) {
+  function UrlService($http, $location) {
 
-    var baseUrl = 'http://localhost:8080/';
+    var restPort = $location.port();
+    // GULP-hack //
+    //GULP-hack//restPort = 2120;
+
+    var baseUrl = 'http://localhost:' + restPort + '/';
     var service = {};
 
     service.filesystemFavorites = function () {
@@ -60,7 +64,7 @@
       return this.users() + '/' + id;
     };
 
-    service.taskCopyToDatedFolder = function() {
+    service.taskCopyToDatedFolder = function () {
       return baseUrl + 'tasks/copy-to-dated-folder';
     }
 
