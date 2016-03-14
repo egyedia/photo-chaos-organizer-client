@@ -5,9 +5,9 @@
       .module('pcoApp')
       .service('DataService', DataService);
 
-  DataService.$inject = ['$rootScope', 'base64'];
+  DataService.$inject = ['$rootScope'];
 
-  function DataService($rootScope, base64) {
+  function DataService($rootScope) {
 
     var service = {};
 
@@ -18,7 +18,6 @@
     service.setFavorites = function (favoritesList) {
       var map = {};
       for (var i in favoritesList) {
-        favoritesList[i].pathEncoded = base64.encode(favoritesList[i].path);
         map[favoritesList[i].path] = favoritesList[i].id;
       }
       this.getAppData().favoritesMap = map;

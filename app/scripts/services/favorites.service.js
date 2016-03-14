@@ -5,16 +5,15 @@
       .module('pcoApp')
       .service('FavoritesService', FavoritesService);
 
-  FavoritesService.$inject = ['$q', '$http', 'DataService', 'UrlService'];
+  FavoritesService.$inject = ['$q', 'DataService', 'UrlService', 'RestCallBuilder'];
 
-  function FavoritesService($q, $http, DataService, UrlService) {
+  function FavoritesService($q, DataService, UrlService, RestCallBuilder) {
 
     var service = {};
 
     service.loadFavorites = function () {
       var defer = $q.defer();
-
-      $http.get(UrlService.filesystemFavorites()).then(function (response) {
+      RestCallBuilder.get(UrlService.filesystemFavorites()).then(function (response) {
         DataService.setFavorites(response.data);
         defer.resolve(response);
       }).catch(function (response) {
@@ -26,15 +25,14 @@
 
     service.createFavorite = function (path) {
       var postData = {
-        'path'  : path,
-        'userId': DataService.getUserId()
+        'path': path
       };
-      return $http.post(UrlService.filesystemFavorites(), postData);
+      return RestCallBuilder.post(UrlService.filesystemFavorites(), postData);
     };
 
     service.removeFavoriteByPath = function (path) {
       var id = this.getIdForPath(path);
-      return $http.delete(UrlService.filesystemFavoritesId(id));
+      return RestCallBuilder.delete(UrlService.filesystemFavoritesId(id));
     };
 
     service.getFavorites = function () {

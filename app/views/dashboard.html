@@ -12,7 +12,7 @@
 
         <div ng-repeat="root in vm.rootList">
           <div class="fsEntry">
-            <a href="/path/{{root.pathEncoded}}">
+            <a href="/path/file://{{root.path}}">
               <div class="icon"><i class="font-svg-root"></i></div>
               <div class="label">{{root.path}}</div>
             </a>
@@ -26,7 +26,7 @@
 
         <div ng-repeat="favorite in vm.favoriteList">
           <div class="fsEntry">
-            <a href="/path/{{favorite.pathEncoded}}">
+            <a href="/path/file://{{favorite.path}}">
               <div class="icon"><i class="font-svg-folder"></i></div>
               <div class="label">{{favorite.path}}</div>
             </a>

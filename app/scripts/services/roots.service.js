@@ -5,9 +5,9 @@
       .module('pcoApp')
       .service('RootsService', RootsService);
 
-  RootsService.$inject = ['$q', '$http', 'base64', 'UrlService'];
+  RootsService.$inject = ['$q', '$http', 'UrlService'];
 
-  function RootsService($q, $http, base64, UrlService) {
+  function RootsService($q, $http, UrlService) {
 
     var roots = [];
 
@@ -17,11 +17,7 @@
       var defer = $q.defer();
 
       $http.get(UrlService.filesystemRoots()).then(function (response) {
-        var rootList = response.data;
-        for (var i in rootList) {
-          rootList[i].pathEncoded = base64.encode(rootList[i].path);
-        }
-        roots = rootList;
+        roots = response.data;
         defer.resolve(response);
       }).catch(function (response) {
         defer.reject(response);

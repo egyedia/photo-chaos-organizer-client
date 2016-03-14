@@ -24,7 +24,7 @@
           controller : 'UserSelectController',
           controllerAs: 'vm'
         })
-        .when('/path/:path', {
+        .when('/path/:path*', {
           templateUrl: 'views/path.html',
           controller : 'PathController',
           controllerAs: 'vm'

@@ -152,6 +152,9 @@ div.fsEntry {
 div.fsEntry:hover {
   box-shadow: 2px 2px 10px #aaaaaa;
 }
+div.fsEntry.userSelected {
+  border: 1px solid #337ab7 !important;
+}
 div.fsEntry div.icon {
   position: relative;
   top: 10px;
@@ -159,8 +162,20 @@ div.fsEntry div.icon {
   margin-left: auto;
   margin-right: auto;
 }
-div.fsEntry.userSelected {
-  border: 1px solid #337ab7 !important;
+div.fsEntry div.icon i.icon-image-raw {
+  color: #337ab7;
+}
+div.fsEntry div.icon i.icon-image-raw {
+  color: #385388;
+}
+div.fsEntry div.icon i.icon-folder {
+  color: #b88a1c;
+}
+div.fsEntry div.icon i.icon-video {
+  color: #b85039;
+}
+div.fsEntry div.icon i.icon-file {
+  color: #b4b3a5;
 }
 div.fsEntry div.thumb {
   position: absolute;
@@ -237,6 +252,9 @@ div.fsEntry div.fsStatusMenu {
   width: 20px;
   height: 140px;
   border: 0px solid #ffaa00;
+}
+div.fsEntry div.fsStatusMenu i.bookmark-on {
+  color: #b81d25;
 }
 div.fsEntry div.fsStatusMenu div.favoritePath {
   text-align: center;

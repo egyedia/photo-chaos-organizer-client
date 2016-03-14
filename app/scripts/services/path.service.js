@@ -5,10 +5,9 @@
       .module('pcoApp')
       .service('PathService', PathService);
 
-  PathService.$inject = ['$q', '$http', '$timeout', 'base64', 'FavoritesService', 'DataService', 'UrlService',
-                         'ConfigService'];
+  PathService.$inject = ['$q', '$http', '$timeout', 'FavoritesService', 'DataService', 'UrlService', 'ConfigService'];
 
-  function PathService($q, $http, $timeout, base64, FavoritesService, DataService, UrlService, ConfigService) {
+  function PathService($q, $http, $timeout, FavoritesService, DataService, UrlService, ConfigService) {
 
     var service = {};
 
@@ -21,8 +20,12 @@
         var e = data.entryList[i];
         if (!e.attributes.hidden) {
           var entry = new FSEntry();
-          var fullPath = pathInfo.path + "/" + e.name;
-          entry.linkPath = base64.encode(fullPath);
+          var fullPath = pathInfo.path;
+          // if ends in a /, do not add one more
+          if (fullPath.substring(fullPath.length - 1, fullPath.length) != "/") {
+            fullPath += "/";
+          }
+          fullPath += e.name;
           entry.fullPath = fullPath;
           entry.name = e.name;
           entry.isDir = (e.entryType === 'dir');
@@ -30,14 +33,18 @@
           entry.index = i;
           entry.fileType = e.fileType;
           entry.hideIcon = false;
+          entry.linkPath = '#';
           if (entry.isDir) {
-            entry.iconClass = "font-svg-folder";
+            entry.iconClass = "font-svg-folder icon-folder";
+            entry.linkPath = '/path/file://' + entry.fullPath;
           } else if (e.fileType.fileType == 'video') {
-            entry.iconClass = "font-svg-video";
+            entry.iconClass = "font-svg-video icon-video";
           } else if (e.fileType.fileType == 'image') {
-            entry.iconClass = "font-svg-image";
+            entry.iconClass = "font-svg-image icon-image";
+          } else if (e.fileType.fileType == 'image-raw') {
+            entry.iconClass = "font-svg-image icon-image-raw";
           } else if (e.fileType.fileType == 'other') {
-            entry.iconClass = "font-svg-file";
+            entry.iconClass = "font-svg-file icon-file";
           }
           entry.isFavorite = FavoritesService.isFavorite(fullPath);
           entryList.push(entry);
@@ -50,17 +57,15 @@
       pathData.entryMap = entryMap;
       pathData.requestedLocation = pathInfo.path;
       pathData.locationIsRoot = pathInfo.isRoot;
-      pathData.parentPath = pathInfo.parentPath == null ? null : base64.encode(pathInfo.parentPath);
+      pathData.parentPath = pathInfo.parentPath == null ? null : pathInfo.parentPath;
 
-      var parentList = [];
-      for (var i in response.data.parentList) {
-        var p = response.data.parentList[i];
-        parentList.push({
-          name    : p.name,
-          linkPath: base64.encode(p.path)
-        });
+      pathData.parentList = response.data.parentList;
+      // show top level folder in Unix and Mac with "Files:" as link
+      if (pathData.parentList.length > 0) {
+        if (pathData.parentList[0].name == '/') {
+          pathData.parentList[0].name = "Files:";
+        }
       }
-      pathData.parentList = parentList;
       DataService.setPathData(pathData);
     };
 
@@ -79,9 +84,9 @@
 
     service.loadThumb = function (e) {
       if (!e.isDir && e.fileType.canHaveMeta && e.fileType.canShowThumb) {
-        e.img = UrlService.filesystemMetaThumbnailDataId(e.linkPath);
+        e.img = UrlService.filesystemMetaThumbnailDataId(e.fullPath);
         (function (currentEntry) {
-          $http.get(UrlService.filesystemMetaThumbnailMetaId(currentEntry.linkPath)).then(function (response) {
+          $http.get(UrlService.filesystemMetaThumbnailMetaId(currentEntry.fullPath)).then(function (response) {
             var orientation = response.data.orientation;
             var cssClass = 'rotate0';
             if (orientation == 6) {
