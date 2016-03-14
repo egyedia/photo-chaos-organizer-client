@@ -69,10 +69,10 @@
       DataService.setPathData(pathData);
     };
 
-    service.getPathContents = function (encodedPath) {
+    service.getPathContents = function (path) {
       var defer = $q.defer();
 
-      $http.get(UrlService.filesystemPathContentsId(encodedPath)).then(function (response) {
+      $http.get(UrlService.filesystemPathContentsId(path)).then(function (response) {
         service.pathContentsLoaded(response);
         defer.resolve(response);
       }).catch(function (response) {

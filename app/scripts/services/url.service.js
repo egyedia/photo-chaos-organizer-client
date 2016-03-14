@@ -28,8 +28,8 @@
       return baseUrl + 'filesystem-path-contents';
     };
 
-    service.filesystemPathContentsId = function (encodedPath) {
-      return this.filesystemPathContents() + '/' + encodedPath;
+    service.filesystemPathContentsId = function (path) {
+      return this.filesystemPathContents() + '/' + path;
     };
 
     service.filesystemRoots = function () {
@@ -41,7 +41,7 @@
     };
 
     service.filesystemMetaThumbnailDataId = function (path) {
-      return this.filesystemMetaThumbnailData() + '/' + path;
+      return this.filesystemMetaThumbnailData() + '/file://' + path;
     };
 
     service.filesystemMetaThumbnailMeta = function () {
@@ -49,7 +49,7 @@
     };
 
     service.filesystemMetaThumbnailMetaId = function (path) {
-      return this.filesystemMetaThumbnailMeta() + '/' + path;
+      return this.filesystemMetaThumbnailMeta() + '/file://' + path;
     };
 
     service.users = function () {
