@@ -77,6 +77,15 @@
 .font-svg-home:before {
   content: "m";
 }
+.font-svg-video-meta:before {
+  content: "n";
+}
+.font-svg-thumbnail:before {
+  content: "o";
+}
+.font-svg-sound:before {
+  content: "p";
+}
 .wordwrap {
   white-space: pre-wrap;
   /* CSS3 */
@@ -165,6 +174,9 @@ div.fsEntry div.icon {
 div.fsEntry div.icon i.icon-image-raw {
   color: #337ab7;
 }
+div.fsEntry div.icon i.icon-thumbnail {
+  color: #337ab7;
+}
 div.fsEntry div.icon i.icon-image-raw {
   color: #385388;
 }
@@ -172,10 +184,16 @@ div.fsEntry div.icon i.icon-folder {
   color: #b88a1c;
 }
 div.fsEntry div.icon i.icon-video {
-  color: #b85039;
+  color: #468b46;
+}
+div.fsEntry div.icon i.icon-video-meta {
+  color: #468b46;
 }
 div.fsEntry div.icon i.icon-file {
   color: #b4b3a5;
+}
+div.fsEntry div.icon i.icon-unreadable {
+  color: #ff4812;
 }
 div.fsEntry div.thumb {
   position: absolute;

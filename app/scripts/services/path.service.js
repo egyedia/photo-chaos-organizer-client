@@ -18,45 +18,57 @@
       var pathInfo = data.pathInfo;
       for (var i in data.entryList) {
         var e = data.entryList[i];
-        if (!e.attributes.hidden) {
-          var entry = new FSEntry();
-          var fullPath = pathInfo.path;
-          // if ends in a /, do not add one more
-          if (fullPath.substring(fullPath.length - 1, fullPath.length) != "/") {
-            fullPath += "/";
+        var entry = new FSEntry();
+        var fullPath = pathInfo.path;
+        // if ends in a /, do not add one more
+        if (fullPath.substring(fullPath.length - 1, fullPath.length) != "/") {
+          fullPath += "/";
+        }
+        fullPath += e.name;
+        entry.fullPath = fullPath;
+        entry.name = e.name;
+        entry.isDir = (e.entryType === 'dir');
+        entry.cssClass = '';
+        entry.index = i;
+        entry.fileType = e.fileType;
+        entry.hideIcon = false;
+        entry.linkPath = '#';
+        if (e.readError) {
+          if (entry.isDir) {
+            entry.iconClass = "font-svg-folder icon-unreadable";
+          } else {
+            entry.iconClass = "font-svg-file icon-unreadable";
           }
-          fullPath += e.name;
-          entry.fullPath = fullPath;
-          entry.name = e.name;
-          entry.isDir = (e.entryType === 'dir');
-          entry.cssClass = '';
-          entry.index = i;
-          entry.fileType = e.fileType;
-          entry.hideIcon = false;
-          entry.linkPath = '#';
+        } else {
           if (entry.isDir) {
             entry.iconClass = "font-svg-folder icon-folder";
             entry.linkPath = '/path/file://' + entry.fullPath;
           } else if (e.fileType.fileType == 'video') {
             entry.iconClass = "font-svg-video icon-video";
+          } else if (e.fileType.fileType == 'video-meta') {
+            entry.iconClass = "font-svg-video-meta icon-video-meta";
           } else if (e.fileType.fileType == 'image') {
             entry.iconClass = "font-svg-image icon-image";
           } else if (e.fileType.fileType == 'image-raw') {
             entry.iconClass = "font-svg-image icon-image-raw";
+          } else if (e.fileType.fileType == 'thumbnail') {
+            entry.iconClass = "font-svg-thumbnail icon-thumbnail";
+          } else if (e.fileType.fileType == 'sound') {
+            entry.iconClass = "font-svg-sound icon-sound";
           } else if (e.fileType.fileType == 'other') {
             entry.iconClass = "font-svg-file icon-file";
           }
-          entry.isFavorite = FavoritesService.isFavorite(fullPath);
-          entryList.push(entry);
-          entryMap[entry.name] = entry;
         }
+        entry.isFavorite = FavoritesService.isFavorite(fullPath);
+        entryList.push(entry);
+        entryMap[entry.name] = entry;
       }
 
       var pathData = new FSPathData();
       pathData.entryList = entryList;
       pathData.entryMap = entryMap;
       pathData.requestedLocation = pathInfo.path;
-      pathData.locationIsRoot = pathInfo.isRoot;
+      pathData.locationIsRoot = pathInfo.root;
       pathData.parentPath = pathInfo.parentPath == null ? null : pathInfo.parentPath;
 
       pathData.parentList = response.data.parentList;
