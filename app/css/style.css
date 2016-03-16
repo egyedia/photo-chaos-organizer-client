@@ -335,3 +335,17 @@ div.fsEntry div.fsEntryMenu div.favoritePath .font-svg-bookmark-off:before {
 .rTableBody {
   display: table-row-group;
 }
+div.pcoimage div.title {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: #ffffff;
+  text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
+  font-size: 16px;
+  opacity: 0.5;
+}
+.bigRotateCW {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}

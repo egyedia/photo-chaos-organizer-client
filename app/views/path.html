@@ -26,7 +26,7 @@
           ng-repeat-finished="renderingContentsFinished"
           ng-if="vm.pco.pathData.entryList !== null && vm.pco.pathData.entryList.length > 0">
         <div class="fsEntry">
-          <a href="{{entry.linkPath}}">
+          <a href="{{entry.linkPath}}" ng-click="vm.thumbClicked(entry, $index)">
             <div ng-hide="entry.hideIcon" class="icon"><i class="{{entry.iconClass}}"></i></div>
             <div class="thumb"><!--
             --><img ng-src="{{entry.img}}" alt="" title="" pco-onload ng-class="entry.cssClass"
@@ -51,6 +51,8 @@
 
         </div>
       </div>
+
+      <div id="fancyImageGallery" style="display: none"></div>
 
     </div>
   </div>

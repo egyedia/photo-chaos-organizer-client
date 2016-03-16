@@ -5,9 +5,9 @@
       .module('pcoApp')
       .service('DataService', DataService);
 
-  DataService.$inject = ['$rootScope'];
+  DataService.$inject = ['$rootScope', 'UrlService'];
 
-  function DataService($rootScope) {
+  function DataService($rootScope, UrlService) {
 
     var service = {};
 
@@ -47,6 +47,20 @@
     service.getUserId = function () {
       return this.getAppData().userId;
     }
+
+    service.getCurrentRawList = function () {
+      var list = [];
+      var entryList = this.getAppData().pathData.entryList;
+      for (var i in entryList) {
+        var img = {
+          "href"       : UrlService.filesystemRawId(entryList[i].fullPath),
+          "title"      : entryList[i].name,
+          "orientation": "TODO:// read orientation"
+        };
+        list.push(img);
+      }
+      return list;
+    };
 
     return service;
   };

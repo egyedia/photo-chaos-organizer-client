@@ -11,7 +11,14 @@
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+  <link rel="stylesheet" href="lib/fancybox/jquery.fancybox.css"/>
   <link rel="stylesheet" href="css/style.css"/>
+
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript">
+    var jq = jQuery.noConflict();
+  </script>
+  <script type="text/javascript" src="lib/fancybox/jquery.fancybox.pack.js"></script>
 </head>
 <body>
 
@@ -20,11 +27,9 @@
   <div id="angular-views-entry" ng-view=""></div>
 </div>
 
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/angular-route/angular-route.min.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<script src="bower_components/angular-utf8-base64/angular-utf8-base64.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
 
@@ -50,6 +55,8 @@
 <script src="scripts/services/url.service.js"></script>
 <script src="scripts/services/users.service.js"></script>
 <script src="scripts/services/config.service.js"></script>
+<script src="scripts/services/ui.image.service.js"></script>
+<script src="scripts/services/ui.entry.service.js"></script>
 <script src="scripts/services/rest.call.builder.js"></script>
 
 <script src="scripts/classic/FSEntry.js"></script>

@@ -68,6 +68,14 @@
       return baseUrl + 'tasks/copy-to-dated-folder';
     }
 
+    service.filesystemRaw = function () {
+      return baseUrl + 'filesystem-raw';
+    };
+
+    service.filesystemRawId = function (path) {
+      return this.filesystemRaw() + '/file://' + path;
+    }
+
     return service;
 
   };
