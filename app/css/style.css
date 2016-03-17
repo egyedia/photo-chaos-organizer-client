@@ -349,3 +349,15 @@ div.pcoimage div.title {
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
+.pre {
+  white-space: pre;
+}
+div.pcoTable {
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  margin: 10px;
+  box-shadow: 0px 0px 2px #aaaaaa;
+  -webkit-transition: box-shadow 0.5s;
+  transition: box-shadow 0.5s;
+  background-color: #eeeeee;
+}

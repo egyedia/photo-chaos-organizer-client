@@ -42,10 +42,14 @@
 
     service.setUserId = function (userId) {
       this.getAppData().userId = userId;
-    }
+    };
 
     service.getUserId = function () {
       return this.getAppData().userId;
+    };
+
+    service.setTaskTemplates = function(taskTemplates) {
+      this.getAppData().taskTemplates = taskTemplates;
     }
 
     service.getCurrentRawList = function () {

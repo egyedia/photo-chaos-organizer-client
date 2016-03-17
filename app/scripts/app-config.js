@@ -39,6 +39,11 @@
           controller : 'TaskRunController',
           controllerAs: 'vm'
         })
+        .when('/task-template-list', {
+          templateUrl: 'views/task-template-list.html',
+          controller : 'TaskTemplateListController',
+          controllerAs: 'vm'
+        })
         .otherwise({
           redirectTo: '/'
         });

@@ -11,7 +11,7 @@
 
     var restPort = $location.port();
     // GULP-hack //
-    //restPort = 2120;
+    restPort = 2120;
 
     var baseUrl = 'http://localhost:' + restPort + '/';
     var service = {};
@@ -66,7 +66,7 @@
 
     service.taskCopyToDatedFolder = function () {
       return baseUrl + 'tasks/copy-to-dated-folder';
-    }
+    };
 
     service.filesystemRaw = function () {
       return baseUrl + 'filesystem-raw';
@@ -74,7 +74,12 @@
 
     service.filesystemRawId = function (path) {
       return this.filesystemRaw() + '/file://' + path;
-    }
+    };
+
+    service.taskTemplates = function () {
+      return baseUrl + 'task-templates';
+    };
+
 
     return service;
 

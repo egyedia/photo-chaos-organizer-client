@@ -4,5 +4,6 @@ function AppData() {
   this.pathData = null;
   this.users = null;
   this.userId = null;
+  this.taskTemplates = null;
   Object.preventExtensions(this);
 }
