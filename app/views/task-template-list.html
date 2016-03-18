@@ -8,21 +8,22 @@
     <div class="col-md-10">
       <!--Body content-->
       <div class="row">
-        <h2>Create a task from a template</h2>
+        <h2>Create task from a template</h2>
 
-        <div class="rTable pcoTable">
-          <div class="rTableRow">
-            <div class="rTableHead">Name</div>
-            <div class="rTableHead">Description</div>
-            <div class="rTableHead">Create task</div>
+        <div ng-repeat="taskTemplate in vm.taskTemplateList" class="wideEntry">
+          <div class="noBorderTableCell">
+            <i class="font-svg-task icon-medium"></i>
           </div>
-          <div ng-repeat="taskTemplate in vm.taskTemplateList" class="rTableRow">
-            <div class="rTableCell">{{taskTemplate.name}}</div>
-            <div class="rTableCell pre">{{taskTemplate.description}}</div>
-            <div class="rTableCell"><a href="/task-create/{{taskTemplate.type}}">Create</a></div>
+          <div class="noBorderTableCell" style="vertical-align: top;horiz-align: left;padding-right:60px">
+            <b>{{taskTemplate.name}}</b>
+
+            <div ng-repeat="descriptionLine in taskTemplate.description" style="margin-left:20px">
+              <li>{{descriptionLine}}</li>
+            </div>
           </div>
+          <div style="position:absolute;right:10px; bottom:10px"><a href="/task-create/{{taskTemplate.className}}"><i
+              class="font-svg-plus-circle icon-medium"></i></a></div>
         </div>
-
 
       </div>
 

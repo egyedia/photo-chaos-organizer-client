@@ -11,7 +11,7 @@
 
     var restPort = $location.port();
     // GULP-hack //
-    restPort = 2120;
+    //restPort = 2120;
 
     var baseUrl = 'http://localhost:' + restPort + '/';
     var service = {};

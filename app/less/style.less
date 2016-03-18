@@ -28,6 +28,10 @@
 @fs-entry-border: 1px;
 @fs-entry-icon-size: 80px;
 @fs-entry-label-height: 60px;
+@icon-size-medium: 30px;
+@icon-size-big: 80px;
+
+@wide-entry-width: 400px;
 
 @color-default: #337ab7;
 
@@ -300,4 +304,38 @@ div.pcoTable {
   box-shadow: 0px 0px 2px #aaaaaa;
   transition: box-shadow 0.5s;
   background-color: #eeeeee;
+}
+
+.icon-medium {
+
+  &:before {
+    font-size: @icon-size-medium;
+  }
+}
+
+.icon-big {
+
+  &:before {
+    font-size: @icon-size-big;
+  }
+}
+
+div.wideEntry {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  display: inline-block;
+  position: relative;
+  margin: 10px;
+  box-shadow: 0px 0px 2px #aaaaaa;
+  transition: box-shadow 0.5s;
+  background-color: #eeeeee;
+}
+
+.noBorderTableCell {
+  display: table-cell;
+  padding: 5px 10px 10px 10px;
+  border: 0px solid #999999;
 }
