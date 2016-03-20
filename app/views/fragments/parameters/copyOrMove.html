@@ -1,4 +1,4 @@
-<select ng-model="vm.taskTemplateData[parameterId]" ng-required="parameter.mandatory">
+<select name="{{parameterId}}" ng-model="vm.taskTemplateData[parameterId]" ng-required="parameter.mandatory">
   <option value="copy">Copy</option>
   <option value="move">Move</option>
 </select>

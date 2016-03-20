@@ -61,14 +61,8 @@ gulp.task('watch', function () {
   gulp.watch('app/views/*.html', ['html']);
 });
 
-gulp.task('replace-restport', function () {
-  gulp.src(['app/scripts/services/url.service.js'])
-      .pipe(replace('//GULP-hack//', ''))
-      .pipe(gulp.dest('app/scripts/services/'));
-});
-
 // Default task
-gulp.task('default', ['replace-restport', 'server', 'lint', 'less', 'watch']);
+gulp.task('default', ['server', 'lint', 'less', 'watch']);
 
 // Build task
 //gulp.task('build', ['minifyCSS', 'htmlreplace', 'angular']);

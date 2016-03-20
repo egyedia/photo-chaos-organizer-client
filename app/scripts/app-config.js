@@ -44,7 +44,7 @@
           controller : 'TaskTemplateListController',
           controllerAs: 'vm'
         })
-        .when('/task-create/:taskTemplateFilePath*', {
+        .when('/task-create/:className*', {
           templateUrl: 'views/task-create.html',
           controller : 'TaskCreateController',
           controllerAs: 'vm'
