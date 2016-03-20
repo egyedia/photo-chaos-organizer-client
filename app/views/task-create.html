@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-md-2">
+      <a href="/">
+        <i class="font-svg-home"></i>
+      </a>
+    </div>
+    <div class="col-md-10">
+      <!--Body content-->
+      <div class="row">
+        <h2>Create task</h2>
+
+
+        <h3>Summary</h3>
+
+        <div class="wideEntry">
+          <div class="noBorderTableCell">
+            <i class="font-svg-task icon-medium"></i>
+          </div>
+          <div class="noBorderTableCell" style="vertical-align: top;horiz-align: left;padding-right:60px">
+            <b>{{vm.taskTemplate.name}}</b>
+
+            <div ng-repeat="descriptionLine in vm.taskTemplate.description" style="margin-left:20px">
+              <li>{{descriptionLine}}</li>
+            </div>
+          </div>
+        </div>
+
+        <!--{{vm.taskTemplateData}}-->
+        <h3>Parameters</h3>
+
+        <div class="wideEntry">
+          <div class="noBorderTableCell">
+            <i class="font-svg-task icon-medium"></i>
+          </div>
+          <div class="noBorderTableCell">
+            <div class="noBorderTableCell" style="vertical-align: top;horiz-align: left;padding-right:60px">
+
+              <div ng-repeat="(parameterId, parameter) in vm.taskTemplate.parameters" style="margin-left:20px">
+                <div class="paramNameAndValue">
+                  <div class="paramName">{{parameter.name}}<div class="paramMandatory" ng-if="parameter.mandatory">*</div></div>
+                  <div class="paramInput" ng-include="'views/fragments/parameters/' + parameter.type + '.html'"></div>
+                </div>
+
+                <div class="paramDescription" ng-repeat="descriptionLine in parameter.description" style="margin-left:20px">
+                  <li>{{descriptionLine}}</li>
+                </div>
+
+                {{parameter.defaultValue}}
+                <div class="paramSeparator">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>

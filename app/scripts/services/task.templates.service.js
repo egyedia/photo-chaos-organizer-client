@@ -31,6 +31,10 @@
       return DataService.getAppData().taskTemplates;
     };
 
+    service.loadTaskTemplate = function (className) {
+      return $http.get(UrlService.taskTemplateClassName(className));
+    };
+
     return service;
 
   };

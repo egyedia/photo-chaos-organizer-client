@@ -44,6 +44,11 @@
           controller : 'TaskTemplateListController',
           controllerAs: 'vm'
         })
+        .when('/task-create/:taskTemplateFilePath*', {
+          templateUrl: 'views/task-create.html',
+          controller : 'TaskCreateController',
+          controllerAs: 'vm'
+        })
         .otherwise({
           redirectTo: '/'
         });

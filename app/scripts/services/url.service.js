@@ -60,9 +60,9 @@
       return this.users() + '/' + id;
     };
 
-    service.usersId = function (id) {
+    /*service.usersId = function (id) {
       return this.users() + '/' + id;
-    };
+    };*/
 
     service.taskCopyToDatedFolder = function () {
       return baseUrl + 'tasks/copy-to-dated-folder';
@@ -78,6 +78,10 @@
 
     service.taskTemplates = function () {
       return baseUrl + 'task-templates';
+    };
+
+    service.taskTemplateClassName = function (className) {
+      return this.taskTemplates() + '/' + className;
     };
 
 
