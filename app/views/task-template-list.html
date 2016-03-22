@@ -17,8 +17,8 @@
           <div class="noBorderTableCell" style="vertical-align: top;horiz-align: left;padding-right:60px">
             <b>{{taskTemplate.name}}</b>
 
-            <div ng-repeat="descriptionLine in taskTemplate.description" style="margin-left:20px">
-              <li>{{descriptionLine}}</li>
+            <div style="margin-left:20px">
+              {{taskTemplate.description}}
             </div>
           </div>
           <div style="position:absolute;right:10px; bottom:10px"><a href="/task-create/{{taskTemplate.className}}"><i

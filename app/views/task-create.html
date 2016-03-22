@@ -20,8 +20,8 @@
           <div class="noBorderTableCell" style="vertical-align: top;horiz-align: left;padding-right:60px">
             <b>{{vm.taskTemplate.name}}</b>
 
-            <div ng-repeat="descriptionLine in vm.taskTemplate.description" style="margin-left:20px">
-              <li>{{descriptionLine}}</li>
+            <div style="margin-left:20px">
+              {{vm.taskTemplate.description}}
             </div>
           </div>
         </div>
@@ -45,15 +45,15 @@
                     <div class="paramInput" ng-include="'views/fragments/parameters/' + parameter.type + '.html'"></div>
                   </div>
 
-                  <div class="paramDescription" ng-repeat="descriptionLine in parameter.description"
-                      style="margin-left:20px">
-                    <li>{{descriptionLine}}</li>
+                  <div class="paramDescription" style="margin-left:20px">
+                    {{parameter.description}}
                   </div>
 
                   <div class="paramSeparator"></div>
                 </div>
                 <div>
-                  <a href="#" ng-if="taskTemplateForm.$valid" ng-click="vm.createTask()"><i class="font-svg-check-circle"></i></a>
+                  <a href="#" ng-if="taskTemplateForm.$valid" ng-click="vm.createTask()"><i
+                      class="font-svg-check-circle"></i></a>
 
                   <span ng-if="!taskTemplateForm.$valid"><i class="font-svg-check-circle"></i></span>
                 </div>
