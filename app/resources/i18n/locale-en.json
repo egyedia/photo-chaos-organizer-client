@@ -1,0 +1,70 @@
+{
+  "task": {
+    "copyFilesByDateFromFileName": {
+      "name": "Copy to dated folder by date from the file name",
+      "description": "The task will detect all the files under the source folder (including subfolders).<br/>It will try to extract the date from the filename.<br/>For each day that was found in the filenames, a new folder will be created under the target folder.<br/>Each file will be copied/moved to the corresponding new folder.",
+      "field": {
+        "sourceFolder": {
+          "name": "Source folder",
+          "description": "The folder will be explored recursively, all the images will be collected"
+        },
+        "destinationFolder": {
+          "name": "Destination folder",
+          "description": "New folders will be created under this location."
+        },
+        "newFolderSuffix": {
+          "name": "New folder suffix",
+          "description": "This suffix will be added after the newly created folder names."
+        },
+        "newFolderDateFormat": {
+          "name": "New folder date format",
+          "description": "The new folders will be created based on this date format"
+        },
+        "fileOperation": {
+          "name": "Copy or move",
+          "description": "The files can be copied or moved. If you copy them, make sure you have enough free space on the target."
+        }
+      }
+    },
+    "copyFilesByDateFromFileMeta": {
+      "name": "Copy to dated folder by date from the image capture date",
+      "description": "The task will detect all the files under the source folder (including subfolders).<br/>It will try to extract the capture date from the picture (EXIF).<br/>For each day that was found in the pictures, a new folder will be created under the target folder.<br/>Each file will be copied/moved to the corresponding new folder.",
+      "field": {
+        "sourceFolder": {
+          "name": "Source folder",
+          "description": "The folder will be explored recursively, all the images will be collected"
+        },
+        "destinationFolder": {
+          "name": "Destination folder",
+          "description": "New folders will be created under this location."
+        },
+        "newFolderSuffix": {
+          "name": "New folder suffix",
+          "description": "This suffix will be added after the newly created folder names."
+        },
+        "newFolderDateFormat": {
+          "name": "New folder date format",
+          "description": "The new folders will be created based on this date format"
+        },
+        "fileOperation": {
+          "name": "Copy or move",
+          "description": "The files can be copied or moved. If you copy them, make sure you have enough free space on the target."
+        }
+      }
+    },
+    "moveRawImagesToSubfolders": {
+      "name": "Move raw images into new subfolders under their original location",
+      "description": "The task will detect all the raw files under the source folder (including subfolders).<br/>It will create a new subfolder in each parent folder that contains at least one raw file.<br/>It will move the raw files into the corresponding newly created folders.",
+      "field": {
+        "workingFolder": {
+          "name": "Working folder",
+          "description": "The folder will be explored recursively, all the raw images will be collected"
+        },
+        "rawFolder": {
+          "name": "Raw folder name",
+          "description": "Name of the newly created folders."
+        }
+      }
+    }
+  }
+}

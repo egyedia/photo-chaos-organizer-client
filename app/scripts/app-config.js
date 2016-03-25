@@ -5,9 +5,9 @@
       .module('pcoApp')
       .config(config);
 
-  config.$inject = ['$routeProvider', '$locationProvider'];
+  config.$inject = ['$routeProvider', '$locationProvider', '$translateProvider'];
 
-  function config($routeProvider, $locationProvider) {
+  function config($routeProvider, $locationProvider, $translateProvider) {
     $routeProvider
         .when('/', {
           templateUrl: 'views/dashboard.html',
@@ -54,5 +54,13 @@
         });
 
     $locationProvider.html5Mode(true);
+
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'resources/i18n/locale-',
+      suffix: '.json'
+    });
+    $translateProvider.preferredLanguage('en');
+    $translateProvider.useSanitizeValueStrategy('sanitize');
+
   }
 })();

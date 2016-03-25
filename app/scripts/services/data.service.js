@@ -48,9 +48,13 @@
       return this.getAppData().userId;
     };
 
-    service.setTaskTemplates = function(taskTemplates) {
+    service.setTaskTemplates = function (taskTemplates) {
       this.getAppData().taskTemplates = taskTemplates;
-    }
+    };
+
+    service.setTasks = function (tasks) {
+      this.getAppData().tasks = tasks;
+    };
 
     service.getCurrentRawList = function () {
       var list = [];

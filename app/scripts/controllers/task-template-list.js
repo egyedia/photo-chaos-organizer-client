@@ -5,9 +5,9 @@
       .module('pcoApp')
       .controller('TaskTemplateListController', TaskTemplateListController);
 
-  TaskTemplateListController.$inject = ['$location', '$route', 'UsersService', 'TaskTemplatesService', 'DataService'];
+  TaskTemplateListController.$inject = ['UsersService', 'TaskTemplatesService'];
 
-  function TaskTemplateListController($location, $route, UsersService, TaskTemplatesService, DataService) {
+  function TaskTemplateListController(UsersService, TaskTemplatesService) {
     var vm = this;
 
     UsersService.initialize();

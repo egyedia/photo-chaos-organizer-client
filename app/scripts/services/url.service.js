@@ -60,10 +60,6 @@
       return this.users() + '/' + id;
     };
 
-    service.taskCopyToDatedFolder = function () {
-      return baseUrl + 'tasks/copy-to-dated-folder';
-    };
-
     service.filesystemRaw = function () {
       return baseUrl + 'filesystem-raw';
     };

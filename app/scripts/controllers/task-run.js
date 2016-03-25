@@ -15,16 +15,5 @@
       return;
     }
 
-    if ($routeParams.taskId == 'copyFilesPreview') {
-      $http.get(UrlService.taskCopyToDatedFolder()).then(function (response) {
-        vm.task = response.data;
-      });
-    } else if ($routeParams.taskId == 'copyFilesRun') {
-      $http.get(UrlService.taskCopyToDatedFolder() + '?perform=true').then(function (response) {
-        vm.task = response.data;
-      });
-    }
-
-
   }
 })();

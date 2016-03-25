@@ -4,6 +4,8 @@
   angular.module('pcoApp', [
     'ui.bootstrap',
     'ngRoute',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'pascalprecht.translate',
+    'ngSanitize'
   ]);
 })();
