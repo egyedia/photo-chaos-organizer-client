@@ -6,5 +6,6 @@ function AppData() {
   this.userId = null;
   this.taskTemplates = null;
   this.tasks = null;
+  this.task = null;
   Object.preventExtensions(this);
 }

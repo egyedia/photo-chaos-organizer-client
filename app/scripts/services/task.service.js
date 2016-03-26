@@ -35,6 +35,20 @@
       return DataService.getAppData().tasks;
     };
 
+    service.loadTask = function (taskId) {
+      var defer = $q.defer();
+
+      RestCallBuilder.get(UrlService.taskId(taskId)).then(function (response) {
+        DataService.setTask(response.data);
+        defer.resolve(response);
+      }).catch(function (response) {
+        defer.reject(response);
+      });
+
+      return defer.promise;
+    };
+
+
     return service;
 
   };

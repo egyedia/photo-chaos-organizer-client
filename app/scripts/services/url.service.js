@@ -80,6 +80,10 @@
       return baseUrl + 'tasks';
     };
 
+    service.taskId = function (taskId) {
+      return this.tasks() + '/' + taskId;
+    };
+
 
     return service;
 

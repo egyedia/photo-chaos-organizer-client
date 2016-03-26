@@ -56,6 +56,10 @@
       this.getAppData().tasks = tasks;
     };
 
+    service.setTask = function (task) {
+      this.getAppData().task = task;
+    };
+
     service.getCurrentRawList = function () {
       var list = [];
       var entryList = this.getAppData().pathData.entryList;

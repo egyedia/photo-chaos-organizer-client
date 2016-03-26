@@ -5,9 +5,9 @@
       .module('pcoApp')
       .controller('TaskRunController', TaskRunController);
 
-  TaskRunController.$inject = ['$routeParams', '$http', '$route', 'UsersService', 'UrlService'];
+  TaskRunController.$inject = ['$routeParams', 'UsersService', 'TaskService', 'TaskTemplatesService', 'DataService'];
 
-  function TaskRunController($routeParams, $http, $route, UsersService, UrlService) {
+  function TaskRunController($routeParams, UsersService, TaskService, TaskTemplatesService, DataService) {
     var vm = this;
 
     UsersService.initialize();
@@ -15,5 +15,27 @@
       return;
     }
 
+    this.previewTask = function () {
+      console.log("PREVIEW");
+      console.log(DataService.getAppData().task);
+    };
+
+    this.runTask = function () {
+      console.log("RUN");
+      console.log(DataService.getAppData().task);
+    };
+
+    TaskService.loadTask($routeParams.taskId).then(function (response) {
+      var task = response.data;
+      vm.task = task;
+      var cn = task.className;
+      TaskTemplatesService.loadTaskTemplate(cn).then(function (response) {
+        vm.taskTemplate = response.data;
+        vm.taskTemplateData = {};
+        for (var pn in vm.taskTemplate.parameters) {
+          vm.taskTemplateData[pn] = vm.taskTemplate.parameters[pn].defaultValue;
+        }
+      });
+    });
   }
 })();

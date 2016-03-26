@@ -5,9 +5,9 @@
       .module('pcoApp')
       .controller('TaskCreateController', TaskCreateController);
 
-  TaskCreateController.$inject = ['$routeParams', 'TaskService', 'UsersService', 'TaskTemplatesService'];
+  TaskCreateController.$inject = ['$routeParams', 'TaskService', 'UsersService', 'TaskTemplatesService', '$location'];
 
-  function TaskCreateController($routeParams, TaskService, UsersService, TaskTemplatesService) {
+  function TaskCreateController($routeParams, TaskService, UsersService, TaskTemplatesService, $location) {
     var vm = this;
 
     UsersService.initialize();
@@ -20,9 +20,9 @@
       postData.parameters = this.taskTemplateData;
       postData.className = this.taskTemplate.className;
       TaskService.createTask(postData).then(function (response) {
-        console.log(response.data);
+        $location.path("/task-list");
       });
-    }
+    };
 
     TaskTemplatesService.loadTaskTemplate($routeParams.className).then(function (response) {
       vm.taskTemplate = response.data;
