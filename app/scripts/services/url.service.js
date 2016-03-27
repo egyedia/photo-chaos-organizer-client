@@ -84,6 +84,9 @@
       return this.tasks() + '/' + taskId;
     };
 
+    service.previewTask = function (taskId) {
+      return this.tasks() + '/' + taskId + '?action=preview';
+    };
 
     return service;
 

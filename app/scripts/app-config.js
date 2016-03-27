@@ -34,6 +34,16 @@
           controller : 'TaskListController',
           controllerAs: 'vm'
         })
+        .when('/task-launch/:taskId', {
+          templateUrl: 'views/task-launch.html',
+          controller : 'TaskLaunchController',
+          controllerAs: 'vm'
+        })
+        .when('/task-preview/:taskId', {
+          templateUrl: 'views/task-preview.html',
+          controller : 'TaskPreviewController',
+          controllerAs: 'vm'
+        })
         .when('/task-run/:taskId', {
           templateUrl: 'views/task-run.html',
           controller : 'TaskRunController',

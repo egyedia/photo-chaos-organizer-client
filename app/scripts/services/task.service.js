@@ -48,6 +48,9 @@
       return defer.promise;
     };
 
+    service.previewTask = function(taskId) {
+      return RestCallBuilder.get(UrlService.previewTask(taskId));
+    };
 
     return service;
 
