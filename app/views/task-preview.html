@@ -49,13 +49,35 @@
 
                   <div class="paramSeparator"></div>
                 </div>
-                <div>
-                  <a href="/task-launch/{{vm.task.id}}"><i class="font-svg-back"></i></a>
-                </div>
               </form>
             </div>
           </div>
         </div>
+
+        <h3>Reports</h3>
+
+        <div class="wideEntry" ng-repeat="report in vm.reports">
+          <table class="reportTable">
+            <tr>
+              <th ng-repeat="header in report.headers" translate>{{"report.header." + header}}</th>
+            </tr>
+            <tr ng-repeat="row in report.rows">
+              <td ng-repeat="header in report.headers">
+                <span ng-if="header == 'OPERATION'" translate>
+                {{"report.operation." + row.cols[header]}}
+                </span>
+                <span ng-if="header != 'OPERATION'">
+                {{row.cols[header]}}
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div>
+          <a href="/task-launch/{{vm.task.id}}"><i class="font-svg-back"></i></a>
+        </div>
+
       </div>
     </div>
   </div>

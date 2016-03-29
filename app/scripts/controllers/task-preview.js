@@ -36,7 +36,7 @@
           vm.taskTemplateData[pn] = vm.taskTemplate.parameters[pn].defaultValue;
         }
         TaskService.previewTask($routeParams.taskId).then(function (response) {
-          console.log(response.data);
+          vm.reports = response.data;
         });
       });
     });

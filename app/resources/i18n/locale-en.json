@@ -66,5 +66,20 @@
         }
       }
     }
+  },
+  "report": {
+    "header": {
+      "OPERATION": "Operation",
+      "SOURCE": "Source",
+      "SOURCE_NAME": "Name",
+      "DESTINATION": "Destination",
+      "DESTINATION_NAME": "Name",
+      "STATUS": "Status"
+    },
+    "operation": {
+      "createFolder": "Create folder",
+      "doNothing": "Do nothing",
+      "moveFile": "Move file"
+    }
   }
 }

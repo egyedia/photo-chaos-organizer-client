@@ -444,3 +444,12 @@ a.previewTask i:before {
 a.runTask i:before {
   color: #aa0000;
 }
+table.reportTable {
+  border: 1px solid #dddddd;
+  border-collapse: collapse;
+}
+table.reportTable td,
+table.reportTable th {
+  border: 1px solid #dddddd;
+  padding: 2px 5px 2px 5px;
+}
