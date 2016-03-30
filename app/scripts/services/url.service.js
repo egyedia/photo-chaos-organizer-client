@@ -88,6 +88,10 @@
       return this.tasks() + '/' + taskId + '?action=preview';
     };
 
+    service.runTask = function (taskId) {
+      return this.tasks() + '/' + taskId + '?action=run';
+    };
+
     return service;
 
   };

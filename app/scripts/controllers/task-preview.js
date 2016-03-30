@@ -5,25 +5,15 @@
       .module('pcoApp')
       .controller('TaskPreviewController', TaskPreviewController);
 
-  TaskPreviewController.$inject = ['$routeParams', 'UsersService', 'TaskService', 'TaskTemplatesService', 'DataService'];
+  TaskPreviewController.$inject = ['$routeParams', 'UsersService', 'TaskService', 'TaskTemplatesService'];
 
-  function TaskPreviewController($routeParams, UsersService, TaskService, TaskTemplatesService, DataService) {
+  function TaskPreviewController($routeParams, UsersService, TaskService, TaskTemplatesService) {
     var vm = this;
 
     UsersService.initialize();
     if (UsersService.redirectIfNeeded()) {
       return;
     }
-
-    this.previewTask = function () {
-      console.log("PREVIEW");
-      console.log(DataService.getAppData().task);
-    };
-
-    this.runTask = function () {
-      console.log("RUN");
-      console.log(DataService.getAppData().task);
-    };
 
     TaskService.loadTask($routeParams.taskId).then(function (response) {
       var task = response.data;

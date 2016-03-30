@@ -79,6 +79,7 @@
     "operation": {
       "createFolder": "Create folder",
       "doNothing": "Do nothing",
+      "copyFile": "Copy file",
       "moveFile": "Move file"
     }
   }
