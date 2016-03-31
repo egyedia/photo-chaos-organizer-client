@@ -22,9 +22,13 @@
         $location.path("/user-list");
         return true;
       } else {
-        this.loadUser(currentUserId).catch(function (response) {
-          service.nonexistingUserIdFound();
-        });
+        this.loadUser(currentUserId)
+            .then(function (response) {
+              DataService.setUserName(response.data.displayName);
+            })
+            .catch(function (response) {
+              service.nonexistingUserIdFound();
+            });
         return false;
       }
     };

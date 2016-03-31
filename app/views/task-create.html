@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="col-md-2">
-      <a href="/">
+      <a href="/" title="{{'g.homeLinkTitle' | translate}}">
         <i class="font-svg-home"></i>
       </a>
     </div>
@@ -10,52 +10,45 @@
       <div class="row">
         <h2>Create task</h2>
 
-        <h3>Summary</h3>
+        <h3 translate>g.summary</h3>
 
-        <div class="wideEntry">
-          <div class="noBorderTableCell">
-            <i class="font-svg-task icon-medium"></i>
-          </div>
-          <div class="noBorderTableCell" style="vertical-align: top;horiz-align: left;padding-right:60px">
-            <b>{{vm.taskTemplate.name | translate}}</b>
+        <div class="wideEntry taskTemplate">
+          <span ng-hide="true">{{taskTemplate = vm.taskTemplate}}</span>
 
-            <div style="margin-left:20px" translate>
-              {{vm.taskTemplate.description}}
-            </div>
-          </div>
+          <div ng-include="'views/fragments/task-summary.html'"></div>
         </div>
 
-        <h3>Parameters</h3>
+        <h3 translate>g.parameters</h3>
 
         <div class="wideEntry">
           <div class="noBorderTableCell">
             <i class="font-svg-task icon-medium"></i>
           </div>
-          <div class="noBorderTableCell">
-            <div class="noBorderTableCell" style="vertical-align: top;horiz-align: left;padding-right:60px">
-              <form name="taskTemplateForm">
-                <div ng-repeat="(parameterId, parameter) in vm.taskTemplate.parameters" style="margin-left:20px">
-                  <div class="paramNameAndValue">
-                    <div class="paramName">{{parameter.nameKey | translate}}
-                      <div class="paramMandatory" ng-if="parameter.mandatory">*</div>
-                    </div>
-                    <div class="paramInput" ng-include="'views/fragments/parameters/' + parameter.type + '.html'"></div>
+          <div class="noBorderTableCell taskParameterTable">
+            <form name="taskTemplateForm">
+              <div ng-repeat="(parameterId, parameter) in vm.taskTemplate.parameters" style="margin-left:20px">
+                <div class="paramNameAndValue">
+                  <div class="paramName">{{parameter.nameKey | translate}}
+                    <div class="paramMandatory" ng-if="parameter.mandatory">*</div>
                   </div>
-
-                  <div class="paramDescription" style="margin-left:20px">
-                    {{parameter.descriptionKey | translate}}
-                  </div>
-
-                  <div class="paramSeparator"></div>
+                  <div class="paramInput" ng-include="'views/fragments/parameters/' + parameter.type + '.html'"></div>
                 </div>
-                <div>
-                  <a href="#" ng-if="taskTemplateForm.$valid" ng-click="vm.createTask()"><i
-                      class="font-svg-check-circle"></i></a>
 
-                  <span ng-if="!taskTemplateForm.$valid"><i class="font-svg-check-circle"></i></span>
+                <div class="paramDescription">
+                  {{parameter.descriptionKey | translate}}
                 </div>
-              </form>
-            </div>
+
+                <div class="paramSeparator"></div>
+              </div>
+            </form>
+          </div>
+          <div class="launchButtons">
+            <a href="#" ng-if="taskTemplateForm.$valid" ng-click="vm.createTask()"
+                title="{{'createTask.valid' | translate}}" class="validSaveButton"><i
+                class="font-svg-check-circle"></i></a>
+
+                <span ng-if="!taskTemplateForm.$valid" title="{{'createTask.invalid' | translate}}" class="invalidSaveButton"><i
+                    class="font-svg-check-circle"></i></span>
           </div>
         </div>
 

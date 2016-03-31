@@ -341,21 +341,21 @@ div.wideEntry {
 }
 
 div.paramSeparator {
-  border-top:1px solid #cccccc;
-  margin-top:10px;
-  margin-bottom:20px;
+  border-top: 1px solid #cccccc;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 div.paramName {
   font-weight: bold;
   display: inline-block;
-  width:200px;
+  width: 200px;
 }
 
 div.paramMandatory {
   color: #aa0000;
   display: inline;
-  margin-left:5px;
+  margin-left: 5px;
 }
 
 div.paramInput {
@@ -363,18 +363,18 @@ div.paramInput {
 }
 
 div.paramDescription {
-  color:#aaaaaa;
+  color: #aaaaaa;
 }
 
 span.paramValue {
-  background-color:#bbbbbb;
-  padding:1px;
-  border:1px solid #aaaaaa;
+  background-color: #bbbbbb;
+  padding: 1px;
+  border: 1px solid #aaaaaa;
   white-space: pre;
   font-family: monospace;
 }
 
-input.ng-invalid, select.ng-invalid{
+input.ng-invalid, select.ng-invalid {
   background-color: rgba(229, 48, 6, 0.33);
 }
 
@@ -384,22 +384,80 @@ input.ng-valid, select.ng-valid {
 
 a.previewTask {
   i:before {
-    color:#00aa00
+    color: #00aa00
   }
 }
 
 a.runTask {
   i:before {
-    color:#aa0000
+    color: #aa0000
   }
 }
 
 table.reportTable {
-  border:1px solid #dddddd;
+  border: 1px solid #dddddd;
   border-collapse: collapse;
 
   td, th {
-    border:1px solid #dddddd;
-    padding:2px 5px 2px 5px;
+    border: 1px solid #dddddd;
+    padding: 2px 5px 2px 5px;
+  }
+}
+
+a.createTaskPlus {
+  div.fsEntry {
+    display: table;
+    div.standaloneIcon {
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      vertical-align: middle;
+      display: table-cell;
+      i {
+        color: #cc1e1f;
+      }
+    }
+  }
+}
+
+div.taskTemplate {
+  div.taskName {
+    vertical-align: top;
+    horiz-align: left;
+    padding-right: 60px
+  }
+  div.taskDescription {
+    margin-left: 20px
+  }
+  div.addSign {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    i {
+      color: #cc1e1f;
+    }
+  }
+}
+
+div.taskParameterTable {
+  vertical-align: top;
+  horiz-align: left;
+  padding-right: 60px;
+  div.paramDescription {
+    margin-left: 20px;
+  }
+}
+
+div.launchButtons {
+  float:right;
+  i {
+    margin-right:30px;
+  }
+
+  .validSaveButton {
+    color: #cc1e1f;
+  }
+  .invalidSaveButton {
+    color: #dddddd;
   }
 }

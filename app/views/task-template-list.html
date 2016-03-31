@@ -1,27 +1,19 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="col-md-2">
-      <a href="/">
+      <a href="/" title="{{'g.homeLinkTitle' | translate}}">
         <i class="font-svg-home"></i>
       </a>
     </div>
     <div class="col-md-10">
       <!--Body content-->
       <div class="row">
-        <h2>Create task from a template</h2>
+        <h2 translate>g.createTaskFromTemplate</h2>
 
-        <div ng-repeat="taskTemplate in vm.taskTemplateList" class="wideEntry">
-          <div class="noBorderTableCell">
-            <i class="font-svg-task icon-medium"></i>
-          </div>
-          <div class="noBorderTableCell" style="vertical-align: top;horiz-align: left;padding-right:60px">
-            <b>{{taskTemplate.name | translate}}</b>
-
-            <div style="margin-left:20px" translate>
-              {{taskTemplate.description}}
-            </div>
-          </div>
-          <div style="position:absolute;right:10px; bottom:10px"><a href="/task-create/{{taskTemplate.className}}"><i
+        <div ng-repeat="taskTemplate in vm.taskTemplateList" class="wideEntry taskTemplate">
+          <div ng-include="'views/fragments/task-summary.html'"></div>
+          <div class="addSign"><a href="/task-create/{{taskTemplate.className}}"
+              title="{{'g.createTaskFromThis' | translate}}"><i
               class="font-svg-plus-circle icon-medium"></i></a></div>
         </div>
 

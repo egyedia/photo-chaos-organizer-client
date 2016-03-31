@@ -1,0 +1,20 @@
+<div class="noBorderTableCell">
+  <i class="font-svg-task icon-medium"></i>
+</div>
+<div class="noBorderTableCell taskParameterTable">
+  <div ng-repeat="(parameterId, parameter) in vm.taskTemplate.parameters" style="margin-left:20px">
+    <div class="paramNameAndValue">
+      <div class="paramName">{{parameter.nameKey | translate}}
+        <div class="paramMandatory" ng-if="parameter.mandatory">*</div>
+        :
+      </div>
+      <span class="paramValue">{{vm.task.parameters[parameter.name]}}</span>
+    </div>
+
+    <div class="paramDescription">
+      {{parameter.descriptionKey | translate}}
+    </div>
+
+    <div class="paramSeparator"></div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-2">
-      <a href="/">
+      <a href="/" title="{{'g.homeLinkTitle' | translate}}">
         <i class="font-svg-home"></i>
       </a>
     </div>
@@ -10,46 +10,47 @@
       <h1>
       <span ng-repeat="parent in vm.pco.pathData.parentList">
         <span ng-if="$last">{{parent.name}}</span>
-        <a ng-if="!$last" href="/path/file://{{parent.path}}">{{parent.name}}</a><span
+        <a ng-if="!$last" href="/path/file://{{parent.path}}" title="{{'g.goToPath' | translate}}{{parent.path}}">{{parent.name}}</a><span
           ng-show="{{parent.name != '/'}}"> /</span>
       </span>
       </h1>
 
-      <div class="fsEntry" ng-if="!vm.pco.pathData.locationIsRoot">
-        <a href="/path/file://{{vm.pco.pathData.parentPath}}">
+      <a href="/path/file://{{vm.pco.pathData.parentPath}}" title="{{'g.goUp' | translate}}">
+        <div class="fsEntry" ng-if="!vm.pco.pathData.locationIsRoot">
           <div class="icon"><i class="font-svg-back"></i></div>
-          <div class="label">Go back</div>
-        </a>
-      </div>
+          <div class="label" translate>g.goUp</div>
+        </div>
+      </a>
 
       <div ng-repeat="entry in vm.pco.pathData.entryList| orderBy:'-isdir'"
           ng-repeat-finished="renderingContentsFinished"
           ng-if="vm.pco.pathData.entryList !== null && vm.pco.pathData.entryList.length > 0">
-        <div class="fsEntry">
-          <a href="{{entry.linkPath}}" ng-click="vm.thumbClicked(entry, $index)">
+        <a href="{{entry.linkPath}}" ng-click="vm.thumbClicked(entry, $index)" title="{{entry.name}}">
+          <div class="fsEntry">
             <div ng-hide="entry.hideIcon" class="icon"><i class="{{entry.iconClass}}"></i></div>
             <div class="thumb"><!--
             --><img ng-src="{{entry.img}}" alt="" title="" pco-onload ng-class="entry.cssClass"
                 ng-data-filename="{{entry.name}}"/><!--
             --></div>
             <div class="label">{{entry.name}}</div>
-          </a>
 
-          <div class="fsStatusMenu">
-            <div class="favoritePath" ng-show="entry.isFavorite">
-              <i class="font-svg-bookmark-on bookmark-on"></i>
+
+            <div class="fsStatusMenu">
+              <div class="favoritePath" ng-show="entry.isFavorite">
+                <i class="font-svg-bookmark-on bookmark-on"></i>
+              </div>
+            </div>
+
+            <div class="fsEntryMenu" show-on-hover=".fsEntry">
+              <div class="favoritePath" ng-show="entry.isDir">
+                <a href="javascript://" ng-click="vm.addOrRemoveFavorite(entry.fullPath, entry.isFavorite)"
+                    title="{{entry.isFavorite?('g.removeFavorite' | translate):('g.addFavorite' | translate)}}">
+                  <i class="font-svg-bookmark-off"></i>
+                </a>
+              </div>
             </div>
           </div>
-
-          <div class="fsEntryMenu" show-on-hover=".fsEntry">
-            <div class="favoritePath" ng-show="entry.isDir">
-              <a href="javascript://" ng-click="vm.addOrRemoveFavorite(entry.fullPath, entry.isFavorite)">
-                <i class="font-svg-bookmark-off"></i>
-              </a>
-            </div>
-          </div>
-
-        </div>
+        </a>
       </div>
 
       <div id="fancyImageGallery" style="display: none"></div>

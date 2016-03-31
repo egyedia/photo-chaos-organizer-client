@@ -1,21 +1,22 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="col-md-2">
-      <a href="/">
+      <a href="/" title="{{'g.homeLinkTitle' | translate}}">
         <i class="font-svg-home"></i>
       </a>
     </div>
     <div class="col-md-10">
       <!--Body content-->
       <div class="row">
-        <h2>Select a user</h2>
+        <h2 translate>g.selectAUser</h2>
+
         <div ng-repeat="user in vm.userList">
-          <div class="fsEntry" ng-class="{'userSelected' : (user.id == vm.userId)}">
-            <a href="/user-select/{{user.id}}">
+          <a href="/user-select/{{user.id}}">
+            <div class="fsEntry" ng-class="{'userSelected' : (user.id == vm.userId)}">
               <div class="icon"><i class="font-svg-user"></i></div>
               <div class="label">{{user.displayName}}</div>
-            </a>
-          </div>
+            </div>
+          </a>
         </div>
 
       </div>

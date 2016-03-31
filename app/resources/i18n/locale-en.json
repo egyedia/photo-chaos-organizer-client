@@ -82,5 +82,46 @@
       "copyFile": "Copy file",
       "moveFile": "Move file"
     }
+  },
+  "product": {
+    "title": "Photo Chaos Organizer"
+  },
+  "g": {
+    "filesystem": "Filesystem",
+    "tasks": "Tasks",
+    "switchUser": "Switch user",
+    "homeLinkTitle": "Go to main page",
+    "filesystemRoots": "File system roots",
+    "favorites": "Favorites",
+    "goUp": "Go to parent folder",
+    "selectAUser": "Select a User",
+    "profile": "Profile",
+    "goToPath": "Go to: ",
+    "addFavorite": "Add to Favorites",
+    "removeFavorite": "Remove from Favorites",
+    "selectATask": "Select a task",
+    "viewTask": "View task details",
+    "createNewTask": "Create new Task",
+    "createTaskFromTemplate": "Create task from a template",
+    "createTaskFromThis": "Create a new task using this template",
+    "launchTask": "Launch task",
+    "summary": "Summary",
+    "parameters": "Parameters",
+    "previewTask": "Preview task execution",
+    "runTask": "Execute task. Please be aware that possible modifications will be made to your files and folders! No file data will be modified, and no files will be deleted! Only 'copy file', 'move file' and 'create directory' operations are performed by the tool.",
+    "reports": "Reports",
+    "back": "Go Back"
+  },
+  "pageTitle": {
+    "createTask": "Create task",
+    "previewTask": "Preview task",
+    "runTask": "Run task"
+  },
+  "menu": {
+    "title": "Photo Chaos Organizer"
+  },
+  "createTask": {
+    "invalid": "Please fill out all the mandatory fields before saving the new task!",
+    "valid": "Create the task with the above parameters!"
   }
 }

@@ -1,36 +1,36 @@
 <div class="container-fluid pageContainer">
   <div class="row-fluid">
     <div class="col-md-2">
-      <a href="/">
+      <a href="/" title="{{'g.homeLinkTitle' | translate}}">
         <i class="font-svg-home"></i>
       </a>
     </div>
     <div class="col-md-10">
       <!--Body content-->
       <div class="row">
-        <h2>File system roots</h2>
+        <h2 translate>g.filesystemRoots</h2>
 
         <div ng-repeat="root in vm.rootList">
-          <div class="fsEntry">
-            <a href="/path/file://{{root.path}}">
+          <a href="/path/file://{{root.path}}" title="{{'g.goToPath' | translate}}{{root.path}}">
+            <div class="fsEntry">
               <div class="icon"><i class="font-svg-root"></i></div>
               <div class="label">{{root.path}}</div>
-            </a>
-          </div>
+            </div>
+          </a>
         </div>
 
       </div>
 
       <div class="row">
-        <h2>Favorites</h2>
+        <h2 translate>g.favorites</h2>
 
         <div ng-repeat="favorite in vm.favoriteList">
-          <div class="fsEntry">
-            <a href="/path/file://{{favorite.path}}">
+          <a href="/path/file://{{favorite.path}}" title="{{'g.goToPath' | translate}}{{favorite.path}}">
+            <div class="fsEntry">
               <div class="icon"><i class="font-svg-folder"></i></div>
               <div class="label">{{favorite.path}}</div>
-            </a>
-          </div>
+            </div>
+          </a>
         </div>
 
       </div>

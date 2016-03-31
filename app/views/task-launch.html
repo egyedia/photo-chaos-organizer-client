@@ -1,62 +1,35 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="col-md-2">
-      <a href="/">
+      <a href="/" title="{{'g.homeLinkTitle' | translate}}">
         <i class="font-svg-home"></i>
       </a>
     </div>
     <div class="col-md-10">
       <!--Body content-->
       <div class="row">
-        <h2>Lunch task</h2>
+        <h2 translate>g.launchTask</h2>
 
-        <h3>Summary</h3>
+        <h3 translate>g.summary</h3>
+
+        <div class="wideEntry taskTemplate">
+          <span ng-hide="true">{{taskTemplate = vm.taskTemplate}}</span>
+
+          <div ng-include="'views/fragments/task-summary.html'"></div>
+        </div>
+
+        <h3 translate>g.parameters</h3>
 
         <div class="wideEntry">
-          <div class="noBorderTableCell">
-            <i class="font-svg-task icon-medium"></i>
-          </div>
-          <div class="noBorderTableCell" style="vertical-align: top;horiz-align: left;padding-right:60px">
-            <b>{{vm.taskTemplate.name | translate}}</b>
-
-            <div style="margin-left:20px" translate>
-              {{vm.taskTemplate.description}}
-            </div>
+          <div ng-include="'views/fragments/task-parameters.html'"></div>
+          <div class="launchButtons">
+            <a href="task-preview/{{vm.task.id}}" class="previewTask" title="{{'g.previewTask' | translate}}"><i
+                class="font-svg-play"></i></a>
+            <a href="task-run/{{vm.task.id}}" class="runTask" title="{{'g.runTask' | translate}}"><i
+                class="font-svg-play"></i></a>
           </div>
         </div>
 
-        <h3>Parameters</h3>
-
-        <div class="wideEntry">
-          <div class="noBorderTableCell">
-            <i class="font-svg-task icon-medium"></i>
-          </div>
-          <div class="noBorderTableCell">
-            <div class="noBorderTableCell" style="vertical-align: top;horiz-align: left;padding-right:60px">
-              <form name="taskTemplateForm">
-                <div ng-repeat="(parameterId, parameter) in vm.taskTemplate.parameters" style="margin-left:20px">
-                  <div class="paramNameAndValue">
-                    <div class="paramName">{{parameter.nameKey | translate}}
-                      <div class="paramMandatory" ng-if="parameter.mandatory">*</div>
-                      :
-                    </div>
-                    <span class="paramValue">{{vm.task.parameters[parameter.name]}}</span>
-                  </div>
-
-                  <div class="paramDescription" style="margin-left:20px">
-                    {{parameter.descriptionKey | translate}}
-                  </div>
-
-                  <div class="paramSeparator"></div>
-                </div>
-                <div>
-                  <a href="task-preview/{{vm.task.id}}" class="previewTask"><i class="font-svg-play"></i></a>
-                  <a href="task-run/{{vm.task.id}}" class="runTask"><i class="font-svg-play"></i></a>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

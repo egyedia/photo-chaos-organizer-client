@@ -1,81 +1,35 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="col-md-2">
-      <a href="/">
+      <a href="/" title="{{'g.homeLinkTitle' | translate}}">
         <i class="font-svg-home"></i>
       </a>
     </div>
     <div class="col-md-10">
       <!--Body content-->
       <div class="row">
-        <h2>Run task</h2>
+        <h2 translate>pageTitle.runTask</h2>
 
-        <h3>Summary</h3>
+        <h3 translate>g.summary</h3>
+
+        <div class="wideEntry taskTemplate">
+          <span ng-hide="true">{{taskTemplate = vm.taskTemplate}}</span>
+
+          <div ng-include="'views/fragments/task-summary.html'"></div>
+        </div>
+
+        <h3 translate>g.parameters</h3>
 
         <div class="wideEntry">
-          <div class="noBorderTableCell">
-            <i class="font-svg-task icon-medium"></i>
-          </div>
-          <div class="noBorderTableCell" style="vertical-align: top;horiz-align: left;padding-right:60px">
-            <b>{{vm.taskTemplate.name | translate}}</b>
-
-            <div style="margin-left:20px" translate>
-              {{vm.taskTemplate.description}}
-            </div>
-          </div>
+          <div ng-include="'views/fragments/task-parameters.html'"></div>
         </div>
 
-        <h3>Parameters</h3>
+        <h3 translate>g.reports</h3>
 
-        <div class="wideEntry">
-          <div class="noBorderTableCell">
-            <i class="font-svg-task icon-medium"></i>
-          </div>
-          <div class="noBorderTableCell">
-            <div class="noBorderTableCell" style="vertical-align: top;horiz-align: left;padding-right:60px">
-              <form name="taskTemplateForm">
-                <div ng-repeat="(parameterId, parameter) in vm.taskTemplate.parameters" style="margin-left:20px">
-                  <div class="paramNameAndValue">
-                    <div class="paramName">{{parameter.nameKey | translate}}
-                      <div class="paramMandatory" ng-if="parameter.mandatory">*</div>
-                      :
-                    </div>
-                    <span class="paramValue">{{vm.task.parameters[parameter.name]}}</span>
-                  </div>
-
-                  <div class="paramDescription" style="margin-left:20px">
-                    {{parameter.descriptionKey | translate}}
-                  </div>
-
-                  <div class="paramSeparator"></div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <h3>Reports</h3>
-
-        <div class="wideEntry" ng-repeat="report in vm.reports">
-          <table class="reportTable">
-            <tr>
-              <th ng-repeat="header in report.headers" translate>{{"report.header." + header}}</th>
-            </tr>
-            <tr ng-repeat="row in report.rows">
-              <td ng-repeat="header in report.headers" ng-if="row.cols.OPERATION != 'doNothing'">
-                <span ng-if="header == 'OPERATION'" translate>
-                {{"report.operation." + row.cols[header]}}
-                </span>
-                <span ng-if="header != 'OPERATION'">
-                {{row.cols[header]}}
-                </span>
-              </td>
-            </tr>
-          </table>
-        </div>
+        <div ng-include="'views/fragments/task-report.html'"></div>
 
         <div>
-          <a href="/task-launch/{{vm.task.id}}"><i class="font-svg-back"></i></a>
+          <a href="/task-launch/{{vm.task.id}}" title="{{'g.back' | translate}}"><i class="font-svg-back"></i></a>
         </div>
 
       </div>

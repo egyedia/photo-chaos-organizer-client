@@ -2,16 +2,23 @@
   <nav class="navbar navbar-static-top navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" ng-href="/">
-          <span class="glyphicon glyphicon-home"></span>Photo Chaos Organizer
+        <a class="navbar-brand" ng-href="/" title="{{'g.homeLinkTitle' | translate}}">
+          <span class="glyphicon glyphicon-home"></span> <span translate>menu.title</span>
         </a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
         <ul class="nav navbar-nav">
-          <li><a ng-href="/">Filesystem</a></li>
-          <li><a ng-href="/task-list">Tasks</a></li>
-          <li><a ng-href="/task-template-list">Create task</a></li>
-          <li><a ng-href="/user-list">Switch user</a></li>
+          <li><a ng-href="/" translate>g.filesystem</a></li>
+          <li><a ng-href="/task-list" translate>g.tasks</a></li>
+          <!--<li><a ng-href="/user-list" translate>g.switchUser</a></li>-->
+          <!--<li><a ng-href="/user-profile">
+            <span translate>g.profile</span>
+            <span ng-if="$root.appData.userName != null">({{$root.appData.userName}})</span>
+          </a></li>-->
+          <li>
+            <a ng-href="/user-list"><span
+                ng-if="$root.appData.userName != null">Welcome, {{$root.appData.userName}}</span></a>
+          </li>
         </ul>
       </div>
     </div>

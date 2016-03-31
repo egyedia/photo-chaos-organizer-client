@@ -44,6 +44,10 @@
       this.getAppData().userId = userId;
     };
 
+    service.setUserName = function (userName) {
+      this.getAppData().userName = userName;
+    };
+
     service.getUserId = function () {
       return this.getAppData().userId;
     };
