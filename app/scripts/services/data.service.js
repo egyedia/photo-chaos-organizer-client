@@ -78,6 +78,25 @@
       return list;
     };
 
+    service.getPathDataEntry = function(idx) {
+      return this.getAppData().pathData.entryList[idx];
+    };
+
+    service.getPathDataEntrySize = function(idx) {
+      return this.getAppData().pathData.entryList.length;
+    };
+
+    service.storeImageMeta = function(name, imageMeta) {
+      if (this.getAppData().pathData.metaMap == null) {
+        this.getAppData().pathData.metaMap = {};
+      }
+      this.getAppData().pathData.metaMap[name] = imageMeta;
+    }
+
+    service.getMetaInfo = function(name) {
+      return this.getAppData().pathData.metaMap[name];
+    }
+
     return service;
   };
 })();

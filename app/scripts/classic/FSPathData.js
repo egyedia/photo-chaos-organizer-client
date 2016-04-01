@@ -5,5 +5,6 @@ function FSPathData() {
   this.locationIsRoot = false;
   this.parentPath = null;
   this.parentList = null;
+  this.metaMap = null;
   Object.preventExtensions(this);
 }

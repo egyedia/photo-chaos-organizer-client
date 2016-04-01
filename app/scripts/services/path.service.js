@@ -72,6 +72,7 @@
           $http.get(UrlService.filesystemMetaThumbnailMetaId(currentEntry.fullPath)).then(function (response) {
             var cssClass = UIImageService.getRotationClassFromMeta(response.data);
             DataService.getPathEntry(currentEntry.name).cssClass = cssClass;
+            DataService.storeImageMeta(currentEntry.name, response.data);
           });
         })(e);
       }
