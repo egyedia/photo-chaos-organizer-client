@@ -5,16 +5,19 @@
       .module('pcoApp')
       .service('SingleImageService', SingleImageService);
 
-  SingleImageService.$inject = ['UrlService', 'DataService'];
+  SingleImageService.$inject = ['UrlService', 'DataService', 'CONST'];
 
-  function SingleImageService(UrlService, DataService) {
+  function SingleImageService(UrlService, DataService, CONST) {
 
     var service = {};
 
+    //var currentImage = null;
+    var currentImageIdx = null;
+
     function resizeImage(entry, index, image) {
-      console.log("SingleImageService.resizeImage");
+      //console.log("SingleImageService.resizeImage");
       var meta = DataService.getMetaInfo(entry.name);
-      console.log(meta);
+      //console.log(meta);
 
       // Initialize big Image Width, Height and Orientation from meta
       var biw = meta.image.width;
@@ -127,19 +130,50 @@
 
     }
 
-    service.openGallery = function (entry, index) {
-      var url = UrlService.filesystemRawId(entry.fullPath);
-      console.log(url);
-      console.log(entry.img);
-      var image = new Image();
-      image.src = url;
-      image.addEventListener("load", function () {
-        resizeImage(entry, index, image);
-      }, false);
+    service.openGallery = function (index) {
+      var entry = DataService.getPathDataEntry(index);
+      if (entry.fileType.fileType == 'image') {
+        currentImageIdx = index;
+        DataService.setAppMode(CONST.appMode.IMAGEVIEW);
+        var url = UrlService.filesystemRawId(entry.fullPath);
+        //console.log(url);
+        //console.log(entry.img);
+        var image = new Image();
+        image.src = url;
+        image.addEventListener("load", function () {
+          resizeImage(entry, index, image);
+        }, false);
+      }
     };
 
     service.closeGallery = function () {
+      DataService.setAppMode(null);
       jq("#fancyWrapper").hide();
+    };
+
+    service.next = function () {
+      currentImageIdx++;
+      if (currentImageIdx >= DataService.getPathDataEntrySize()) {
+        currentImageIdx = 0;
+      }
+      this.openGallery(currentImageIdx);
+    };
+
+    service.previous = function () {
+      currentImageIdx--;
+      if (currentImageIdx < 0) {
+        currentImageIdx = DataService.getPathDataEntrySize() - 1;
+      }
+      this.openGallery(currentImageIdx);
+    };
+
+    service.fullScreen = function () {
+      var canvas = jq("#imageCanvas")[0];
+      if (canvas.webkitRequestFullScreen) {
+        canvas.webkitRequestFullScreen();
+      } else {
+        canvas.mozRequestFullScreen();
+      }
     };
 
     return service;

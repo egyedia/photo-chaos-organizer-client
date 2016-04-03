@@ -8,5 +8,6 @@ function AppData() {
   this.taskTemplates = null;
   this.tasks = null;
   this.task = null;
+  this.appMode = null;
   Object.preventExtensions(this);
 }

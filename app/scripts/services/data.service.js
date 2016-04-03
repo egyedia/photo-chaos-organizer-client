@@ -91,11 +91,19 @@
         this.getAppData().pathData.metaMap = {};
       }
       this.getAppData().pathData.metaMap[name] = imageMeta;
-    }
+    };
 
     service.getMetaInfo = function(name) {
       return this.getAppData().pathData.metaMap[name];
-    }
+    };
+
+    service.setAppMode = function(mode) {
+      this.getAppData.appMode = mode;
+    };
+
+    service.getAppMode = function() {
+      return this.getAppData.appMode;
+    };
 
     return service;
   };

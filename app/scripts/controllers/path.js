@@ -12,9 +12,6 @@
                           SingleImageService) {
     var vm = this;
 
-    var currentImage = null;
-    var currentImageIdx = null;
-
     UsersService.initialize();
     if (UsersService.redirectIfNeeded()) {
       return;
@@ -50,11 +47,7 @@
     };
 
     vm.thumbClicked = function ($index) {
-      var entry = DataService.getPathDataEntry($index);
-      if (entry.fileType.fileType == 'image') {
-        currentImageIdx = $index;
-        SingleImageService.openGallery(entry, $index);
-      }
+      SingleImageService.openGallery($index);
     };
 
     vm.closeSingleImage = function () {
@@ -62,19 +55,11 @@
     };
 
     vm.nextSingleImage = function () {
-      currentImageIdx++;
-      if (currentImageIdx >= DataService.getPathDataEntrySize()) {
-        currentImageIdx = 0;
-      }
-      vm.thumbClicked(currentImageIdx);
+      SingleImageService.next();
     };
 
     vm.previousSingleImage = function () {
-      currentImageIdx--;
-      if (currentImageIdx < 0) {
-        currentImageIdx = DataService.getPathDataEntrySize() - 1;
-      }
-      vm.thumbClicked(currentImageIdx);
+      SingleImageService.previous();
     };
 
     // make sure favorites are loaded
