@@ -19,18 +19,10 @@
           SingleImageService.previous();
         } else if (e.which == 27) {
           SingleImageService.closeGallery();
-        } else if (e.which == 70 && e.metaKey) {
+        } else if (e.which == 70 && (e.metaKey || e.ctrlKey)) {
           SingleImageService.fullScreen();
         }
       }
-      /*console.log("------");
-       console.log(e.char + ":" + e.charCode);
-       console.log(e.key + ":" + e.keyCode);
-       console.log("metaKey:" + e.metaKey);
-       console.log("shiftKey:" + e.shiftKey);
-       console.log("ctrlKey:" + e.ctrlKey);
-       console.log("altKey:" + e.altKey);*/
-      //e.preventDefault();
     };
 
     return service;

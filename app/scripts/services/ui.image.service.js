@@ -5,9 +5,9 @@
       .module('pcoApp')
       .service('UIImageService', UIImageService);
 
-  UIImageService.$inject = [];
+  UIImageService.$inject = ['RotationService'];
 
-  function UIImageService() {
+  function UIImageService(RotationService) {
 
     var service = {};
 
@@ -18,17 +18,7 @@
       } else if (meta.image.orientationRead) {
         orientation = meta.image.orientation;
       }
-      var cssClass = 'rotate0';
-      if (orientation == 6) {
-        cssClass = 'rotateCW';
-      } else if (orientation == 8) {
-        cssClass = 'rotateCCW';
-      } else if (orientation == 3) {
-        cssClass = 'rotate180';
-      } else if (orientation == 1) {
-        cssClass = 'rotate0';
-      }
-      return cssClass;
+      return RotationService.getRotationCssClass(orientation);
     };
 
     return service;

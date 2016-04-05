@@ -1,14 +1,14 @@
 <div class="fancybox-overlay fancybox-overlay-fixed" style="width: auto; height: auto; display: none;" id="fancyWrapper"><!--
-        --><div tabindex="-1" class="fancybox-wrap fancybox-desktop fancybox-type-inline fancybox-opened"
-    style="height: auto; position: absolute; opacity: 1; overflow: visible;" id="canvasWrapper"><!--
+        --><div tabindex="-1" class="fancybox-wrap fancybox-desktop fancybox-type-inline fancybox-opened" style="height: auto; position: absolute; opacity: 1; overflow: visible;" id="canvasWrapper"><!--
           --><div class="fancybox-skin" style="padding: 0px; width: auto; height: auto;"><!--
-            --><div class="fancybox-outer"><!--
+            --><div class="fancybox-outer" id="imageCanvasAndNavContainer"><!--
               --><div class="fancybox-inner" style="overflow: auto;"><!--
                 --><div class="pcoimage"><!--
-                  --><div class="imgcontainer"><!--
+                  --><div class="imgcontainer" id="imageCanvasContainer"><!--
                   --><canvas id="imageCanvas"></canvas><!--
                   --></div><!--
-                   --><div class="title">20150802_161415.jpg</div><!--
+                   --><div class="imageTitle">{{$root.bigImageFileName}}</div><!--
+                   --><div class="imageDate">{{$root.bigImageDate}}</div><!--
                  --></div><!--
                --></div><!--
                --><a href="javascript:;" class="fancybox-nav fancybox-prev" title="Previous" ng-click="vm.previousSingleImage()"><span></span></a><!--
