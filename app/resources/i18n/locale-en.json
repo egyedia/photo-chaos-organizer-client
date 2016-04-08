@@ -5,11 +5,11 @@
       "description": "The task will detect all the files under the source folder (including subfolders).<br/>It will try to extract the date from the filename.<br/>For each day that was found in the filenames, a new folder will be created under the target folder.<br/>Each file will be copied/moved to the corresponding new folder.",
       "field": {
         "sourceFolder": {
-          "name": "Source folder",
+          "name": "Source Folder",
           "description": "The folder will be explored recursively, all the images will be collected"
         },
         "destinationFolder": {
-          "name": "Destination folder",
+          "name": "Destination Folder",
           "description": "New folders will be created under this location."
         },
         "newFolderSuffix": {
@@ -21,7 +21,7 @@
           "description": "The new folders will be created based on this date format"
         },
         "fileOperation": {
-          "name": "Copy or move",
+          "name": "Copy or Move",
           "description": "The files can be copied or moved. If you copy them, make sure you have enough free space on the target."
         }
       }
@@ -31,11 +31,11 @@
       "description": "The task will detect all the files under the source folder (including subfolders).<br/>It will try to extract the capture date from the picture (EXIF).<br/>For each day that was found in the pictures, a new folder will be created under the target folder.<br/>Each file will be copied/moved to the corresponding new folder.",
       "field": {
         "sourceFolder": {
-          "name": "Source folder",
+          "name": "Source Folder",
           "description": "The folder will be explored recursively, all the images will be collected"
         },
         "destinationFolder": {
-          "name": "Destination folder",
+          "name": "Destination Folder",
           "description": "New folders will be created under this location."
         },
         "newFolderSuffix": {
@@ -47,7 +47,7 @@
           "description": "The new folders will be created based on this date format"
         },
         "fileOperation": {
-          "name": "Copy or move",
+          "name": "Copy or Move",
           "description": "The files can be copied or moved. If you copy them, make sure you have enough free space on the target."
         }
       }
@@ -57,7 +57,7 @@
       "description": "The task will detect all the raw files under the source folder (including subfolders).<br/>It will create a new subfolder in each parent folder that contains at least one raw file.<br/>It will move the raw files into the corresponding newly created folders.",
       "field": {
         "workingFolder": {
-          "name": "Working folder",
+          "name": "Working Folder",
           "description": "The folder will be explored recursively, all the raw images will be collected"
         },
         "rawFolder": {
@@ -87,37 +87,37 @@
     "title": "Photo Chaos Organizer"
   },
   "g": {
-    "filesystem": "Filesystem",
+    "filesystem": "File System",
     "tasks": "Tasks",
-    "switchUser": "Switch user",
-    "homeLinkTitle": "Go to main page",
-    "filesystemRoots": "File system roots",
+    "switchUser": "Switch User",
+    "homeLinkTitle": "Go to Main Page",
+    "filesystemRoots": "File System Roots",
     "favorites": "Favorites",
-    "goUp": "Go to parent folder",
+    "goUp": "Go to Parent Folder",
     "selectAUser": "Select a User",
     "profile": "Profile",
     "goToPath": "Go to: ",
     "addFavorite": "Add to Favorites",
     "removeFavorite": "Remove from Favorites",
-    "selectATask": "Select a task",
-    "viewTask": "View task details",
-    "createNewTask": "Create new Task",
-    "createTaskFromTemplate": "Create task from a template",
-    "createTaskFromThis": "Create a new task using this template",
-    "launchTask": "Launch task",
+    "selectATask": "Select a Task",
+    "viewTask": "View Task Details",
+    "createNewTask": "Create New Task",
+    "createTaskFromTemplate": "Create Task from a Template",
+    "createTaskFromThis": "Create a New Task Using this Template",
+    "launchTask": "Launch Task",
     "summary": "Summary",
     "parameters": "Parameters",
-    "previewTask": "Preview task execution",
-    "runTask": "Execute task. Please be aware that possible modifications will be made to your files and folders! No file data will be modified, and no files will be deleted! Only 'copy file', 'move file' and 'create directory' operations are performed by the tool.",
+    "previewTask": "Preview Task Execution",
+    "runTask": "Execute Task. Please be aware that possible modifications will be made to your files and folders! No file data will be modified, and no files will be deleted! Only 'copy file', 'move file' and 'create directory' operations are performed by the tool.",
     "reports": "Reports",
     "back": "Go Back",
     "help": "Help",
     "exit": "Exit"
   },
   "pageTitle": {
-    "createTask": "Create task",
-    "previewTask": "Preview task",
-    "runTask": "Run task"
+    "createTask": "Create Task",
+    "previewTask": "Preview Task",
+    "runTask": "Run Task"
   },
   "menu": {
     "title": "Photo Chaos Organizer"
@@ -129,7 +129,7 @@
   "help": {
     "imageViewer": "Image Viewer",
     "imageViewerFullScreen": "Image Viewer in Full Screen",
-    "pathView": "Folder navigation"
+    "pathView": "Folder Navigation"
   },
   "exit": {
     "confirm": "Do you really want to quit the application?",
@@ -139,6 +139,6 @@
     "closeErrorMessage": "There was an error shutting down the application. Please close this window and close the terminal window as well."
   },
   "edit": {
-    "folderName": "New folder name: "
+    "folderName": "New Folder Name: "
   }
 }
