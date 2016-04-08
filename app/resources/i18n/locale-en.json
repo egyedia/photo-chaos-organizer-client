@@ -110,7 +110,9 @@
     "previewTask": "Preview task execution",
     "runTask": "Execute task. Please be aware that possible modifications will be made to your files and folders! No file data will be modified, and no files will be deleted! Only 'copy file', 'move file' and 'create directory' operations are performed by the tool.",
     "reports": "Reports",
-    "back": "Go Back"
+    "back": "Go Back",
+    "help": "Help",
+    "exit": "Exit"
   },
   "pageTitle": {
     "createTask": "Create task",
@@ -123,5 +125,20 @@
   "createTask": {
     "invalid": "Please fill out all the mandatory fields before saving the new task!",
     "valid": "Create the task with the above parameters!"
+  },
+  "help": {
+    "imageViewer": "Image Viewer",
+    "imageViewerFullScreen": "Image Viewer in Full Screen",
+    "pathView": "Folder navigation"
+  },
+  "exit": {
+    "confirm": "Do you really want to quit the application?",
+    "back": "No, let's go back",
+    "yesExit": "Yes",
+    "closeMessage": "We tried to close this window. If it is still opened, you can close it safely now.",
+    "closeErrorMessage": "There was an error shutting down the application. Please close this window and close the terminal window as well."
+  },
+  "edit": {
+    "folderName": "New folder name: "
   }
 }

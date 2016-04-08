@@ -92,6 +92,10 @@
       return this.tasks() + '/' + taskId + '?action=run';
     };
 
+    service.shutdownServer = function (taskId) {
+      return baseUrl + 'app-control-shutdown';
+    };
+
     return service;
 
   };

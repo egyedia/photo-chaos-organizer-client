@@ -5,15 +5,18 @@
       .module('pcoApp')
       .controller('TaskRunController', TaskRunController);
 
-  TaskRunController.$inject = ['$routeParams', 'UsersService', 'TaskService', 'TaskTemplatesService'];
+  TaskRunController.$inject = ['$routeParams', 'UsersService', 'TaskService', 'TaskTemplatesService', 'DataService',
+                               'CONST'];
 
-  function TaskRunController($routeParams, UsersService, TaskService, TaskTemplatesService) {
+  function TaskRunController($routeParams, UsersService, TaskService, TaskTemplatesService, DataService, CONST) {
     var vm = this;
 
     UsersService.initialize();
     if (UsersService.redirectIfNeeded()) {
       return;
     }
+
+    DataService.setAppMode(CONST.appMode.NONE);
 
     TaskService.loadTask($routeParams.taskId).then(function (response) {
       var task = response.data;

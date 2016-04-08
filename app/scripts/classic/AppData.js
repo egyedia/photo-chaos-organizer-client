@@ -9,5 +9,6 @@ function AppData() {
   this.tasks = null;
   this.task = null;
   this.appMode = null;
+  this.controller = null;
   Object.preventExtensions(this);
 }

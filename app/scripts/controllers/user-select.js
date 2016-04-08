@@ -5,10 +5,12 @@
       .module('pcoApp')
       .controller('UserSelectController', UserSelectController);
 
-  UserSelectController.$inject = ['$routeParams', '$location', '$route', 'UsersService', 'DataService'];
+  UserSelectController.$inject = ['$routeParams', 'UsersService', 'DataService', 'CONST'];
 
-  function UserSelectController($routeParams, $location, $route, UsersService, DataService) {
+  function UserSelectController($routeParams, UsersService, DataService, CONST) {
     var vm = this;
+
+    DataService.setAppMode(CONST.appMode.NONE);
 
     UsersService.initialize();
 

@@ -1,0 +1,40 @@
+<div class="container-fluid pageContainer">
+  <div class="row-fluid">
+    <div class="col-md-2">
+      <a href="/" title="{{'g.homeLinkTitle' | translate}}">
+        <i class="font-svg-home"></i>
+      </a>
+    </div>
+    <div class="col-md-10">
+      <!--Body content-->
+      <div class="row">
+        <h2 translate>g.exit</h2>
+      </div>
+
+      <div class="row">
+
+        <div>
+          <h3 translate>exit.confirm</h3>
+        </div>
+
+        <a href="/" class="exitBack" title="{{'g.exitBack' | translate}}">
+          <div class="fsEntry">
+            <div class="icon"><i class="font-svg-back"></i></div>
+            <div class="label">{{'exit.back' | translate}}</div>
+          </div>
+        </a>
+
+        <a href="" ng-click="vm.exitApplication()" class="exitExit" title="{{'g.exit' | translate}}">
+          <div class="fsEntry">
+            <div class="icon"><i class="font-svg-power"></i></div>
+            <div class="label">{{'exit.yesExit' | translate}}</div>
+          </div>
+        </a>
+
+      </div>
+      <h3 class="exitCloseMessage">{{vm.closeMessage}}</h3>
+
+    </div>
+
+  </div>
+</div>

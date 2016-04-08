@@ -5,13 +5,14 @@
       .module('pcoApp')
       .controller('DashboardController', DashboardController);
 
-  DashboardController.$inject = ['RootsService', 'FavoritesService', 'UsersService'];
+  DashboardController.$inject = ['RootsService', 'FavoritesService', 'UsersService', 'DataService', 'CONST'];
 
-  function DashboardController(RootsService, FavoritesService, UsersService) {
+  function DashboardController(RootsService, FavoritesService, UsersService, DataService, CONST) {
     var vm = this;
 
     vm.rootList = [];
     vm.favoriteList = [];
+    DataService.setAppMode(CONST.appMode.NONE);
 
     UsersService.initialize();
     if (UsersService.redirectIfNeeded()) {

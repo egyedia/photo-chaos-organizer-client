@@ -5,10 +5,12 @@
       .module('pcoApp')
       .controller('UserListController', UserListController);
 
-  UserListController.$inject = ['$location', '$route', 'UsersService', 'DataService'];
+  UserListController.$inject = ['$location', '$route', 'UsersService', 'DataService', 'CONST'];
 
-  function UserListController($location, $route, UsersService, DataService) {
+  function UserListController($location, $route, UsersService, DataService, CONST) {
     var vm = this;
+
+    DataService.setAppMode(CONST.appMode.NONE);
 
     UsersService.initialize();
 

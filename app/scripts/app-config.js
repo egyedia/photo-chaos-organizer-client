@@ -59,6 +59,16 @@
           controller : 'TaskCreateController',
           controllerAs: 'vm'
         })
+        .when('/help', {
+          templateUrl: 'views/help.html',
+          controller : 'HelpController',
+          controllerAs: 'vm'
+        })
+        .when('/exit', {
+          templateUrl: 'views/exit.html',
+          controller : 'ExitController',
+          controllerAs: 'vm'
+        })
         .otherwise({
           redirectTo: '/'
         });

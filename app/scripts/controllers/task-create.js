@@ -5,15 +5,19 @@
       .module('pcoApp')
       .controller('TaskCreateController', TaskCreateController);
 
-  TaskCreateController.$inject = ['$routeParams', 'TaskService', 'UsersService', 'TaskTemplatesService', '$location'];
+  TaskCreateController.$inject = ['$routeParams', 'TaskService', 'UsersService', 'TaskTemplatesService', '$location',
+                                  'DataService', 'CONST'];
 
-  function TaskCreateController($routeParams, TaskService, UsersService, TaskTemplatesService, $location) {
+  function TaskCreateController($routeParams, TaskService, UsersService, TaskTemplatesService, $location, DataService,
+                                CONST) {
     var vm = this;
 
     UsersService.initialize();
     if (UsersService.redirectIfNeeded()) {
       return;
     }
+
+    DataService.setAppMode(CONST.appMode.NONE);
 
     this.createTask = function () {
       var postData = {};
