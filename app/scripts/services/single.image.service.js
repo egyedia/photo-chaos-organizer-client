@@ -106,7 +106,7 @@
       context.drawImage(image, 0, 0, translationAndSize.width, translationAndSize.height);
     }
 
-    service.openGallery = function (index) {
+    service.showOneImage = function (index) {
       var entry = DataService.getPathDataEntry(index);
       if (entry.fileType.fileType == 'image') {
         $timeout(function () {
@@ -117,22 +117,43 @@
             date.setTime(meta.image.dateTimeOriginal);
             $rootScope.bigImageDate = date.toISOString();
           }
+          jq('#imageCanvas').show();
+          jq('#unhandledFileType').hide();
         });
         currentImageIdx = index;
-        DataService.setAppMode(CONST.appMode.IMAGEVIEW);
+
+        var currentMode = DataService.getAppMode();
+        if (currentMode == CONST.appMode.PATH) {
+          DataService.pushAppMode(CONST.appMode.IMAGEVIEW);
+        } else if (currentMode == CONST.appMode.IMAGEVIEW) {
+          if (service.inFullScreen()) {
+            DataService.pushAppMode(CONST.appMode.IMAGEVIEW_FS);
+          }
+        } else if (currentMode == CONST.appMode.IMAGEVIEW_FS) {
+          if (!service.inFullScreen()) {
+            DataService.popAppMode();
+          }
+        }
+
         var url = UrlService.filesystemRawId(entry.fullPath);
-        //console.log(url);
-        //console.log(entry.img);
         var image = new Image();
         image.addEventListener("load", function () {
           resizeImage(entry, index, image);
         }, false);
         image.src = url;
+      } else {
+        $timeout(function () {
+          $rootScope.bigImageFileName = entry.name;
+          $rootScope.bigImageDate = '';
+          jq('#imageCanvas').hide();
+          jq('#unhandledFileType').show();
+          jq("#imageCanvasContainer").css("width", 400).css("height", 200);
+        });
       }
     };
 
     service.closeGallery = function () {
-      DataService.setAppMode(null);
+      DataService.popAppMode();
       jq("#fancyWrapper").hide();
     };
 
@@ -141,7 +162,7 @@
       if (currentImageIdx >= DataService.getPathDataEntrySize()) {
         currentImageIdx = 0;
       }
-      this.openGallery(currentImageIdx);
+      this.showOneImage(currentImageIdx);
     };
 
     service.previous = function () {
@@ -149,13 +170,13 @@
       if (currentImageIdx < 0) {
         currentImageIdx = DataService.getPathDataEntrySize() - 1;
       }
-      this.openGallery(currentImageIdx);
+      this.showOneImage(currentImageIdx);
     };
 
     service.fullScreen = function () {
       jq(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange', function (e) {
-        console.log("fullscreen event: " + service.inFullScreen());
-        service.openGallery(currentImageIdx);
+        //console.log("fullscreen event: " + service.inFullScreen());
+        service.showOneImage(currentImageIdx);
       });
 
       var canvasContainer = jq("#imageCanvasAndNavContainer")[0];

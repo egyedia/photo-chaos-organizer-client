@@ -8,7 +8,7 @@ function AppData() {
   this.taskTemplates = null;
   this.tasks = null;
   this.task = null;
-  this.appMode = null;
+  this.appModeStack = [];
   this.controller = null;
   Object.preventExtensions(this);
 }

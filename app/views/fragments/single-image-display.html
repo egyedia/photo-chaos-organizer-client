@@ -5,10 +5,9 @@
               --><div class="fancybox-inner" style="overflow: auto;"><!--
                 --><div class="pcoimage"><!--
                   --><div class="imgcontainer" id="imageCanvasContainer"><!--
-                  --><canvas id="imageCanvas"></canvas><!--
+                  --><canvas id="imageCanvas"></canvas><div id="unhandledFileType"><div><i class="font-svg-file"></i></div></div><!--
                   --></div><!--
-                   --><div class="imageTitle">{{$root.bigImageFileName}}</div><!--
-                   --><div class="imageDate">{{$root.bigImageDate}}</div><!--
+                   --><table class="imageDetails"><tr><td><div class="imageTitle">{{$root.bigImageFileName}}</div></td><td><div class="imageDate">{{$root.bigImageDate}}</div></td></tr></table><!--
                  --></div><!--
                --></div><!--
                --><a href="javascript:;" class="fancybox-nav fancybox-prev" title="Previous" ng-click="vm.previousSingleImage()"><span></span></a><!--

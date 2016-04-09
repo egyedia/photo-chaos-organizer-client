@@ -516,23 +516,25 @@ div.fsEntry div.fsEntryMenu div.favoritePath .font-svg-bookmark-off:before {
 .rTableBody {
   display: table-row-group;
 }
-div.pcoimage div.imageTitle {
+div.pcoimage table.imageDetails {
   position: absolute;
   bottom: 25px;
-  left: 10px;
+  width: 100%;
+}
+div.pcoimage table.imageDetails div.imageTitle {
+  margin-left: 10px;
   color: #ffffff;
   text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
   font-size: 16px;
   opacity: 0.5;
 }
-div.pcoimage div.imageDate {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+div.pcoimage table.imageDetails div.imageDate {
+  margin-right: 10px;
   color: #ffffff;
   text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
   font-size: 16px;
   opacity: 0.5;
+  text-align: right;
 }
 .bigRotateCW {
   -webkit-transform: rotate(90deg);
@@ -603,14 +605,14 @@ span.paramValue {
   white-space: pre;
   font-family: monospace;
 }
-input.ng-invalid,
-select.ng-invalid {
+/*
+input.ng-invalid, select.ng-invalid {
   background-color: rgba(229, 48, 6, 0.33);
 }
-input.ng-valid,
-select.ng-valid {
+
+input.ng-valid, select.ng-valid {
   background-color: rgba(23, 250, 90, 0.33);
-}
+}*/
 a.previewTask i:before {
   color: #00aa00;
 }
@@ -694,10 +696,46 @@ h3.exitCloseMessage {
 ul.help {
   margin-left: 40px;
 }
-a.editFolderName i:before {
-  font-size: 36px;
-  color: #00aa00;
+div.pathLocationTitle {
+  font-size: 24px;
 }
-input.folderNameEditor {
-  width: 90%;
+div.pathLocationTitle a.editFolderName i:before {
+  font-size: 24px;
+  color: rgba(62, 156, 62, 0.87);
+  vertical-align: middle;
+}
+div.pathRename {
+  font-size: 24px;
+}
+div.pathRename a.editFolderName i:before {
+  font-size: 24px;
+  color: rgba(62, 156, 62, 0.87);
+  vertical-align: middle;
+}
+div.pathRename table {
+  width: 100%;
+  background-color: #cccccc;
+}
+div.pathRename table td {
+  padding: 5px;
+}
+div.pathRename table td.titleCell {
+  white-space: nowrap;
+}
+div.pathRename table td.inputCell {
+  width: 100%;
+}
+div.pathRename table td.inputCell input {
+  width: 100%;
+}
+#unhandledFileType div {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80px;
+}
+#unhandledFileType div i:before {
+  display: inline-block;
+  font-size: 80px;
+  color: rgba(62, 156, 62, 0.87);
+  vertical-align: middle;
 }

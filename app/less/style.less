@@ -281,23 +281,25 @@ div.pageContainer {
 }
 
 div.pcoimage {
-  div.imageTitle {
+  table.imageDetails {
     position: absolute;
     bottom: 25px;
-    left: 10px;
-    color: #ffffff;
-    text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
-    font-size: 16px;
-    opacity: 0.5;
-  }
-  div.imageDate {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    color: #ffffff;
-    text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
-    font-size: 16px;
-    opacity: 0.5;
+    width:100%;
+    div.imageTitle {
+      margin-left: 10px;
+      color: #ffffff;
+      text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
+      font-size: 16px;
+      opacity: 0.5;
+    }
+    div.imageDate {
+      margin-right: 10px;
+      color: #ffffff;
+      text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
+      font-size: 16px;
+      opacity: 0.5;
+      text-align: right;
+    }
   }
 }
 
@@ -386,13 +388,14 @@ span.paramValue {
   font-family: monospace;
 }
 
+/*
 input.ng-invalid, select.ng-invalid {
   background-color: rgba(229, 48, 6, 0.33);
 }
 
 input.ng-valid, select.ng-valid {
   background-color: rgba(23, 250, 90, 0.33);
-}
+}*/
 
 a.previewTask {
   i:before {
@@ -498,16 +501,57 @@ h3.exitCloseMessage {
 }
 
 ul.help {
-  margin-left:40px;
+  margin-left: 40px;
 }
 
-a.editFolderName {
-  i:before {
-    font-size:36px;
-    color:#00aa00;
+div.pathLocationTitle {
+  font-size: 24px;
+  a.editFolderName {
+    i:before {
+      font-size: 24px;
+      color: rgba(62, 156, 62, 0.87);
+      vertical-align: middle;
+    }
   }
 }
 
-input.folderNameEditor {
-  width:90%;
+div.pathRename {
+  font-size: 24px;
+  a.editFolderName {
+    i:before {
+      font-size: 24px;
+      color: rgba(62, 156, 62, 0.87);
+      vertical-align: middle;
+    }
+  }
+  table {
+    width: 100%;
+    background-color: #cccccc;
+    td {
+      padding: 5px;
+    }
+    td.titleCell {
+      white-space: nowrap;
+    }
+    td.inputCell {
+      width: 100%;
+      input {
+        width: 100%;
+      }
+    }
+  }
+}
+
+#unhandledFileType {
+  div {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80px;
+    i:before {
+      display: inline-block;
+      font-size: 80px;
+      color: rgba(62, 156, 62, 0.87);
+      vertical-align: middle;
+    }
+  }
 }

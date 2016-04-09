@@ -96,6 +96,14 @@
       return baseUrl + 'app-control-shutdown';
     };
 
+    service.filesystemPath = function (path) {
+      return baseUrl + 'filesystem-path';
+    };
+
+    service.filesystemPathId = function (path) {
+      return this.filesystemPath() + '/file://' + path;
+    };
+
     return service;
 
   };

@@ -15,7 +15,7 @@
       return;
     }
 
-    DataService.setAppMode(CONST.appMode.NONE);
+    DataService.setAppMode(CONST.appMode.PAGE);
 
     TaskTemplatesService.loadTaskTemplates().then(function () {
       vm.taskTemplateList = TaskTemplatesService.getTaskTemplates();

@@ -10,6 +10,6 @@
   function HelpController(DataService, CONST) {
     var vm = this;
 
-    DataService.setAppMode(CONST.appMode.NONE);
+    DataService.setAppMode(CONST.appMode.PAGE);
   }
 })();

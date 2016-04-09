@@ -78,31 +78,43 @@
       return list;
     };
 
-    service.getPathDataEntry = function(idx) {
+    service.getPathDataEntry = function (idx) {
       return this.getAppData().pathData.entryList[idx];
     };
 
-    service.getPathDataEntrySize = function(idx) {
+    service.getPathDataEntrySize = function (idx) {
       return this.getAppData().pathData.entryList.length;
     };
 
-    service.storeImageMeta = function(name, imageMeta) {
+    service.storeImageMeta = function (name, imageMeta) {
       if (this.getAppData().pathData.metaMap == null) {
         this.getAppData().pathData.metaMap = {};
       }
       this.getAppData().pathData.metaMap[name] = imageMeta;
     };
 
-    service.getMetaInfo = function(name) {
+    service.getMetaInfo = function (name) {
       return this.getAppData().pathData.metaMap[name];
     };
 
-    service.setAppMode = function(mode) {
-      this.getAppData.appMode = mode;
+    service.setAppMode = function (mode) {
+      this.getAppData().appModeStack = [mode];
     };
 
-    service.getAppMode = function() {
-      return this.getAppData.appMode;
+    service.getAppMode = function () {
+      return this.getAppData().appModeStack[this.getAppData().appModeStack.length - 1];
+    };
+
+    service.pushAppMode = function (mode) {
+      this.getAppData().appModeStack.push(mode);
+    };
+
+    service.popAppMode = function () {
+      return this.getAppData().appModeStack.pop();
+    };
+
+    service.getAppModeStack = function () {
+      return this.getAppData().appModeStack;
     };
 
     return service;

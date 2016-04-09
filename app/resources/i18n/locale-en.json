@@ -112,7 +112,8 @@
     "reports": "Reports",
     "back": "Go Back",
     "help": "Help",
-    "exit": "Exit"
+    "exit": "Exit",
+    "users": "Users"
   },
   "pageTitle": {
     "createTask": "Create Task",
@@ -139,6 +140,6 @@
     "closeErrorMessage": "There was an error shutting down the application. Please close this window and close the terminal window as well."
   },
   "edit": {
-    "folderName": "New Folder Name: "
+    "folderName": "Rename Folder: "
   }
 }

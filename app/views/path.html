@@ -7,19 +7,32 @@
     </div>
     <div class="col-md-10">
       <!--Body content-->
-      <h1>
-      <span ng-repeat="parent in vm.pco.pathData.parentList">
-        <span ng-if="$last">{{parent.name}}</span>
-        <a ng-if="!$last" href="/path/file://{{parent.path}}" title="{{'g.goToPath' | translate}}{{parent.path}}">{{parent.name}}</a><span
-          ng-show="{{parent.name != '/'}}"> /</span>
-      </span>
-        <a ng-show="!vm.folderNameEditorActive && !vm.isAtRoot" href="" ng-click="vm.startEditingFolderName()" class="editFolderName"><i class="font-svg-edit"></i></a>
-      </h1>
+      <div class="pathLocationTitle">
+        <span ng-repeat="parent in vm.pco.pathData.parentList" ng-repeat-finished="breadcrumbRenderedDone">
+          <span ng-if="$last">{{parent.name}}</span>
+          <a ng-if="!$last" href="/path/file://{{parent.path}}" title="{{'g.goToPath' | translate}}{{parent.path}}">{{parent.name}}</a><span
+            ng-show="{{parent.name != '/'}}"> /</span>
+        </span>
+        <a ng-if="!vm.folderNameEditorActive && !vm.isAtRoot && vm.breadcrumbRendered" href="" ng-click="vm.startEditingFolderName()"
+            class="editFolderName"><i class="font-svg-edit"></i></a>
+      </div>
 
-      <h3 ng-show="vm.folderNameEditorActive">
-        <span translate>edit.folderName</span><input type="text" class="folderNameEditor" ng-model="vm.folderNameEditorName"/>
-        <a href="" ng-click="vm.endEditingFolderName(true)" class="editFolderName"><i class="font-svg-check"></i></a>
-      </h3>
+      <div class="pathRename" ng-show="vm.folderNameEditorActive">
+        <table>
+          <tr>
+            <td class="titleCell">
+              <span translate>edit.folderName</span>
+            </td>
+            <td class="inputCell">
+              <input type="text" class="folderNameEditor" id="folderNameEditor"
+                  ng-model="vm.folderNameEditorName" style=""/>
+            </td>
+            <td>
+              <a href="" ng-click="vm.endEditingFolderName(true)" class="editFolderName"><i class="font-svg-check"></i></a>
+            </td>
+          </tr>
+        </table>
+      </div>
 
       <a href="/path/file://{{vm.pco.pathData.parentPath}}" title="{{'g.goUp' | translate}}">
         <div class="fsEntry" ng-if="!vm.pco.pathData.locationIsRoot">

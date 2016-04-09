@@ -10,7 +10,7 @@
   function UserListController($location, $route, UsersService, DataService, CONST) {
     var vm = this;
 
-    DataService.setAppMode(CONST.appMode.NONE);
+    DataService.setAppMode(CONST.appMode.PAGE);
 
     UsersService.initialize();
 

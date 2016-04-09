@@ -16,7 +16,7 @@
       return;
     }
 
-    DataService.setAppMode(CONST.appMode.NONE);
+    DataService.setAppMode(CONST.appMode.PAGE);
 
     TaskService.loadTask($routeParams.taskId).then(function (response) {
       var task = response.data;

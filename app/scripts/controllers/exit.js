@@ -10,7 +10,7 @@
   function ExitController($window, $translate, AppControlService, DataService, CONST) {
     var vm = this;
     vm.closeMessage = "";
-    DataService.setAppMode(CONST.appMode.NONE);
+    DataService.setAppMode(CONST.appMode.PAGE);
 
     vm.exitApplication = function () {
       console.log("Exit requested");

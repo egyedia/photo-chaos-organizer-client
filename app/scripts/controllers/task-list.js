@@ -10,12 +10,18 @@
   function TaskListController(UsersService, TaskService, DataService, CONST) {
     var vm = this;
 
+    vm.listRendered = false;
+
     UsersService.initialize();
     if (UsersService.redirectIfNeeded()) {
       return;
     }
 
-    DataService.setAppMode(CONST.appMode.NONE);
+    vm.listRenderedDone = function () {
+      vm.listRendered = true;
+    };
+
+    DataService.setAppMode(CONST.appMode.PAGE);
 
     TaskService.loadTasks().then(function () {
       vm.taskList = TaskService.getTasks();

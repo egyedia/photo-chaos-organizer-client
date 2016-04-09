@@ -12,7 +12,7 @@
 
     vm.rootList = [];
     vm.favoriteList = [];
-    DataService.setAppMode(CONST.appMode.NONE);
+    DataService.setAppMode(CONST.appMode.PAGE);
 
     UsersService.initialize();
     if (UsersService.redirectIfNeeded()) {

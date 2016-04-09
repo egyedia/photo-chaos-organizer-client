@@ -17,7 +17,7 @@
       return;
     }
 
-    DataService.setAppMode(CONST.appMode.NONE);
+    DataService.setAppMode(CONST.appMode.PAGE);
 
     this.createTask = function () {
       var postData = {};

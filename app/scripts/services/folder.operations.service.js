@@ -5,17 +5,17 @@
       .module('pcoApp')
       .service('FolderOperationsService', FolderOperationsService);
 
-  FolderOperationsService.$inject = ['$q', '$http', 'UrlService'];
+  FolderOperationsService.$inject = ['RestCallBuilder', 'UrlService'];
 
-  function FolderOperationsService($q, $http, UrlService) {
+  function FolderOperationsService(RestCallBuilder, UrlService) {
 
     var service = {};
 
     service.renameFolder = function (oldFolderObject, newName) {
-      console.log("Rename folder:");
-      console.log(oldFolderObject);
-      console.log(newName);
-      //return $http.get(UrlService.shutdownServer());
+      var postData = {
+        name: newName
+      };
+      return RestCallBuilder.put(UrlService.filesystemPathId(oldFolderObject.path), postData);
     };
 
     return service;
