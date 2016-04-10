@@ -25,8 +25,27 @@
             <i class="font-svg-task icon-medium"></i>
           </div>
           <div class="noBorderTableCell taskParameterTable">
-            <form name="taskTemplateForm">
-              <div ng-repeat="(parameterId, parameter) in vm.taskTemplate.parameters" style="margin-left:20px">
+            <form name="taskTemplateForm" class="taskTemplateForm">
+
+              <div class="paramWrapper">
+                <div class="paramNameAndValue">
+                  <div class="paramName">{{'taskParameter.taskName' | translate}}
+                    <div class="paramMandatory">*</div>
+                  </div>
+                  <div class="paramInput">
+                    <input type="text" name="taskName" ng-model="vm.taskTemplate.taskName"
+                        ng-required="true"/>
+                  </div>
+                </div>
+
+                <div class="paramDescription">
+                  {{'taskParameter.taskNameDescription' | translate}}
+                </div>
+
+                <div class="paramSeparator"></div>
+              </div>
+
+              <div ng-repeat="(parameterId, parameter) in vm.taskTemplate.parameters" class="paramWrapper">
                 <div class="paramNameAndValue">
                   <div class="paramName">{{parameter.nameKey | translate}}
                     <div class="paramMandatory" ng-if="parameter.mandatory">*</div>
@@ -47,7 +66,8 @@
                 title="{{'createTask.valid' | translate}}" class="validSaveButton"><i
                 class="font-svg-check-circle"></i></a>
 
-                <span ng-if="!taskTemplateForm.$valid" title="{{'createTask.invalid' | translate}}" class="invalidSaveButton"><i
+                <span ng-if="!taskTemplateForm.$valid" title="{{'createTask.invalid' | translate}}"
+                    class="invalidSaveButton"><i
                     class="font-svg-check-circle"></i></span>
           </div>
         </div>

@@ -739,3 +739,11 @@ div.pathRename table td.inputCell input {
   color: rgba(62, 156, 62, 0.87);
   vertical-align: middle;
 }
+form.taskTemplateForm input[type=text],
+div.taskParameterTable input[type=text] {
+  width: 400px;
+}
+form.taskTemplateForm div.paramWrapper,
+div.taskParameterTable div.paramWrapper {
+  margin-left: 20px;
+}

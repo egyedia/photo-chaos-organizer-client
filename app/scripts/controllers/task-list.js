@@ -25,6 +25,9 @@
 
     TaskService.loadTasks().then(function () {
       vm.taskList = TaskService.getTasks();
+      if (vm.taskList.length == 0) {
+        vm.listRenderedDone();
+      }
     });
   }
 })();

@@ -99,7 +99,7 @@
     "goToPath": "Go to: ",
     "addFavorite": "Add to Favorites",
     "removeFavorite": "Remove from Favorites",
-    "selectATask": "Select a Task",
+    "taskList": "List of Tasks",
     "viewTask": "View Task Details",
     "createNewTask": "Create New Task",
     "createTaskFromTemplate": "Create Task from a Template",
@@ -141,5 +141,9 @@
   },
   "edit": {
     "folderName": "Rename Folder: "
+  },
+  "taskParameter": {
+    "taskName": "Task Name",
+    "taskNameDescription": "The task will be shown with this name in the task list"
   }
 }
