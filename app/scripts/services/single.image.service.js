@@ -5,9 +5,11 @@
       .module('pcoApp')
       .service('SingleImageService', SingleImageService);
 
-  SingleImageService.$inject = ['UrlService', 'DataService', 'RotationService', 'CONST', '$rootScope', '$timeout'];
+  SingleImageService.$inject = ['UrlService', 'DataService', 'RotationService', 'CONST', '$rootScope', '$timeout',
+                                'AppControlService'];
 
-  function SingleImageService(UrlService, DataService, RotationService, CONST, $rootScope, $timeout) {
+  function SingleImageService(UrlService, DataService, RotationService, CONST, $rootScope, $timeout,
+                              AppControlService) {
 
     var service = {};
 
@@ -108,6 +110,7 @@
 
     service.showOneImage = function (index) {
       var entry = DataService.getPathDataEntry(index);
+      var currentMode = DataService.getAppMode();
       if (entry.fileType.fileType == 'image') {
         $timeout(function () {
           $rootScope.bigImageFileName = entry.name;
@@ -122,7 +125,6 @@
         });
         currentImageIdx = index;
 
-        var currentMode = DataService.getAppMode();
         if (currentMode == CONST.appMode.PATH) {
           DataService.pushAppMode(CONST.appMode.IMAGEVIEW);
         } else if (currentMode == CONST.appMode.IMAGEVIEW) {
@@ -142,13 +144,19 @@
         }, false);
         image.src = url;
       } else {
-        $timeout(function () {
-          $rootScope.bigImageFileName = entry.name;
-          $rootScope.bigImageDate = '';
-          jq('#imageCanvas').hide();
-          jq('#unhandledFileType').show();
-          jq("#imageCanvasContainer").css("width", 400).css("height", 200);
-        });
+
+        if (entry.fileType.fileType == 'video' && currentMode == CONST.appMode.PATH) {
+          console.log("Lunch video:" + entry.fullPath);
+          AppControlService.launchExternalVideo(entry.fullPath);
+        } else {
+          $timeout(function () {
+            $rootScope.bigImageFileName = entry.name;
+            $rootScope.bigImageDate = '';
+            jq('#imageCanvas').hide();
+            jq('#unhandledFileType').show();
+            jq("#imageCanvasContainer").css("width", 400).css("height", 200);
+          });
+        }
       }
     };
 

@@ -96,6 +96,10 @@
       return baseUrl + 'app-control-shutdown';
     };
 
+    service.externalVideo = function (path) {
+      return baseUrl + 'app-control-play-video' + '/file://' + path;
+    };
+
     service.filesystemPath = function (path) {
       return baseUrl + 'filesystem-path';
     };

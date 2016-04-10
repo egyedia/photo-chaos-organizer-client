@@ -15,6 +15,11 @@
       return $http.get(UrlService.shutdownServer());
     };
 
+    service.launchExternalVideo = function (path) {
+      return $http.get(UrlService.externalVideo(path));
+    };
+
+
     return service;
 
   };
