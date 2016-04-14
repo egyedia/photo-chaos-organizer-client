@@ -1,19 +1,22 @@
-<div class="fancybox-overlay fancybox-overlay-fixed" style="width: auto; height: auto; display: none;" id="fancyWrapper"><!--
-        --><div tabindex="-1" class="fancybox-wrap fancybox-desktop fancybox-type-inline fancybox-opened" style="height: auto; position: absolute; opacity: 1; overflow: visible;" id="canvasWrapper"><!--
-          --><div class="fancybox-skin" style="padding: 0px; width: auto; height: auto;"><!--
-            --><div class="fancybox-outer" id="imageCanvasAndNavContainer"><!--
-              --><div class="fancybox-inner" style="overflow: auto;"><!--
-                --><div class="pcoimage"><!--
-                  --><div class="imgcontainer" id="imageCanvasContainer"><!--
-                  --><canvas id="imageCanvas"></canvas><div id="unhandledFileType"><div><i class="font-svg-file"></i></div></div><!--
-                  --></div><!--
-                   --><table class="imageDetails"><tr><td><div class="imageTitle">{{$root.bigImageFileName}}</div></td><td><div class="imageDate">{{$root.bigImageDate}}</div></td></tr></table><!--
-                 --></div><!--
-               --></div><!--
-               --><a href="javascript:;" class="fancybox-nav fancybox-prev" title="Previous" ng-click="vm.previousSingleImage()"><span></span></a><!--
-              --><a href="javascript:;" class="fancybox-nav fancybox-next" title="Next" ng-click="vm.nextSingleImage()"><span></span></a><!--
+   <div class="fancybox-overlay fancybox-overlay-fixed" style="width: auto; height: auto; display: none;" id="fancyWrapper"><!--
+  --><div tabindex="-1" class="fancybox-wrap fancybox-desktop fancybox-type-inline fancybox-opened" style="height: auto; position: absolute; opacity: 1; overflow: visible;" id="canvasWrapper"><!--
+    --><div class="fancybox-skin" style="padding: 0px; width: auto; height: auto;"><!--
+      --><div class="fancybox-outer" id="imageCanvasAndNavContainer"><!--
+        --><div class="fancybox-inner" style="overflow: auto;"><!--
+          --><div class="pcoimage"><!--
+            --><div class="imgcontainer" id="imageCanvasContainer"><!--
+              --><canvas id="imageCanvas"></canvas><!--
+              --><video id="videoCanvas" controls preload="metadata" autoplay></video><!--
+              --><div id="unknownCanvas"><div><i class="font-svg-file"></i></div></div><!--
+              --><table class="imageDetails"><tr><td><div class="imageTitle">{{$root.bigImageFileName}}</div></td><td><div class="imageDate">{{$root.bigImageDate}}</div></td></tr></table><!--
             --></div><!--
-            --><a href="javascript:;" class="fancybox-item fancybox-close" title="Close" ng-click="vm.closeSingleImage()"></a><!--
           --></div><!--
         --></div><!--
-      --></div>
+      --></div><!--
+       --><a href="javascript:;" class="single-image-nav nav-prev" title="Previous" ng-click="vm.previousSingleImage()"><i class="font-svg-back icon-medium"></i></a><!--
+       --><a href="javascript:;" class="single-image-nav nav-next" title="Next" ng-click="vm.nextSingleImage()"><i class="font-svg-forward icon-medium"></i></a><!--
+       --><a href="javascript:;" class="single-image-nav nav-close nav-closeLeft" title="Close" ng-click="vm.closeSingleImage()"><i class="font-svg-close-circle icon-medium"></i></a><!--
+       --><a href="javascript:;" class="single-image-nav nav-close nav-closeRight" title="Close" ng-click="vm.closeSingleImage()"><i class="font-svg-close-circle icon-medium"></i></a><!--
+    --></div><!--
+  --></div><!--
+--></div><!--

@@ -60,7 +60,7 @@
       if (DataService.getAppMode() == CONST.appMode.PATH_RENAME) {
         vm.endEditingFolderName(false);
       }
-      SingleImageService.showOneImage($index);
+      SingleImageService.showOneImage($index, true);
     };
 
     vm.closeSingleImage = function () {

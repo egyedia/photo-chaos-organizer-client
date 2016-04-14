@@ -108,6 +108,10 @@
       return this.filesystemPath() + '/file://' + path;
     };
 
+    service.filesystemStream = function (path) {
+      return baseUrl + 'filesystem-stream' + '/file://' + path;
+    };
+
     return service;
 
   };

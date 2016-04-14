@@ -283,8 +283,8 @@ div.pageContainer {
 div.pcoimage {
   table.imageDetails {
     position: absolute;
-    bottom: 25px;
-    width:100%;
+    bottom: 60px;
+    width: 100%;
     div.imageTitle {
       margin-left: 10px;
       color: #ffffff;
@@ -484,6 +484,7 @@ div.launchButtons {
 div.imgcontainer {
   overflow-y: hidden;
   overflow-x: hidden;
+  background-color: #333333;
 }
 
 a:focus {
@@ -542,25 +543,80 @@ div.pathRename {
   }
 }
 
-#unhandledFileType {
+#unknownCanvas {
   div {
-    margin-left: auto;
-    margin-right: auto;
-    width: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     i:before {
       display: inline-block;
       font-size: 80px;
       color: rgba(62, 156, 62, 0.87);
-      vertical-align: middle;
     }
   }
 }
 
 form.taskTemplateForm, div.taskParameterTable {
   input[type=text] {
-    width:400px;
+    width: 400px;
   }
   div.paramWrapper {
-    margin-left:20px;
+    margin-left: 20px;
+  }
+}
+
+a.single-image-nav {
+  position: absolute;
+  top: 10%;
+  width: 25%;
+  height: 80%;
+  text-decoration: none;
+  i {
+    position: absolute;
+    top: 50%;
+    color: #ffffff;
+    text-shadow: 0px 0px 3px #555555, 1px 1px 2px #000000;
+    visibility: hidden;
+  }
+  &.nav-prev {
+    border: 0px solid red;
+    left: 0px;
+    i {
+      left: 10px;
+    }
+  }
+  &.nav-next {
+    border: 0px solid green;
+    right: 0px;
+    i {
+      right: 10px;
+    }
+  }
+  &.nav-close {
+    border: 0px solid yellow;
+    top: 0px;
+    width: 15%;
+    height: 10%;
+    i {
+      top: 10px;
+    }
+    &.nav-closeLeft {
+      left: 0px;
+      i {
+        left: 10px;
+      }
+    }
+    &.nav-closeRight {
+      right: 0px;
+      i {
+        right: 10px;
+      }
+    }
+  }
+}
+
+a.single-image-nav:hover {
+  i {
+    visibility: visible;
   }
 }
