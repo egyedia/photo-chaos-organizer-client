@@ -147,6 +147,7 @@
     "taskNameDescription": "The task will be shown with this name in the task list"
   },
   "userSetting": {
-    "useExternalVideoPlayer": "Use external video player"
+    "useExternalVideoPlayer": "Use external video player",
+    "enableFolderRename": "Enable folder rename"
   }
 }

@@ -68,7 +68,7 @@
 
       resizeMediaDisplayArea(ctx, 'video');
 
-      ctx.videoCanvas.attr("src", UrlService.filesystemStream(entry.fullPath));
+      ctx.videoCanvas.attr("src", UrlService.filesystemRange(entry.fullPath));
     }
 
     function showUnknown(entry) {
@@ -172,7 +172,7 @@
       if (fileType == 'image') {
         var dateString = "";
         var meta = DataService.getMetaInfo(entry.name);
-        if (meta.image.dateTimeOriginalRead) {
+        if (meta != null && meta.image.dateTimeOriginalRead) {
           var date = new Date();
           date.setTime(meta.image.dateTimeOriginal);
           dateString = date.toISOString();
@@ -188,7 +188,7 @@
         image.src = url;
         alreadyHandled = true;
       } else if (entry.fileType.fileType == 'video') {
-        var useExternal = jq("#useExternalVideoPlayer").prop("checked");
+        var useExternal = DataService.useExternalVideoPlayer();
         if (!useExternal || !fromPathView) {
           showTitleAndDate(fileType, entry.name, '');
         }

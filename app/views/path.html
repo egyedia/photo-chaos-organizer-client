@@ -6,7 +6,10 @@
       </a>
 
       <div>
-        <input type="checkbox" id="useExternalVideoPlayer" /> <label for="useExternalVideoPlayer" translate>userSetting.useExternalVideoPlayer</label>
+        <input type="checkbox" id="useExternalVideoPlayer" ng-model="vm.pco.useExternalVideoPlayer"/> <label for="useExternalVideoPlayer" translate>userSetting.useExternalVideoPlayer</label>
+      </div>
+      <div>
+        <input type="checkbox" id="enableFolderRename" ng-model="vm.pco.enableFolderRename"/> <label for="enableFolderRename" translate>userSetting.enableFolderRename</label>
       </div>
     </div>
     <div class="col-md-10">
@@ -17,11 +20,11 @@
           <a ng-if="!$last" href="/path/file://{{parent.path}}" title="{{'g.goToPath' | translate}}{{parent.path}}">{{parent.name}}</a><span
             ng-show="{{parent.name != '/'}}"> /</span>
         </span>
-        <a ng-if="!vm.folderNameEditorActive && !vm.isAtRoot && vm.breadcrumbRendered" href="" ng-click="vm.startEditingFolderName()"
+        <a ng-if="!vm.folderNameEditorActive && !vm.isAtRoot && vm.breadcrumbRendered && vm.pco.enableFolderRename" href="" ng-click="vm.startEditingFolderName()"
             class="editFolderName"><i class="font-svg-edit"></i></a>
       </div>
 
-      <div class="pathRename" ng-show="vm.folderNameEditorActive">
+      <div class="pathRename" ng-show="vm.folderNameEditorActive && vm.pco.enableFolderRename">
         <table>
           <tr>
             <td class="titleCell">

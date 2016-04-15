@@ -12,7 +12,7 @@
     var service = {};
 
     service.event = function (e) {
-      console.log("current mode start:" + DataService.getAppModeStack() + " key:" + e.which);
+      //console.log("current mode start:" + DataService.getAppModeStack() + " key:" + e.which);
       if (DataService.getAppMode() == CONST.appMode.IMAGEVIEW) {
         if (e.which == 39) {
           SingleImageService.next();

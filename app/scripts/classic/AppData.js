@@ -10,5 +10,7 @@ function AppData() {
   this.task = null;
   this.appModeStack = [];
   this.controller = null;
+  this.useExternalVideoPlayer = false;
+  this.enableFolderRename = false;
   Object.preventExtensions(this);
 }

@@ -66,15 +66,27 @@
     };
 
     service.loadThumb = function (e) {
-      if (!e.isDir && e.fileType.canHaveMeta && e.fileType.canShowThumb) {
-        e.img = UrlService.filesystemMetaThumbnailDataId(e.fullPath);
-        (function (currentEntry) {
-          $http.get(UrlService.filesystemMetaThumbnailMetaId(currentEntry.fullPath)).then(function (response) {
-            var cssClass = UIImageService.getRotationClassFromMeta(response.data);
-            DataService.getPathEntry(currentEntry.name).cssClass = cssClass;
-            DataService.storeImageMeta(currentEntry.name, response.data);
-          });
-        })(e);
+      if (!e.isDir) {
+        if (e.fileType.canHaveMeta && e.fileType.canShowThumb && e.fileType.canHaveOnTheFlyImageThumb) {
+          (function (currentEntry) {
+            $http.get(UrlService.filesystemMetaThumbnailMetaId(currentEntry.fullPath)).then(function (response) {
+              var cssClass = UIImageService.getRotationClassFromMeta(response.data);
+              var meta = response.data;
+              DataService.getPathEntry(currentEntry.name).cssClass = cssClass;
+              DataService.storeImageMeta(currentEntry.name, meta);
+              if (meta.thumbnail.exifThumbReadable) {
+                e.img = UrlService.filesystemMetaThumbnailDataId(e.fullPath);
+              } else {
+                e.img = UrlService.filesystemOnTheFlyThumbnailDataId(e.fullPath);
+              }
+            });
+          })(e);
+        } else if (!e.fileType.canHaveMeta && e.fileType.canShowThumb && e.fileType.canHaveOnTheFlyImageThumb) {
+          var cssClass = UIImageService.getRotationClassFromMeta(null);
+          DataService.getPathEntry(e.name).cssClass = cssClass;
+          DataService.storeImageMeta(e.name, null);
+          e.img = UrlService.filesystemOnTheFlyThumbnailDataId(e.fullPath);
+        }
       }
     };
 

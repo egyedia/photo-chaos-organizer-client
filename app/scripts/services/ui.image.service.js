@@ -13,10 +13,12 @@
 
     service.getRotationClassFromMeta = function (meta) {
       var orientation = null;
-      if (meta.thumbnail.orientationRead) {
-        orientation = meta.thumbnail.orientation;
-      } else if (meta.image.orientationRead) {
-        orientation = meta.image.orientation;
+      if (meta != null) {
+        if (meta.thumbnail.orientationRead) {
+          orientation = meta.thumbnail.orientation;
+        } else if (meta.image.orientationRead) {
+          orientation = meta.image.orientation;
+        }
       }
       return RotationService.getRotationCssClass(orientation);
     };

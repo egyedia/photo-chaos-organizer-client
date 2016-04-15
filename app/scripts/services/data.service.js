@@ -94,7 +94,11 @@
     };
 
     service.getMetaInfo = function (name) {
-      return this.getAppData().pathData.metaMap[name];
+      if (this.getAppData().pathData.metaMap != null) {
+        return this.getAppData().pathData.metaMap[name];
+      } else {
+        return null;
+      }
     };
 
     service.setAppMode = function (mode) {
@@ -115,6 +119,10 @@
 
     service.getAppModeStack = function () {
       return this.getAppData().appModeStack;
+    };
+
+    service.useExternalVideoPlayer = function () {
+      return this.getAppData().useExternalVideoPlayer;
     };
 
     return service;

@@ -44,6 +44,14 @@
       return this.filesystemMetaThumbnailData() + '/file://' + path;
     };
 
+    service.filesystemOnTheFlyThumbnailData = function () {
+      return baseUrl + 'filesystem-onthefly-thumbnail-data';
+    };
+
+    service.filesystemOnTheFlyThumbnailDataId = function (path) {
+      return this.filesystemOnTheFlyThumbnailData() + '/file://' + path + "?width=200&height=200";
+    };
+
     service.filesystemMetaThumbnailMeta = function () {
       return baseUrl + 'filesystem-meta-thumbnail-meta';
     };
@@ -108,8 +116,8 @@
       return this.filesystemPath() + '/file://' + path;
     };
 
-    service.filesystemStream = function (path) {
-      return baseUrl + 'filesystem-stream' + '/file://' + path;
+    service.filesystemRange = function (path) {
+      return baseUrl + 'filesystem-range' + '/file://' + path;
     };
 
     return service;

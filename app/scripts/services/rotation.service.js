@@ -56,8 +56,14 @@
 
     service.getBigImageBaseSize = function (meta, image) {
       // Initialize big Image Width, Height and Orientation from meta
-      var r = new ImageSize(meta.image.width, meta.image.height);
-      r.orientation = meta.image.orientation;
+      var r = null;
+      if (meta != null) {
+        r = new ImageSize(meta.image.width, meta.image.height);
+        r.orientation = meta.image.orientation;
+      } else {
+        r = new ImageSize(0, 0);
+        r.orientation = 1;
+      }
 
       // Fall back if data not available
       if (r.width == 0) {
