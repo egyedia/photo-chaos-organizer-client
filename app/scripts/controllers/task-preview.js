@@ -5,11 +5,22 @@
       .module('pcoApp')
       .controller('TaskPreviewController', TaskPreviewController);
 
-  TaskPreviewController.$inject = ['$routeParams', 'UsersService', 'TaskService', 'TaskTemplatesService', 'DataService',
-                                   'CONST'];
+  TaskPreviewController.$inject = ['$routeParams', '$timeout', 'UsersService', 'TaskService', 'TaskTemplatesService',
+                                   'DataService', 'CONST'];
 
-  function TaskPreviewController($routeParams, UsersService, TaskService, TaskTemplatesService, DataService, CONST) {
+  function TaskPreviewController($routeParams, $timeout, UsersService, TaskService, TaskTemplatesService, DataService,
+                                 CONST) {
     var vm = this;
+
+    vm.loadTaskStatus = function () {
+      TaskService.loadTaskStatus($routeParams.taskId).then(function (response) {
+        vm.reports = response.data.reports;
+        vm.info = response.data.info;
+        if (response.data.info.running == true) {
+          $timeout(vm.loadTaskStatus, 1000);
+        }
+      });
+    };
 
     UsersService.initialize();
     if (UsersService.redirectIfNeeded()) {
@@ -29,7 +40,8 @@
           vm.taskTemplateData[pn] = vm.taskTemplate.parameters[pn].defaultValue;
         }
         TaskService.previewTask($routeParams.taskId).then(function (response) {
-          vm.reports = response.data;
+          vm.taskStatus = response.data;
+          vm.loadTaskStatus();
         });
       });
     });

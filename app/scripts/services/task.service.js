@@ -52,6 +52,10 @@
       return RestCallBuilder.get(UrlService.previewTask(taskId));
     };
 
+    service.loadTaskStatus = function(taskId) {
+      return RestCallBuilder.get(UrlService.loadTaskStatus(taskId));
+    };
+
     service.runTask = function(taskId) {
       return RestCallBuilder.get(UrlService.runTask(taskId));
     };

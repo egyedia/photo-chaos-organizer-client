@@ -1,3 +1,13 @@
+<div class="wideEntry" ng-if="vm.info">
+  <table class="reportTable">
+    <tr>
+      <td translate>taskInfo.running.label</td>
+      <th translate>{{"taskInfo.running." + vm.info.running}}</th>
+    </tr>
+  </table>
+</div>
+
+
 <div class="wideEntry" ng-repeat="report in vm.reports">
   <table class="reportTable">
     <tr>

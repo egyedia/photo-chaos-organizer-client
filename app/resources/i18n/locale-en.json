@@ -113,7 +113,10 @@
     "back": "Go Back",
     "help": "Help",
     "exit": "Exit",
-    "users": "Users"
+    "users": "Users",
+    "taskStartStatus": "Task start status",
+    "true": "yes",
+    "false": "no"
   },
   "pageTitle": {
     "createTask": "Create Task",
@@ -149,5 +152,17 @@
   "userSetting": {
     "useExternalVideoPlayer": "Use external video player",
     "enableFolderRename": "Enable folder rename"
+  },
+  "taskStatus": {
+    "started": "Task has been started:",
+    "alreadyRunning": "Task was already running:",
+    "running": "Task is running"
+  },
+  "taskInfo": {
+    "running": {
+      "label": "Task current status:",
+      "true": "Running",
+      "false": "Finished"
+    }
   }
 }

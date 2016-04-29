@@ -88,12 +88,20 @@
       return baseUrl + 'tasks';
     };
 
+    service.taskStatus = function () {
+      return baseUrl + 'task-status';
+    };
+
     service.taskId = function (taskId) {
       return this.tasks() + '/' + taskId;
     };
 
     service.previewTask = function (taskId) {
       return this.tasks() + '/' + taskId + '?action=preview';
+    };
+
+    service.loadTaskStatus = function (taskId) {
+      return this.taskStatus() + '/' + taskId;
     };
 
     service.runTask = function (taskId) {
