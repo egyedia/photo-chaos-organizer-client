@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title translate>product.title</title>
+  <title translate="product.title">PCO</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/">
@@ -11,6 +11,7 @@
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+  <link rel="stylesheet" href="bower_components/angular-toasty/dist/angular-toasty.min.css"/>
   <link rel="stylesheet" href="css/style.css"/>
 
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -33,6 +34,7 @@
 <script src="bower_components/angular-translate/angular-translate.min.js"></script>
 <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="bower_components/angular-toasty/dist/angular-toasty.min.js"></script>
 
 <script src="scripts/app.js"></script>
 <script src="scripts/app-config.js"></script>
@@ -45,6 +47,7 @@
 <script src="scripts/controllers/task-preview.js"></script>
 <script src="scripts/controllers/task-launch.js"></script>
 <script src="scripts/controllers/task-run.js"></script>
+<script src="scripts/controllers/task-delete.js"></script>
 <script src="scripts/controllers/task-template-list.js"></script>
 <script src="scripts/controllers/task-create.js"></script>
 <script src="scripts/controllers/help.js"></script>
@@ -72,6 +75,7 @@
 <script src="scripts/services/rotation.service.js"></script>
 <script src="scripts/services/app.control.service.js"></script>
 <script src="scripts/services/folder.operations.service.js"></script>
+<script src="scripts/services/notification.service.js"></script>
 
 
 <script src="scripts/classic/FSEntry.js"></script>
@@ -80,5 +84,6 @@
 <script src="scripts/classic/AppData.js"></script>
 <script src="scripts/classic/ImageSize.js"></script>
 
+<toasty></toasty>
 </body>
 </html>

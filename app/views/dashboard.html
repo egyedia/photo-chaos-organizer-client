@@ -29,6 +29,22 @@
             <div class="fsEntry">
               <div class="icon"><i class="font-svg-folder"></i></div>
               <div class="label">{{favorite.path}}</div>
+
+              <div class="fsStatusMenu">
+                <div class="favoritePath">
+                  <i class="font-svg-bookmark-on bookmark-on"></i>
+                </div>
+              </div>
+
+              <div class="fsEntryMenu" show-on-hover=".fsEntry">
+                <div class="favoritePath">
+                  <a href="javascript:;" ng-click="vm.removeFavorite(favorite.path)"
+                      title="{{('g.removeFavorite' | translate)}}">
+                    <i class="font-svg-bookmark-off"></i>
+                  </a>
+                </div>
+              </div>
+
             </div>
           </a>
         </div>

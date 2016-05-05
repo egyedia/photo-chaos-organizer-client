@@ -116,7 +116,8 @@
     "users": "Users",
     "taskStartStatus": "Task start status",
     "true": "yes",
-    "false": "no"
+    "false": "no",
+    "deleteTask": "Delete Task"
   },
   "pageTitle": {
     "createTask": "Create Task",
@@ -163,6 +164,17 @@
       "label": "Task current status:",
       "true": "Running",
       "false": "Finished"
+    }
+  },
+  "notification": {
+    "error": {
+      "title": "Error",
+      "pathNotFound": "The requested path ({{path}}) can not be found on the system!",
+      "taskToDeleteNotFound": "The task can not be deleted, since it can not be found by id: {{taskId}}"
+    },
+    "success": {
+      "title": "Success",
+      "taskDeleted": "The task with id {{taskId}} was deleted!"
     }
   }
 }

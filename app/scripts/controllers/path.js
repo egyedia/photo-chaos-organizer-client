@@ -6,10 +6,11 @@
       .controller('PathController', PathController);
 
   PathController.$inject = ['$routeParams', 'FavoritesService', 'PathService', 'DataService', 'UsersService',
-                            'SingleImageService', 'FolderOperationsService', 'CONST', '$location', '$timeout'];
+                            'SingleImageService', 'FolderOperationsService', 'NotificationService', 'CONST',
+                            '$location', '$timeout'];
 
   function PathController($routeParams, FavoritesService, PathService, DataService, UsersService, SingleImageService,
-                          FolderOperationsService, CONST, $location, $timeout) {
+                          FolderOperationsService, NotificationService, CONST, $location, $timeout) {
     var vm = this;
 
     vm.breadcrumbRendered = false;
@@ -35,6 +36,11 @@
       PathService.getPathContents($routeParams.path).then(function () {
         vm.pco = DataService.getAppData();
         vm.isAtRoot = vm.pco.pathData.parentList.length == 1;
+      }).catch(function (error) {
+        if (error.status == 404) {
+          NotificationService.showError('pathNotFound', {"path": $routeParams.path});
+          $location.path('/');
+        }
       });
     };
 

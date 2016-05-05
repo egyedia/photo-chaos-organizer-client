@@ -1,4 +1,4 @@
-<div class="wideEntry" ng-if="vm.info">
+<div class="tableWrapper" ng-if="vm.info">
   <table class="reportTable">
     <tr>
       <td translate>taskInfo.running.label</td>
@@ -7,8 +7,9 @@
   </table>
 </div>
 
+<div></div>
 
-<div class="wideEntry" ng-repeat="report in vm.reports">
+<div class="tableWrapper" ng-repeat="report in vm.reports">
   <table class="reportTable">
     <tr>
       <th ng-repeat="header in report.headers" translate>{{"report.header." + header}}</th>

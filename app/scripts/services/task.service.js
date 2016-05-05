@@ -60,6 +60,10 @@
       return RestCallBuilder.get(UrlService.runTask(taskId));
     };
 
+    service.deleteTask = function(taskId) {
+      return RestCallBuilder.delete(UrlService.deleteTask(taskId));
+    };
+
     return service;
 
   };

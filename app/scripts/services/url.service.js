@@ -108,6 +108,10 @@
       return this.tasks() + '/' + taskId + '?action=run';
     };
 
+    service.deleteTask = function (taskId) {
+      return this.tasks() + '/' + taskId ;
+    };
+
     service.shutdownServer = function (taskId) {
       return baseUrl + 'app-control-shutdown';
     };

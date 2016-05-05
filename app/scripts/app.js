@@ -6,6 +6,7 @@
     'ngRoute',
     'LocalStorageModule',
     'pascalprecht.translate',
-    'ngSanitize'
+    'ngSanitize',
+    'angular-toasty'
   ]);
 })();

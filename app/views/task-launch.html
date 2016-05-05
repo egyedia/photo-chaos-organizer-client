@@ -22,6 +22,10 @@
 
         <div class="wideEntry">
           <div ng-include="'views/fragments/task-parameters.html'"></div>
+          <div class="actionButtons">
+            <a href="task-delete/{{vm.task.id}}" class="deleteTask" title="{{'g.deleteTask' | translate}}"><i
+                class="font-svg-thrash"></i></a>
+          </div>
           <div class="launchButtons">
             <a href="task-preview/{{vm.task.id}}" class="previewTask" title="{{'g.previewTask' | translate}}"><i
                 class="font-svg-play"></i></a>
