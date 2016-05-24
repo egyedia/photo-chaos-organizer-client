@@ -1,6 +1,6 @@
 {
   "name": "photo-chaos-organizer-client",
-  "version": "0.1.5",
+  "version": "0.1.6-SNAPSHOT",
   "dependencies": {
     "angular": "1.5.x",
     "angular-route": "1.5.x",
