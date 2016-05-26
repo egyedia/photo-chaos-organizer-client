@@ -9,12 +9,25 @@
 
   function UrlService($http, $location) {
 
-    var restPort = $location.port();
-    // GULP-hack //
-    //restPort = 2120;
+    function getBaseUrl(port) {
+      return 'http://localhost:' + port + '/';
+    }
 
-    var baseUrl = 'http://localhost:' + restPort + '/';
+    var restPort = $location.port();
+    var baseUrl = getBaseUrl(restPort);
     var service = {};
+    var restPortWasSet = false;
+
+    service.injectPort = function(port) {
+      restPort = port;
+      restPortWasSet = true;
+      baseUrl = getBaseUrl(restPort);
+      //console.log("REST API baseURL set to:" + baseUrl)
+    };
+
+    service.portWasSet = function() {
+      return restPortWasSet;
+    }
 
     service.filesystemFavorites = function () {
       return baseUrl + 'filesystem-favorites';
@@ -130,6 +143,14 @@
 
     service.filesystemRange = function (path) {
       return baseUrl + 'filesystem-range' + '/file://' + path;
+    };
+
+    service.settingsDynamic = function () {
+      return '/pco-client-settings-dynamic';
+    };
+
+    service.settingsStatic = function () {
+      return '/pco-client-settings-static';
     };
 
     return service;

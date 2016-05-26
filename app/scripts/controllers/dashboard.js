@@ -5,9 +5,10 @@
       .module('pcoApp')
       .controller('DashboardController', DashboardController);
 
-  DashboardController.$inject = ['RootsService', 'FavoritesService', 'UsersService', 'DataService', 'CONST'];
+  DashboardController.$inject = ['Application', 'RootsService', 'FavoritesService', 'UsersService', 'DataService',
+                                 'CONST'];
 
-  function DashboardController(RootsService, FavoritesService, UsersService, DataService, CONST) {
+  function DashboardController(Application, RootsService, FavoritesService, UsersService, DataService, CONST) {
     var vm = this;
 
     vm.removeFavorite = function (path) {
@@ -16,17 +17,7 @@
       });
     };
 
-
-    vm.rootList = [];
-    vm.favoriteList = [];
-    DataService.setAppMode(CONST.appMode.PAGE);
-
-    UsersService.initialize();
-    if (UsersService.redirectIfNeeded()) {
-      return;
-    }
-
-    vm.loadAll = function() {
+    vm.loadAll = function () {
       // load roots
       RootsService.loadRoots().then(function () {
         vm.rootList = RootsService.getRoots();
@@ -38,7 +29,12 @@
       });
     };
 
-    vm.loadAll();
-
+    Application.launch(function () {
+      vm.rootList = [];
+      vm.favoriteList = [];
+      DataService.setAppMode(CONST.appMode.PAGE);
+      vm.loadAll();
+    });
+    
   }
 })();

@@ -5,20 +5,18 @@
       .module('pcoApp')
       .controller('TaskTemplateListController', TaskTemplateListController);
 
-  TaskTemplateListController.$inject = ['UsersService', 'TaskTemplatesService', 'DataService', 'CONST'];
+  TaskTemplateListController.$inject = ['Application', 'TaskTemplatesService', 'DataService', 'CONST'];
 
-  function TaskTemplateListController(UsersService, TaskTemplatesService, DataService, CONST) {
+  function TaskTemplateListController(Application, TaskTemplatesService, DataService, CONST) {
     var vm = this;
 
-    UsersService.initialize();
-    if (UsersService.redirectIfNeeded()) {
-      return;
-    }
-
-    DataService.setAppMode(CONST.appMode.PAGE);
-
-    TaskTemplatesService.loadTaskTemplates().then(function () {
-      vm.taskTemplateList = TaskTemplatesService.getTaskTemplates();
+    Application.launch(function () {
+      vm.listRendered = false;
+      DataService.setAppMode(CONST.appMode.PAGE);
+      TaskTemplatesService.loadTaskTemplates().then(function () {
+        vm.taskTemplateList = TaskTemplatesService.getTaskTemplates();
+      });
     });
+
   }
 })();

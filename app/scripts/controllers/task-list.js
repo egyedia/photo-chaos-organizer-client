@@ -5,29 +5,24 @@
       .module('pcoApp')
       .controller('TaskListController', TaskListController);
 
-  TaskListController.$inject = ['UsersService', 'TaskService', 'DataService', 'CONST'];
+  TaskListController.$inject = ['Application', 'TaskService', 'DataService', 'CONST'];
 
-  function TaskListController(UsersService, TaskService, DataService, CONST) {
+  function TaskListController(Application, TaskService, DataService, CONST) {
     var vm = this;
-
-    vm.listRendered = false;
-
-    UsersService.initialize();
-    if (UsersService.redirectIfNeeded()) {
-      return;
-    }
 
     vm.listRenderedDone = function () {
       vm.listRendered = true;
     };
 
-    DataService.setAppMode(CONST.appMode.PAGE);
-
-    TaskService.loadTasks().then(function () {
-      vm.taskList = TaskService.getTasks();
-      if (vm.taskList.length == 0) {
-        vm.listRenderedDone();
-      }
+    Application.launch(function () {
+      vm.listRendered = false;
+      DataService.setAppMode(CONST.appMode.PAGE);
+      TaskService.loadTasks().then(function () {
+        vm.taskList = TaskService.getTasks();
+        if (vm.taskList.length == 0) {
+          vm.listRenderedDone();
+        }
+      });
     });
   }
 })();

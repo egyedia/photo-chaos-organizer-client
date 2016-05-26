@@ -5,21 +5,14 @@
       .module('pcoApp')
       .controller('TaskCreateController', TaskCreateController);
 
-  TaskCreateController.$inject = ['$routeParams', 'TaskService', 'UsersService', 'TaskTemplatesService', '$location',
+  TaskCreateController.$inject = ['$routeParams', 'TaskService', 'Application', 'TaskTemplatesService', '$location',
                                   'DataService', 'CONST'];
 
-  function TaskCreateController($routeParams, TaskService, UsersService, TaskTemplatesService, $location, DataService,
+  function TaskCreateController($routeParams, TaskService, Application, TaskTemplatesService, $location, DataService,
                                 CONST) {
     var vm = this;
 
-    UsersService.initialize();
-    if (UsersService.redirectIfNeeded()) {
-      return;
-    }
-
-    DataService.setAppMode(CONST.appMode.PAGE);
-
-    this.createTask = function () {
+    vm.createTask = function () {
       var postData = {};
       postData.parameters = this.taskTemplateData;
       postData.className = this.taskTemplate.className;
@@ -29,13 +22,16 @@
       });
     };
 
-    TaskTemplatesService.loadTaskTemplate($routeParams.className).then(function (response) {
-      vm.taskTemplate = response.data;
-      vm.taskTemplate.taskName = "New Task @" + new Date();
-      vm.taskTemplateData = {};
-      for (var pn in vm.taskTemplate.parameters) {
-        vm.taskTemplateData[pn] = vm.taskTemplate.parameters[pn].defaultValue;
-      }
+    Application.launch(function () {
+      DataService.setAppMode(CONST.appMode.PAGE);
+      TaskTemplatesService.loadTaskTemplate($routeParams.className).then(function (response) {
+        vm.taskTemplate = response.data;
+        vm.taskTemplate.taskName = "New Task @" + new Date();
+        vm.taskTemplateData = {};
+        for (var pn in vm.taskTemplate.parameters) {
+          vm.taskTemplateData[pn] = vm.taskTemplate.parameters[pn].defaultValue;
+        }
+      });
     });
 
   }

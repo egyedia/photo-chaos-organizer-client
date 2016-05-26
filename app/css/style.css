@@ -607,6 +607,9 @@ div.taskTemplate div.addSign {
 div.taskTemplate div.addSign i {
   color: #cc1e1f;
 }
+div.taskTemplate.taskTemplateInList {
+  width: 800px;
+}
 div.taskParameterTable {
   vertical-align: top;
   horiz-align: left;

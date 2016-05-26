@@ -33,7 +33,13 @@
         <div ng-include="'views/fragments/task-report.html'"></div>
 
         <div>
-          <a href="/task-launch/{{vm.task.id}}" title="{{'g.back' | translate}}"><i class="font-svg-back"></i></a>
+          <div class="actionButtons">
+            <a href="/task-launch/{{vm.task.id}}" title="{{'g.back' | translate}}"><i class="font-svg-back"></i></a>
+          </div>
+          <div class="launchButtons">
+            <a href="task-run/{{vm.task.id}}" class="runTask" title="{{'g.runTask' | translate}}"><i
+                class="font-svg-play"></i></a>
+          </div>
         </div>
 
       </div>

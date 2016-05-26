@@ -170,7 +170,9 @@
     "error": {
       "title": "Error",
       "pathNotFound": "The requested path ({{path}}) can not be found on the system!",
-      "taskToDeleteNotFound": "The task can not be deleted, since it can not be found by id: {{taskId}}"
+      "errorReadingLocation": "The requested path:<br/>({{path}})<br/> can not be read.<br/>Error:<br/>{{errorText}}!",
+      "taskToDeleteNotFound": "The task can not be deleted, since it can not be found by id: {{taskId}}",
+      "settingsNotFound": "There was an error while loading user settings from:<br/>{{url}}.<br/>Response: {{status}} {{statusText}}"
     },
     "success": {
       "title": "Success",

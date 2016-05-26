@@ -5,24 +5,13 @@
       .module('pcoApp')
       .controller('PathController', PathController);
 
-  PathController.$inject = ['$routeParams', 'FavoritesService', 'PathService', 'DataService', 'UsersService',
+  PathController.$inject = ['$routeParams', 'FavoritesService', 'PathService', 'DataService', 'Application',
                             'SingleImageService', 'FolderOperationsService', 'NotificationService', 'CONST',
                             '$location', '$timeout'];
 
-  function PathController($routeParams, FavoritesService, PathService, DataService, UsersService, SingleImageService,
+  function PathController($routeParams, FavoritesService, PathService, DataService, Application, SingleImageService,
                           FolderOperationsService, NotificationService, CONST, $location, $timeout) {
     var vm = this;
-
-    vm.breadcrumbRendered = false;
-
-    DataService.getAppData().controller = vm;
-
-    UsersService.initialize();
-    if (UsersService.redirectIfNeeded()) {
-      return;
-    }
-
-    DataService.setAppMode(CONST.appMode.PATH);
 
     vm.breadcrumbRenderedDone = function () {
       vm.breadcrumbRendered = true;
@@ -40,6 +29,9 @@
         if (error.status == 404) {
           NotificationService.showError('pathNotFound', {"path": $routeParams.path});
           $location.path('/');
+        } else {
+          NotificationService.showError('errorReadingLocation',
+              {"path": $routeParams.path, "errorText": error.data.errorText});
         }
       });
     };
@@ -118,13 +110,18 @@
       }
     };
 
-    // make sure favorites are loaded
-    // the load path contents
-    if (FavoritesService.isInitialized()) {
-      vm.getPathContents();
-    } else {
-      vm.loadFavoritesAndPathContents();
-    }
+    Application.launch(function () {
+      vm.breadcrumbRendered = false;
+      DataService.getAppData().controller = vm;
+      DataService.setAppMode(CONST.appMode.PATH);
+      // make sure favorites are loaded
+      // the load path contents
+      if (FavoritesService.isInitialized()) {
+        vm.getPathContents();
+      } else {
+        vm.loadFavoritesAndPathContents();
+      }
+    });
 
   }
 })();

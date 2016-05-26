@@ -1,12 +1,13 @@
 // Include gulp & gulp plugins
-var gulp = require('gulp'),
-    jshint = require('gulp-jshint'),
-    less = require('gulp-less'),
-    connect = require('gulp-connect'),
-    stylish = require('jshint-stylish'),
-    plumber = require('gulp-plumber'),
-    replace = require('gulp-replace'),
-    autoprefixer = require('gulp-autoprefixer');
+var gulp = require('gulp');
+var jshint = require('gulp-jshint');
+var less = require('gulp-less');
+var connect = require('gulp-connect');
+var stylish = require('jshint-stylish');
+var plumber = require('gulp-plumber');
+var replace = require('gulp-replace');
+var autoprefixer = require('gulp-autoprefixer');
+var history = require('connect-history-api-fallback');
 
 
 // Creating error handling exception using gulp-util
@@ -44,7 +45,12 @@ gulp.task('server', function () {
     root      : 'app',
     port      : 2200,
     //livereload: true,
-    fallback  : "app/index.html"
+    middleware: function (connect, opt) {
+      return [history({
+        //verbose: true
+      })]
+    },
+    //fallback  : "app/index.html"
   });
 });
 

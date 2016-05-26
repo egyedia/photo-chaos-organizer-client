@@ -10,7 +10,7 @@
       <div class="row">
         <h2 translate>g.createTaskFromTemplate</h2>
 
-        <div ng-repeat="taskTemplate in vm.taskTemplateList" class="wideEntry taskTemplate">
+        <div ng-repeat="taskTemplate in vm.taskTemplateList" class="wideEntry taskTemplate taskTemplateInList">
           <div ng-include="'views/fragments/task-summary.html'"></div>
           <div class="addSign"><a href="/task-create/{{taskTemplate.className}}"
               title="{{'g.createTaskFromThis' | translate}}"><i
