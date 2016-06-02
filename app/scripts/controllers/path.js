@@ -54,7 +54,25 @@
       }
     };
 
-    vm.thumbClicked = function ($index) {
+    vm.parentFolderDoubleClicked = function() {
+      $location.path("/path/file://" + vm.pco.pathData.parentPath);
+    };
+
+    vm.nodeSingleClicked = function ($index) {
+      //console.log("nodeSingleClicked:" + $index);
+    };
+
+    vm.nodeDoubleClicked = function ($index) {
+      //console.log("nodeDoubleClicked:" + $index);
+      var fsEntry = DataService.getPathDataEntry($index);
+      if (fsEntry.isDir) {
+        $location.path(fsEntry.linkPath);
+      } else {
+        vm.thumbDoubleClicked($index);
+      }
+    };
+
+    vm.thumbDoubleClicked = function ($index) {
       if (DataService.getAppMode() == CONST.appMode.PATH_RENAME) {
         vm.endEditingFolderName(false);
       }

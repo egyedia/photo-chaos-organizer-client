@@ -139,6 +139,12 @@ div.fsEntry {
     i.icon-unreadable {
       color: #ff4812;
     }
+    i.font-svg-back {
+      color: #337ab7;
+    }
+    i.icon-image {
+      color: #dddddd;
+    }
   }
   div.thumb {
     position: absolute;
@@ -459,7 +465,7 @@ div.taskTemplate {
     }
   }
   &.taskTemplateInList {
-    width:800px;
+    width: 800px;
   }
 }
 
@@ -645,4 +651,13 @@ div.tableWrapper {
   box-shadow: 0px 0px 2px #aaaaaa;
   transition: box-shadow 0.5s;
   background-color: #eeeeee;
+}
+
+div.unselectable *{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  cursor:default;
 }

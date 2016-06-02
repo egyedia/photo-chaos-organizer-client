@@ -323,6 +323,12 @@ div.fsEntry div.icon i.icon-file {
 div.fsEntry div.icon i.icon-unreadable {
   color: #ff4812;
 }
+div.fsEntry div.icon i.font-svg-back {
+  color: #337ab7;
+}
+div.fsEntry div.icon i.icon-image {
+  color: #dddddd;
+}
 div.fsEntry div.thumb {
   position: absolute;
   top: 0px;
@@ -767,4 +773,12 @@ div.tableWrapper {
   -webkit-transition: box-shadow 0.5s;
   transition: box-shadow 0.5s;
   background-color: #eeeeee;
+}
+div.unselectable * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  cursor: default;
 }

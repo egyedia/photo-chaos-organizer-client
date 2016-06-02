@@ -41,17 +41,17 @@
         </table>
       </div>
 
-      <a href="/path/file://{{vm.pco.pathData.parentPath}}" title="{{'g.goUp' | translate}}">
-        <div class="fsEntry" ng-if="!vm.pco.pathData.locationIsRoot">
+      <div ng-dblclick="vm.parentFolderDoubleClicked()" title="{{'g.goUp' | translate}}">
+        <div class="fsEntry unselectable" ng-if="!vm.pco.pathData.locationIsRoot">
           <div class="icon"><i class="font-svg-back"></i></div>
           <div class="label" translate>g.goUp</div>
         </div>
-      </a>
+      </div>
 
       <div ng-repeat="entry in vm.pco.pathData.entryList"
           ng-repeat-finished="renderingContentsFinished"
           ng-if="vm.pco.pathData.entryList !== null && vm.pco.pathData.entryList.length > 0">
-        <a href="{{entry.linkPath}}" ng-click="vm.thumbClicked($index)" title="{{entry.name}}">
+        <div ng-click="vm.nodeSingleClicked($index)" ng-dblclick="vm.nodeDoubleClicked($index)" title="{{entry.name}}">
           <div class="fsEntry">
             <div ng-hide="entry.hideIcon" class="icon"><i class="{{entry.iconClass}}"></i></div>
             <div class="thumb"><!--
@@ -76,7 +76,7 @@
               </div>
             </div>
           </div>
-        </a>
+        </div>
       </div>
 
       <!--<div id="fancyImageGallery" style="display: none"></div>-->
