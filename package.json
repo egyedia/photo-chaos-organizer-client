@@ -20,7 +20,7 @@
     "stylus": "^0.53.0",
     "autoprefixer": "^6.3.3",
     "gulp-autoprefixer": "^3.1.0",
-    "connect-history-api-fallback": "^1.2.0"
+    "connect-history-api-fallback" : "egyedia/connect-history-api-fallback"
   },
   "dependencies": {
   }
