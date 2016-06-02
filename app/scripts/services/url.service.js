@@ -18,14 +18,14 @@
     var service = {};
     var restPortWasSet = false;
 
-    service.injectPort = function(port) {
+    service.injectPort = function (port) {
       restPort = port;
       restPortWasSet = true;
       baseUrl = getBaseUrl(restPort);
       //console.log("REST API baseURL set to:" + baseUrl)
     };
 
-    service.portWasSet = function() {
+    service.portWasSet = function () {
       return restPortWasSet;
     }
 
@@ -122,7 +122,7 @@
     };
 
     service.deleteTask = function (taskId) {
-      return this.tasks() + '/' + taskId ;
+      return this.tasks() + '/' + taskId;
     };
 
     service.shutdownServer = function (taskId) {
@@ -151,6 +151,10 @@
 
     service.settingsStatic = function () {
       return '/pco-client-settings-static';
+    };
+
+    service.settingsFrontend = function () {
+      return baseUrl + 'pco-frontend-settings';
     };
 
     return service;

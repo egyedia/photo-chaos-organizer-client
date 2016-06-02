@@ -5,9 +5,9 @@
       .module('pcoApp')
       .service('Application', Application);
 
-  Application.$inject = ['$http', 'UrlService', 'UsersService', 'NotificationService'];
+  Application.$inject = ['$http', 'UrlService', 'UsersService', 'NotificationService', 'DataService'];
 
-  function Application($http, UrlService, UsersService, NotificationService) {
+  function Application($http, UrlService, UsersService, NotificationService, DataService) {
 
     var service = {};
 
@@ -43,7 +43,18 @@
       if (UsersService.redirectIfNeeded()) {
         return;
       }
-      controllerCallback();
+      service.loadFrontendSettings(controllerCallback);
+    };
+
+    service.loadFrontendSettings = function (controllerCallback) {
+      var url = UrlService.settingsFrontend();
+      $http.get(url).then(function (response) {
+        DataService.setFrontendSettings(response.data);
+        controllerCallback();
+      }).catch(function (response) {
+        NotificationService.showError('settingsFrontendNotFound',
+            {"url": url, "status": response.status, "statusText": response.statusText});
+      });
     };
 
     return service;

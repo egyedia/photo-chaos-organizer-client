@@ -25,6 +25,7 @@
     Application.launch(function () {
       DataService.setAppMode(CONST.appMode.PAGE);
       TaskTemplatesService.loadTaskTemplate($routeParams.className).then(function (response) {
+        vm.pco = DataService.getAppData();
         vm.taskTemplate = response.data;
         vm.taskTemplate.taskName = "New Task @" + new Date();
         vm.taskTemplateData = {};

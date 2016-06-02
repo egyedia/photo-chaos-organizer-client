@@ -20,9 +20,13 @@
         var cn = task.className;
         TaskTemplatesService.loadTaskTemplate(cn).then(function (response) {
           vm.taskTemplate = response.data;
-          vm.taskTemplateData = {};
+          // TODO: refactor this, have it in a service
+          vm.pco = DataService.getAppData();
           for (var pn in vm.taskTemplate.parameters) {
-            vm.taskTemplateData[pn] = vm.taskTemplate.parameters[pn].defaultValue;
+            var p = vm.taskTemplate.parameters[pn];
+            if (p.type == 'shortDateFormat') {
+              vm.task.parameters[p.name] = vm.pco.frontendSettings.dateFormats.options[vm.task.parameters[p.name]];
+            }
           }
         });
       });

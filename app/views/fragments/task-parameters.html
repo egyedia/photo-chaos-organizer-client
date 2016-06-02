@@ -15,8 +15,8 @@
 
     <div class="paramSeparator"></div>
   </div>
-
   <div ng-repeat="(parameterId, parameter) in vm.taskTemplate.parameters" class="paramWrapper">
+    {{parameter.type}}
     <div class="paramNameAndValue">
       <div class="paramName">{{parameter.nameKey | translate}}
         :

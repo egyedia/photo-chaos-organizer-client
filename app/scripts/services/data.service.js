@@ -64,6 +64,14 @@
       this.getAppData().task = task;
     };
 
+    service.setFrontendSettings = function (settings) {
+      this.getAppData().frontendSettings = settings;
+    };
+
+    service.getFrontendSettings = function () {
+      return this.getAppData().frontendSettings;
+    };
+
     service.getCurrentRawList = function () {
       var list = [];
       var entryList = this.getAppData().pathData.entryList;

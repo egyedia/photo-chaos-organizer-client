@@ -12,5 +12,6 @@ function AppData() {
   this.controller = null;
   this.useExternalVideoPlayer = false;
   this.enableFolderRename = false;
+  this.frontendSettings = null;
   Object.preventExtensions(this);
 }
