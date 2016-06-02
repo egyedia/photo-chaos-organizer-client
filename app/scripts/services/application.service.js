@@ -19,6 +19,7 @@
           service.checkCurrentUser(controllerCallback);
         }).catch(function (response) {
           if (response.status == 404) {
+            console.log("The '404 Not Found' is expected in development.");
             var url = UrlService.settingsStatic();
             $http.get(url).then(function (response) {
               UrlService.injectPort(response.data.port);
