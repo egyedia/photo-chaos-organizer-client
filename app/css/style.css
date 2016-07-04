@@ -326,6 +326,9 @@ div.fsEntry div.icon i.icon-unreadable {
 div.fsEntry div.icon i.font-svg-back {
   color: #337ab7;
 }
+div.fsEntry div.icon i.font-svg-root {
+  color: #337ab7;
+}
 div.fsEntry div.icon i.icon-image {
   color: #dddddd;
 }
@@ -338,7 +341,7 @@ div.fsEntry div.thumb {
 }
 div.fsEntry div.thumb img {
   opacity: 0;
-  border: 1px solid #ddeeff;
+  border: 0px solid #ddeeff;
   max-width: 138px;
   max-height: 138px;
 }
@@ -438,6 +441,9 @@ div.fsEntry div.fsEntryMenu div.favoritePath a {
 }
 div.fsEntry div.fsEntryMenu div.favoritePath .font-svg-bookmark-off:before {
   font-size: 20px;
+}
+div.fsEntry.selected {
+  box-shadow: 0px 0px 0px 2px #337ab7 inset;
 }
 .rTable {
   display: table;

@@ -2,6 +2,7 @@ function AppData() {
   this.favorites = null;
   this.favoritesMap = null;
   this.pathData = null;
+  this.pathDataSelectedIndex = null;
   this.users = null;
   this.userId = null;
   this.userName = null;

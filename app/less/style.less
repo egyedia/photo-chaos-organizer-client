@@ -142,6 +142,9 @@ div.fsEntry {
     i.font-svg-back {
       color: #337ab7;
     }
+    i.font-svg-root {
+      color: #337ab7;
+    }
     i.icon-image {
       color: #dddddd;
     }
@@ -154,7 +157,7 @@ div.fsEntry {
     height: @fs-entry-height - 2 * @fs-entry-border;
     img {
       opacity: 0;
-      border: 1px solid #ddeeff;
+      border: 0px solid #ddeeff;
       max-width: @fs-entry-width - 2 * @fs-entry-border;
       max-height: @fs-entry-height - 2 * @fs-entry-border;
       //transition: opacity 1s;
@@ -242,6 +245,9 @@ div.fsEntry {
         font-size: 20px;
       }
     }
+  }
+  &.selected {
+    box-shadow:0px 0px 0px 2px @color-default inset;
   }
 }
 

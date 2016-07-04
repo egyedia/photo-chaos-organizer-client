@@ -6,10 +6,12 @@
       </a>
 
       <div>
-        <input type="checkbox" id="useExternalVideoPlayer" ng-model="vm.pco.useExternalVideoPlayer"/> <label for="useExternalVideoPlayer" translate>userSetting.useExternalVideoPlayer</label>
+        <input type="checkbox" id="useExternalVideoPlayer" ng-model="vm.pco.useExternalVideoPlayer"/> <label
+          for="useExternalVideoPlayer" translate>userSetting.useExternalVideoPlayer</label>
       </div>
       <div>
-        <input type="checkbox" id="enableFolderRename" ng-model="vm.pco.enableFolderRename"/> <label for="enableFolderRename" translate>userSetting.enableFolderRename</label>
+        <input type="checkbox" id="enableFolderRename" ng-model="vm.pco.enableFolderRename"/> <label
+          for="enableFolderRename" translate>userSetting.enableFolderRename</label>
       </div>
     </div>
     <div class="col-md-10">
@@ -20,7 +22,8 @@
           <a ng-if="!$last" href="/path/file://{{parent.path}}" title="{{'g.goToPath' | translate}}{{parent.path}}">{{parent.name}}</a><span
             ng-show="{{parent.name != '/'}}"> /</span>
         </span>
-        <a ng-if="!vm.folderNameEditorActive && !vm.isAtRoot && vm.breadcrumbRendered && vm.pco.enableFolderRename" href="" ng-click="vm.startEditingFolderName()"
+        <a ng-if="!vm.folderNameEditorActive && !vm.isAtRoot && vm.breadcrumbRendered && vm.pco.enableFolderRename"
+            href="" ng-click="vm.startEditingFolderName()"
             class="editFolderName"><i class="font-svg-edit"></i></a>
       </div>
 
@@ -49,34 +52,36 @@
       </div>
 
       <div ng-repeat="entry in vm.pco.pathData.entryList"
-          ng-repeat-finished="renderingContentsFinished"
+          ng-repeat-finished="renderingContentsFinished"  id="entry{{$index}}"
           ng-if="vm.pco.pathData.entryList !== null && vm.pco.pathData.entryList.length > 0">
-        <div ng-click="vm.nodeSingleClicked($index)" ng-dblclick="vm.nodeDoubleClicked($index)" title="{{entry.name}}">
-          <div class="fsEntry">
-            <div ng-hide="entry.hideIcon" class="icon"><i class="{{entry.iconClass}}"></i></div>
-            <div class="thumb"><!--
+          <div ng-click="vm.nodeSingleClicked($index)" ng-dblclick="vm.nodeDoubleClicked($index)"
+              title="{{entry.name}}">
+            <div class="fsEntry" ng-class="{'selected': vm.pco.pathDataSelectedIndex == $index}">
+              <div ng-hide="entry.hideIcon" class="icon"><i class="{{entry.iconClass}}"></i></div>
+              <div class="thumb"><!--
             --><img ng-src="{{entry.img}}" alt="" title="" pco-onload ng-class="entry.cssClass"
-                ng-data-filename="{{entry.name}}"/><!--
+                  ng-data-filename="{{entry.name}}"/><!--
             --></div>
-            <div class="label">{{entry.name}}</div>
+              <div class="label">{{entry.name}}</div>
 
 
-            <div class="fsStatusMenu">
-              <div class="favoritePath" ng-show="entry.isFavorite">
-                <i class="font-svg-bookmark-on bookmark-on"></i>
+              <div class="fsStatusMenu">
+                <div class="favoritePath" ng-show="entry.isFavorite">
+                  <i class="font-svg-bookmark-on bookmark-on"></i>
+                </div>
               </div>
-            </div>
 
-            <div class="fsEntryMenu" show-on-hover=".fsEntry">
-              <div class="favoritePath" ng-show="entry.isDir">
-                <a href="javascript:;" ng-click="vm.addOrRemoveFavorite(entry.fullPath, entry.isFavorite)"
-                    title="{{entry.isFavorite?('g.removeFavorite' | translate):('g.addFavorite' | translate)}}">
-                  <i class="font-svg-bookmark-off"></i>
-                </a>
+              <div class="fsEntryMenu" show-on-hover=".fsEntry">
+                <div class="favoritePath" ng-show="entry.isDir">
+                  <a href="javascript:;" ng-click="vm.addOrRemoveFavorite(entry.fullPath, entry.isFavorite)"
+                      title="{{entry.isFavorite?('g.removeFavorite' | translate):('g.addFavorite' | translate)}}">
+                    <i class="font-svg-bookmark-off"></i>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
 
       <!--<div id="fancyImageGallery" style="display: none"></div>-->

@@ -30,11 +30,12 @@
           SingleImageService.previous();
         }
       } else if (DataService.getAppMode() == CONST.appMode.PATH) {
-        if (e.which == 113 || (e.which == 117 && e.shiftKey)) {
-          $timeout(function () {
-            DataService.getAppData().controller.startEditingFolderName();
-
-          });
+        if (DataService.getAppData().enableFolderRename) {
+          if (e.which == 113 || (e.which == 117 && e.shiftKey)) {
+            $timeout(function () {
+              DataService.getAppData().controller.startEditingFolderName();
+            });
+          }
         }
       } else if (DataService.getAppMode() == CONST.appMode.PATH_RENAME) {
         if (e.which == 27) {

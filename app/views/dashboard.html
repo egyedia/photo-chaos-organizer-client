@@ -11,12 +11,13 @@
         <h2 translate>g.filesystemRoots</h2>
 
         <div ng-repeat="root in vm.rootList">
-          <a href="/path/file://{{root.path}}" title="{{'g.goToPath' | translate}}{{root.path}}">
-            <div class="fsEntry">
+          <div ng-dblclick="vm.fileSystemRootDoubleClicked(root)"
+              title="{{'g.goToPath' | translate}}{{root.path}}">
+            <div class="fsEntry unselectable">
               <div class="icon"><i class="font-svg-root"></i></div>
               <div class="label">{{root.path}}</div>
             </div>
-          </a>
+          </div>
         </div>
 
       </div>
@@ -25,9 +26,10 @@
         <h2 translate>g.favorites</h2>
 
         <div ng-repeat="favorite in vm.favoriteList">
-          <a href="/path/file://{{favorite.path}}" title="{{'g.goToPath' | translate}}{{favorite.path}}">
-            <div class="fsEntry">
-              <div class="icon"><i class="font-svg-folder"></i></div>
+          <div ng-dblclick="vm.favoriteDoubleClicked(favorite)"
+              title="{{'g.goToPath' | translate}}{{favorite.path}}">
+            <div class="fsEntry unselectable">
+              <div class="icon"><i class="font-svg-folder icon-folder"></i></div>
               <div class="label">{{favorite.path}}</div>
 
               <div class="fsStatusMenu">
@@ -46,7 +48,7 @@
               </div>
 
             </div>
-          </a>
+          </div>
         </div>
 
       </div>

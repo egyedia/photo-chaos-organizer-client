@@ -6,9 +6,9 @@
       .controller('DashboardController', DashboardController);
 
   DashboardController.$inject = ['Application', 'RootsService', 'FavoritesService', 'UsersService', 'DataService',
-                                 'CONST'];
+                                 '$location', 'CONST'];
 
-  function DashboardController(Application, RootsService, FavoritesService, UsersService, DataService, CONST) {
+  function DashboardController(Application, RootsService, FavoritesService, UsersService, DataService, $location, CONST) {
     var vm = this;
 
     vm.removeFavorite = function (path) {
@@ -27,6 +27,14 @@
       FavoritesService.loadFavorites().then(function () {
         vm.favoriteList = FavoritesService.getFavorites();
       });
+    };
+
+    vm.fileSystemRootDoubleClicked = function(root) {
+      $location.path("/path/file://" + root.path);
+    };
+
+    vm.favoriteDoubleClicked = function(favorite) {
+      $location.path("/path/file://" + favorite.path);
     };
 
     Application.launch(function () {

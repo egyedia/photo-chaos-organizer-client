@@ -7,10 +7,11 @@
 
   PathController.$inject = ['$routeParams', 'FavoritesService', 'PathService', 'DataService', 'Application',
                             'SingleImageService', 'FolderOperationsService', 'NotificationService', 'CONST',
-                            '$location', '$timeout'];
+                            '$location', '$timeout', '$anchorScroll', '$window', '$rootScope'];
 
   function PathController($routeParams, FavoritesService, PathService, DataService, Application, SingleImageService,
-                          FolderOperationsService, NotificationService, CONST, $location, $timeout) {
+                          FolderOperationsService, NotificationService, CONST, $location, $timeout, $anchorScroll,
+                          $window, $rootScope) {
     var vm = this;
 
     vm.breadcrumbRenderedDone = function () {
@@ -21,10 +22,23 @@
       PathService.startLoadingThumbnails();
     };
 
+    vm.selectByHash = function () {
+      $timeout(function () {
+        var hash = $location.hash();
+        if (hash != '') {
+          var idx = hash.replace('entry', '');
+          vm.nodeSingleClicked(idx);
+        }
+        $anchorScroll(hash);
+      });
+    };
+
     vm.getPathContents = function () {
+      DataService.setSelectedIndex(null);
       PathService.getPathContents($routeParams.path).then(function () {
         vm.pco = DataService.getAppData();
         vm.isAtRoot = vm.pco.pathData.parentList.length == 1;
+        vm.selectByHash();
       }).catch(function (error) {
         if (error.status == 404) {
           NotificationService.showError('pathNotFound', {"path": $routeParams.path});
@@ -54,19 +68,24 @@
       }
     };
 
-    vm.parentFolderDoubleClicked = function() {
+    vm.parentFolderDoubleClicked = function () {
       $location.path("/path/file://" + vm.pco.pathData.parentPath);
     };
 
     vm.nodeSingleClicked = function ($index) {
-      //console.log("nodeSingleClicked:" + $index);
+      DataService.setSelectedIndex($index);
     };
 
     vm.nodeDoubleClicked = function ($index) {
       //console.log("nodeDoubleClicked:" + $index);
       var fsEntry = DataService.getPathDataEntry($index);
       if (fsEntry.isDir) {
-        $location.path(fsEntry.linkPath);
+        $location.replace();
+        $location.hash("entry" + fsEntry.index);
+        $timeout(function () {
+          $location.path(fsEntry.linkPath);
+          $location.hash("");
+        });
       } else {
         vm.thumbDoubleClicked($index);
       }

@@ -133,6 +133,14 @@
       return this.getAppData().useExternalVideoPlayer;
     };
 
+    service.setSelectedIndex = function (index) {
+      this.getAppData().pathDataSelectedIndex = index;
+    };
+
+    service.getSelectedIndex = function () {
+      return this.getAppData().pathDataSelectedIndex;
+    };
+
     return service;
   };
 })();
