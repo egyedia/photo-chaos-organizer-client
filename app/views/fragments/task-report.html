@@ -17,10 +17,10 @@
     <tr ng-repeat="row in report.rows">
       <td ng-repeat="header in report.headers" ng-if="row.cols.OPERATION != 'doNothing'">
                 <span ng-if="header == 'OPERATION'" translate>
-                {{"report.operation." + row.cols[header]}}
+                {{::"report.operation." + row.cols[header]}}
                 </span>
                 <span ng-if="header != 'OPERATION'">
-                {{row.cols[header]}}
+                {{::row.cols[header]}}
                 </span>
       </td>
     </tr>

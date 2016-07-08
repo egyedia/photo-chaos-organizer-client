@@ -65,6 +65,30 @@
           "description": "Name of the newly created folders."
         }
       }
+    },
+    "importFilesIntoRepo": {
+      "name": "Import file information into Repo",
+      "description": "The task will detect all known files, and import them into a storage called Repo.<br/>Later you can use this Repo for duplicate detection inside the Repo.<br/>You can also detect duplicates against a folder.",
+      "field": {
+        "sourceFolder": {
+          "name": "Source Folder",
+          "description": "The folder will be explored recursively, all the images will be collected"
+        }
+      }
+    },
+    "detectDuplicatesVersusRepo": {
+      "name": "Detect duplicates in a folder agains the Repo",
+      "description": "The task will detect all known files, create a signature from the name(lowercased) and the filesize, and look for the same file in Repo.<br/>If the file is already present in the Repo, the file in the sourceFolder will be moved into the destinationFolder.<br/>The remainder content of the sourceFolder is guarranteed not to have duplicates, so you could move anything to your Repo.",
+      "field": {
+        "sourceFolder": {
+          "name": "Source Folder",
+          "description": "The folder will be explored recursively, all the images will be collected"
+        },
+        "destinationFolder": {
+          "name": "Destination Folder",
+          "description": "The duplicates will be moved here."
+        }
+      }
     }
   },
   "report": {
@@ -80,7 +104,8 @@
       "createFolder": "Create folder",
       "doNothing": "Do nothing",
       "copyFile": "Copy file",
-      "moveFile": "Move file"
+      "moveFile": "Move file",
+      "importIntoRepo": "Import into Repo"
     }
   },
   "product": {

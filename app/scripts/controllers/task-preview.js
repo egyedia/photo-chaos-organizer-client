@@ -17,7 +17,7 @@
         vm.reports = response.data.reports;
         vm.info = response.data.info;
         if (response.data.info.running == true) {
-          $timeout(vm.loadTaskStatus, 1000);
+          $timeout(vm.loadTaskStatus, 2000);
         }
       });
     };
