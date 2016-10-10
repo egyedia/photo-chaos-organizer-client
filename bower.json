@@ -12,6 +12,7 @@
     "angular-translate": "^2.11.0",
     "angular-translate-loader-static-files": "^2.11.0",
     "angular-sanitize": "^1.5.2",
-    "angular-toasty": "~1.0.5"
+    "angular-toasty": "~1.0.5",
+    "angular-ui-grid": "^3.2.7"
   }
 }

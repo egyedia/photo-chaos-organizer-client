@@ -3,6 +3,8 @@
 
   angular.module('pcoApp', [
     'ui.bootstrap',
+    'ui.grid',
+    'ui.grid.resizeColumns',
     'ngRoute',
     'LocalStorageModule',
     'pascalprecht.translate',

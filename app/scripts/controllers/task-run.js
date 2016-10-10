@@ -15,6 +15,15 @@
     vm.loadTaskStatus = function () {
       TaskService.loadTaskStatus($routeParams.taskId).then(function (response) {
         vm.reports = response.data.reports;
+
+        for (var i in vm.reports) {
+          var report = vm.reports[i];
+          var headers = report.headers;
+          for (var h in headers) {
+            var hn = headers[h];
+            headers[h] = {field: hn};
+          }
+        }
         vm.info = response.data.info;
         if (response.data.info.running == true) {
           $timeout(vm.loadTaskStatus, 1000);
@@ -24,7 +33,6 @@
 
     Application.launch(function () {
       DataService.setAppMode(CONST.appMode.PAGE);
-
       TaskService.loadTask($routeParams.taskId).then(function (response) {
         var task = response.data;
         vm.task = task;

@@ -44,6 +44,8 @@
         </table>
       </div>
 
+      <div pco-path-view-uc path="{{vm.pco.pathData.requestedLocation}}"></div>
+
       <div ng-dblclick="vm.parentFolderDoubleClicked()" title="{{'g.goUp' | translate}}">
         <div class="fsEntry unselectable" ng-if="!vm.pco.pathData.locationIsRoot">
           <div class="icon"><i class="font-svg-back"></i></div>
