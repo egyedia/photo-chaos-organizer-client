@@ -159,7 +159,8 @@
   "help": {
     "imageViewer": "Image Viewer",
     "imageViewerFullScreen": "Image Viewer in Full Screen",
-    "pathView": "Folder Navigation"
+    "pathView": "Folder Navigation",
+    "projectDetails": "Project Details"
   },
   "exit": {
     "confirm": "Do you really want to quit the application?",
