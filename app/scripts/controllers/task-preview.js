@@ -6,10 +6,10 @@
       .controller('TaskPreviewController', TaskPreviewController);
 
   TaskPreviewController.$inject = ['$routeParams', '$timeout', 'Application', 'TaskService', 'TaskTemplatesService',
-                                   'DataService', 'CONST'];
+                                   'DataService', '$translate', 'CONST'];
 
   function TaskPreviewController($routeParams, $timeout, Application, TaskService, TaskTemplatesService, DataService,
-                                 CONST) {
+                                 $translate, CONST) {
     var vm = this;
 
     vm.loadTaskStatus = function () {
@@ -21,8 +21,12 @@
           var headers = report.headers;
           for (var h in headers) {
             var hn = headers[h];
-            headers[h] = {field: hn};
+            headers[h] = {
+              field      : hn,
+              displayName: $translate.instant('report.header.' + hn)
+            };
           }
+          console.log(headers);
         }
         vm.info = response.data.info;
         if (response.data.info.running == true) {
