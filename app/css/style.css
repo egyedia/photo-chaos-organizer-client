@@ -789,6 +789,9 @@ div.unselectable * {
   cursor: default;
 }
 .taskReportGrid {
-  width: 850px;
+  width: 100%;
   height: 250px;
+}
+.uiGridWapper {
+  width: 100%;
 }

@@ -6,10 +6,10 @@
       .controller('TaskRunController', TaskRunController);
 
   TaskRunController.$inject = ['$routeParams', '$timeout', 'Application', 'TaskService', 'TaskTemplatesService',
-                               'DataService', 'CONST'];
+                               'DataService', '$translate', 'CONST'];
 
   function TaskRunController($routeParams, $timeout, Application, TaskService, TaskTemplatesService, DataService,
-                             CONST) {
+                             $translate, CONST) {
     var vm = this;
 
     vm.loadTaskStatus = function () {
@@ -21,7 +21,10 @@
           var headers = report.headers;
           for (var h in headers) {
             var hn = headers[h];
-            headers[h] = {field: hn};
+            headers[h] = {
+              field      : hn,
+              displayName: $translate.instant('report.header.' + hn)
+            };
           }
         }
         vm.info = response.data.info;

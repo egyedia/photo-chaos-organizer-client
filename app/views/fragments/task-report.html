@@ -9,7 +9,7 @@
 
 <div></div>
 
-<div class="tableWrapper" ng-repeat="report in vm.reports">
+<div class="tableWrapper uiGridWapper" ng-repeat="report in vm.reports">
   <div ui-grid="{ data: report.rows, columnDefs: report.headers}" ui-grid-resize-columns class="taskReportGrid"></div>
 </div>
 <div style="height:50px"></div>

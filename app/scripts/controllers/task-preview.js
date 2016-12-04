@@ -26,7 +26,6 @@
               displayName: $translate.instant('report.header.' + hn)
             };
           }
-          console.log(headers);
         }
         vm.info = response.data.info;
         if (response.data.info.running == true) {
