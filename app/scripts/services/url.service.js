@@ -5,9 +5,9 @@
       .module('pcoApp')
       .service('UrlService', UrlService);
 
-  UrlService.$inject = ['$http', '$location'];
+  UrlService.$inject = ['$location'];
 
-  function UrlService($http, $location) {
+  function UrlService($location) {
 
     function getBaseUrl(port) {
       return 'http://localhost:' + port + '/';
@@ -123,6 +123,14 @@
 
     service.deleteTask = function (taskId) {
       return this.tasks() + '/' + taskId;
+    };
+
+    service.updateTask = function (taskId) {
+      return this.tasks() + '/' + taskId;
+    };
+
+    service.cloneTask = function (taskId) {
+      return baseUrl + 'command-clone-task/' + taskId;
     };
 
     service.shutdownServer = function (taskId) {

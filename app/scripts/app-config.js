@@ -54,6 +54,16 @@
           controller : 'TaskDeleteController',
           controllerAs: 'vm'
         })
+        .when('/task-clone/:taskId', {
+          templateUrl: 'views/task-list.html',
+          controller : 'TaskCloneController',
+          controllerAs: 'vm'
+        })
+        .when('/task-edit/:taskId', {
+          templateUrl: 'views/task-edit.html',
+          controller : 'TaskEditController',
+          controllerAs: 'vm'
+        })
         .when('/task-template-list', {
           templateUrl: 'views/task-template-list.html',
           controller : 'TaskTemplateListController',

@@ -8,7 +8,7 @@
     <div class="col-md-10">
       <!--Body content-->
       <div class="row">
-        <h2>Create task</h2>
+        <h2>Edit task</h2>
 
         <h3 translate>g.summary</h3>
 
@@ -24,11 +24,11 @@
           <div static-include="views/fragments/task-parameters-edit.html"></div>
 
           <div class="launchButtons">
-            <a href="#" ng-if="taskTemplateForm.$valid" ng-click="vm.createTask()"
-                title="{{'createTask.valid' | translate}}" class="validSaveButton"><i
+            <a href="#" ng-if="taskTemplateForm.$valid" ng-click="vm.updateTask(vm.task.id)"
+                title="{{'updateTask.valid' | translate}}" class="validSaveButton"><i
                 class="font-svg-check-circle"></i></a>
 
-                <span ng-if="!taskTemplateForm.$valid" title="{{'createTask.invalid' | translate}}"
+                <span ng-if="!taskTemplateForm.$valid" title="{{'updateTask.invalid' | translate}}"
                     class="invalidSaveButton"><i
                     class="font-svg-check-circle"></i></span>
           </div>

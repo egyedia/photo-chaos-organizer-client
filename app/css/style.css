@@ -119,6 +119,9 @@
 .font-svg-close-circle:before {
   content: "A";
 }
+.font-svg-clone:before {
+  content: "B";
+}
 .fancybox-overlay {
   position: absolute;
   top: 0;
@@ -564,14 +567,14 @@ span.paramValue {
   white-space: pre;
   font-family: monospace;
 }
-/*
-input.ng-invalid, select.ng-invalid {
+input.ng-invalid,
+select.ng-invalid {
   background-color: rgba(229, 48, 6, 0.33);
 }
-
-input.ng-valid, select.ng-valid {
+input.ng-valid,
+select.ng-valid {
   background-color: rgba(23, 250, 90, 0.33);
-}*/
+}
 a.previewTask i:before {
   color: #00aa00;
 }
