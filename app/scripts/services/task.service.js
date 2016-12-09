@@ -48,20 +48,28 @@
       return defer.promise;
     };
 
-    service.previewTask = function(taskId) {
+    service.previewTask = function (taskId) {
       return RestCallBuilder.get(UrlService.previewTask(taskId));
     };
 
-    service.loadTaskStatus = function(taskId) {
+    service.loadTaskStatus = function (taskId) {
       return RestCallBuilder.get(UrlService.loadTaskStatus(taskId));
     };
 
-    service.runTask = function(taskId) {
+    service.runTask = function (taskId) {
       return RestCallBuilder.get(UrlService.runTask(taskId));
     };
 
-    service.deleteTask = function(taskId) {
+    service.deleteTask = function (taskId) {
       return RestCallBuilder.delete(UrlService.deleteTask(taskId));
+    };
+
+    service.cloneTask = function (taskId) {
+      return RestCallBuilder.post(UrlService.cloneTask(taskId));
+    };
+
+    service.updateTask = function (taskId, taskData) {
+      return RestCallBuilder.put(UrlService.updateTask(taskId), taskData);
     };
 
     return service;

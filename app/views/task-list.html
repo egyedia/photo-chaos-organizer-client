@@ -10,7 +10,7 @@
       <div class="row">
         <h2 translate>g.taskList</h2>
 
-        <div ng-repeat="task in vm.taskList" title="{{'g.viewTask' | translate}}"  ng-repeat-finished="listRenderedDone">
+        <div ng-repeat="task in vm.taskList" title="{{'g.viewTask' | translate}}" ng-repeat-finished="listRenderedDone">
           <a href="/task-launch/{{task.id}}">
             <div class="fsEntry">
               <div class="icon"><i class="font-svg-task"></i></div>
@@ -19,7 +19,8 @@
           </a>
         </div>
 
-        <a ng-if="vm.listRendered" href="/task-template-list" class="createTaskPlus" title="{{'g.createNewTask' | translate}}">
+        <a ng-if="vm.listRendered" href="/task-template-list" class="createTaskPlus"
+            title="{{'g.createNewTask' | translate}}">
           <div class="fsEntry">
             <div class="standaloneIcon">
               <i class="font-svg-plus-circle"></i>

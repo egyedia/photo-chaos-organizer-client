@@ -144,7 +144,9 @@
     "taskStartStatus": "Task start status",
     "true": "yes",
     "false": "no",
-    "deleteTask": "Delete Task"
+    "deleteTask": "Delete Task",
+    "cloneTask": "Clone Task",
+    "editTask": "Edit Task"
   },
   "pageTitle": {
     "createTask": "Create Task",
@@ -157,6 +159,10 @@
   "createTask": {
     "invalid": "Please fill out all the mandatory fields before saving the new task!",
     "valid": "Create the task with the above parameters!"
+  },
+  "updateTask": {
+    "invalid": "Please fill out all the mandatory fields before updating the task!",
+    "valid": "Update the task with the above parameters!"
   },
   "help": {
     "imageViewer": "Image Viewer",
@@ -204,7 +210,8 @@
     },
     "success": {
       "title": "Success",
-      "taskDeleted": "The task with id {{taskId}} was deleted!"
+      "taskDeleted": "The task with id {{taskId}} was deleted!",
+      "taskCloned": "The task with id {{taskId}} was cloned!"
     }
   }
 }
