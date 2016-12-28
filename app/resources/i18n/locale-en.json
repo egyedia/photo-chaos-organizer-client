@@ -6,7 +6,7 @@
       "field": {
         "sourceFolder": {
           "name": "Source Folder",
-          "description": "The folder will be explored recursively, all the images will be collected"
+          "description": "The folder will be explored recursively, all the images will be collected."
         },
         "destinationFolder": {
           "name": "Destination Folder",
@@ -18,7 +18,7 @@
         },
         "newFolderDateFormat": {
           "name": "New folder date format",
-          "description": "The new folders will be created based on this date format"
+          "description": "The new folders will be created based on this date format."
         },
         "fileOperation": {
           "name": "Copy or Move",
@@ -42,9 +42,13 @@
           "name": "New folder suffix",
           "description": "This suffix will be added after the newly created folder names."
         },
+        "fallbackToFileDate": {
+          "name": "Fall back to file date",
+          "description": "If the date can not be extracted from the image meta info, the file's creation date will be used."
+        },
         "newFolderDateFormat": {
           "name": "New folder date format",
-          "description": "The new folders will be created based on this date format"
+          "description": "The new folders will be created based on this date format."
         },
         "fileOperation": {
           "name": "Copy or Move",
@@ -58,7 +62,7 @@
       "field": {
         "workingFolder": {
           "name": "Working Folder",
-          "description": "The folder will be explored recursively, all the raw images will be collected"
+          "description": "The folder will be explored recursively, all the raw images will be collected."
         },
         "rawFolder": {
           "name": "Raw folder name",
@@ -82,7 +86,7 @@
       "field": {
         "sourceFolder": {
           "name": "Source Folder",
-          "description": "The folder will be explored recursively, all the images will be collected"
+          "description": "The folder will be explored recursively, all the images will be collected."
         },
         "destinationFolder": {
           "name": "Destination Folder",
@@ -100,7 +104,8 @@
       "DESTINATION_NAME": "Name",
       "STATUS": "Status",
       "ERROR": "Error",
-      "PHASE": "Phase"
+      "PHASE": "Phase",
+      "PHASE_VALUE": "Value"
     },
     "operation": {
       "createFolder": "Create folder",
